@@ -8,7 +8,6 @@ extends "res://scripts/baseEntity.gd"
 @onready var attack_state = $StateMachine/AttackState as AttackState
 @onready var hurt_state = $StateMachine/HurtState as HurtState
 
-
 func _ready():
 	#emito señales para que se cambie el estado de la state machine
 	wander_state.objective_found.connect(state_machine.change_state.bind(chase_state))
@@ -54,7 +53,4 @@ func _on_basic_attack_area_body_exited(body):
 			
 func _on_hurtbox_area_entered(hitbox):
 	if hitbox:
-		print(self.name)
 		hurt_state.damage_taken.emit()
-		
-

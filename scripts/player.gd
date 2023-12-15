@@ -5,6 +5,7 @@ extends "res://scripts/baseEntity.gd"
 @onready var idle_state = $StateMachine/IdleState as IdleState
 @onready var attack_state = $StateMachine/AttackState as AttackState
 @onready var move_state = $StateMachine/MoveState as MoveState
+@onready var hurt_state = $StateMachine/HurtState as HurtState
 
 func _ready():
 	$Hitbox/CollisionShape2D.disabled = true
@@ -12,6 +13,8 @@ func _ready():
 	move_state.player_not_moving.connect(state_machine.change_state.bind(idle_state))
 	attack_state.execute_basic_attack.connect(state_machine.change_state.bind(attack_state))
 	attack_state.basic_attack_animation_finished.connect(state_machine.change_state.bind(idle_state))
+	hurt_state.damage_taken.connect(state_machine.change_state.bind(hurt_state))
+	hurt_state.damage_taken_finished.connect(state_machine.change_state.bind(idle_state))
 	
 	#wander_state.objective_found.connect(state_machine.change_state.bind(chase_state))
 func _input(event):
@@ -35,3 +38,8 @@ func basic_attack():
 
 func _on_animation_player_animation_finished(basic_attack_animation_name):
 	attack_state.basic_attack_animation_finished.emit()
+
+
+func _on_hurtbox_area_entered(hitbox):
+	if hitbox:
+		hurt_state.damage_taken.emit()

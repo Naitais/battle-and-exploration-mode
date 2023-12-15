@@ -335,7 +335,6 @@ animation_name = "take_damage"
 position = Vector2(-9.5, 13.5)
 shape = SubResource("RectangleShape2D_tsdlg")
 
-[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
 [connection signal="area_entered" from="Hurtbox" to="." method="_on_hurtbox_area_entered" flags=18]
 [connection signal="timeout" from="basicAttackCooldown" to="." method="_on_basic_attack_cooldown_timeout" flags=18]
 [connection signal="body_entered" from="objective_detection_area" to="." method="_on_objective_detection_area_body_entered"]

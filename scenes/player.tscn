@@ -1,4 +1,4 @@
-[gd_scene load_steps=41 format=3 uid="uid://xay4yew45pn4"]
+[gd_scene load_steps=42 format=3 uid="uid://xay4yew45pn4"]
 
 [ext_resource type="PackedScene" uid="uid://d26543ubrvlv7" path="res://scenes/base_entity.tscn" id="1_kdndf"]
 [ext_resource type="Texture2D" uid="uid://20kdx77v3k6u" path="res://sprites/base_character.png" id="2_85hw2"]
@@ -9,6 +9,7 @@
 [ext_resource type="Script" path="res://scripts/idle_state.gd" id="7_60ibs"]
 [ext_resource type="Script" path="res://scripts/attack_state.gd" id="8_b6fae"]
 [ext_resource type="Script" path="res://scripts/move_state.gd" id="9_o5los"]
+[ext_resource type="Script" path="res://scripts/hurt_state.gd" id="10_ffmv8"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_3pdjn"]
 radius = 2.0
@@ -464,4 +465,11 @@ script = ExtResource("9_o5los")
 actor = NodePath("../..")
 animated_sprite = NodePath("../../AnimatedSprite2D")
 
+[node name="HurtState" type="Node" parent="StateMachine" index="3" node_paths=PackedStringArray("actor", "animation_player")]
+script = ExtResource("10_ffmv8")
+actor = NodePath("../..")
+animation_player = NodePath("../../AnimationPlayer")
+animation_name = "take_damage"
+
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
+[connection signal="area_entered" from="Hurtbox" to="." method="_on_hurtbox_area_entered"]
