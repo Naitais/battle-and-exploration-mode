@@ -1,0 +1,64 @@
+[gd_scene load_steps=9 format=3 uid="uid://c23mkal03nk45"]
+
+[ext_resource type="PackedScene" uid="uid://d26543ubrvlv7" path="res://scenes/base_entity.tscn" id="1_yxnpw"]
+[ext_resource type="Script" path="res://scripts/mob.gd" id="2_c4gs6"]
+[ext_resource type="Script" path="res://scripts/State Machine.gd" id="3_fnkcm"]
+[ext_resource type="Script" path="res://scripts/wander_state.gd" id="4_d7njr"]
+[ext_resource type="Script" path="res://scripts/chase_state.gd" id="5_1duql"]
+[ext_resource type="Script" path="res://scripts/attack_state.gd" id="6_calw4"]
+[ext_resource type="Script" path="res://scripts/hurt_state.gd" id="7_gqxc3"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_850rr"]
+radius = 137.131
+
+[node name="mob" instance=ExtResource("1_yxnpw")]
+collision_layer = 4
+collision_mask = 7
+script = ExtResource("2_c4gs6")
+
+[node name="Hurtbox" parent="." index="4"]
+collision_layer = 4
+collision_mask = 2
+
+[node name="Hitbox" parent="." index="5"]
+collision_layer = 4
+collision_mask = 2
+monitoring = true
+
+[node name="StateMachine" type="Node" parent="." index="7" node_paths=PackedStringArray("state")]
+script = ExtResource("3_fnkcm")
+state = NodePath("WanderState")
+
+[node name="WanderState" type="Node" parent="StateMachine" index="0" node_paths=PackedStringArray("actor", "animator")]
+script = ExtResource("4_d7njr")
+actor = NodePath("../..")
+animator = NodePath("../../AnimatedSprite2D")
+
+[node name="Chase" type="Node" parent="StateMachine" index="1" node_paths=PackedStringArray("actor", "animator")]
+script = ExtResource("5_1duql")
+actor = NodePath("../..")
+animator = NodePath("../../AnimatedSprite2D")
+
+[node name="AttackState" type="Node" parent="StateMachine" index="2"]
+script = ExtResource("6_calw4")
+
+[node name="HurtState" type="Node" parent="StateMachine" index="3" node_paths=PackedStringArray("actor", "animation_player")]
+script = ExtResource("7_gqxc3")
+actor = NodePath("../..")
+animation_player = NodePath("../../AnimationPlayer")
+
+[node name="objective_detection_area" type="Area2D" parent="." index="8"]
+visible = false
+collision_layer = 4
+collision_mask = 2
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="objective_detection_area" index="0"]
+shape = SubResource("CircleShape2D_850rr")
+
+[node name="basic_attack_area" type="Area2D" parent="." index="9"]
+collision_layer = 4
+collision_mask = 2
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="basic_attack_area" index="0"]
