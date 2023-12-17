@@ -1,0 +1,13 @@
+[gd_scene load_steps=2 format=3 uid="uid://loneect0lryd"]
+
+[ext_resource type="Texture2D" uid="uid://dl31dbdkswwv2" path="res://sprites/full_hitpoint.png" id="1_6tc3x"]
+
+[node name="hitpoint" type="Panel"]
+self_modulate = Color(1, 1, 1, 0)
+custom_minimum_size = Vector2(16, 5)
+offset_right = 16.0
+offset_bottom = 5.0
+
+[node name="hitpoint_sprite" type="Sprite2D" parent="."]
+texture = ExtResource("1_6tc3x")
+centered = false

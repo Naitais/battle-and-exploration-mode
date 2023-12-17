@@ -6,6 +6,7 @@ extends "res://scripts/baseEntity.gd"
 @onready var attack_state = $StateMachine/AttackState as AttackState
 @onready var move_state = $StateMachine/MoveState as MoveState
 @onready var hurt_state = $StateMachine/HurtState as HurtState
+#@onready var game_mode_state = $StateMachine/GameModeState as GameModeState
 
 func _ready():
 	$Hitbox/CollisionShape2D.disabled = true
@@ -15,22 +16,26 @@ func _ready():
 	attack_state.basic_attack_animation_finished.connect(state_machine.change_state.bind(idle_state))
 	hurt_state.damage_taken.connect(state_machine.change_state.bind(hurt_state))
 	hurt_state.damage_taken_finished.connect(state_machine.change_state.bind(idle_state))
+	#hurt_state.combat_mode_started.connect(state_machine.change_state.bind(game_mode_state))
 	
-	#wander_state.objective_found.connect(state_machine.change_state.bind(chase_state))
 func _input(event):
-	if $AnimationPlayer.current_animation == attack_state.animation_name:
-		await $AnimationPlayer.animation_finished
-	#determino si el input es de movimiento o no
-	var characters: Array = ["w","a","s","d"]
-	if event is InputEventKey:
-		var key_pressed = char(event.unicode)
-		for character in characters:
-			if character == key_pressed:
-				move_state.movement_key_pressed.emit()
+	if GlobalVar.exploration_mode:
+		if $AnimationPlayer.current_animation == attack_state.animation_name:
+			await $AnimationPlayer.animation_finished
+		#determino si el input es de movimiento o no
+		var characters: Array = ["w","a","s","d"]
+		if event is InputEventKey:
+			var key_pressed = char(event.unicode)
+			for character in characters:
+				if character == key_pressed.to_lower():
+					move_state.movement_key_pressed.emit()
 	
 func _physics_process(delta: float) -> void:
-	move_and_slide()
-	basic_attack()
+	if GlobalVar.exploration_mode:
+		move_and_slide()
+		basic_attack()
+	if GlobalVar.combat_mode:
+		$Camera2D.enabled = false
 	
 func basic_attack():
 	if Input.is_action_pressed("left_click"):
@@ -39,7 +44,8 @@ func basic_attack():
 func _on_animation_player_animation_finished(basic_attack_animation_name):
 	attack_state.basic_attack_animation_finished.emit()
 
-
 func _on_hurtbox_area_entered(hitbox):
 	if hitbox:
+		hitpoints -=1
 		hurt_state.damage_taken.emit()
+		#hitpoints_bar_state.empty_hitpoint.emit()

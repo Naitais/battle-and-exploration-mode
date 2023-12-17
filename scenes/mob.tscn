@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://c23mkal03nk45"]
+[gd_scene load_steps=11 format=3 uid="uid://c23mkal03nk45"]
 
 [ext_resource type="PackedScene" uid="uid://d26543ubrvlv7" path="res://scenes/base_entity.tscn" id="1_yxnpw"]
 [ext_resource type="Script" path="res://scripts/mob.gd" id="2_c4gs6"]
@@ -7,6 +7,8 @@
 [ext_resource type="Script" path="res://scripts/chase_state.gd" id="5_1duql"]
 [ext_resource type="Script" path="res://scripts/attack_state.gd" id="6_calw4"]
 [ext_resource type="Script" path="res://scripts/hurt_state.gd" id="7_gqxc3"]
+[ext_resource type="PackedScene" uid="uid://3irbhf3kcg6a" path="res://scenes/hitpoints_container.tscn" id="9_xxbht"]
+[ext_resource type="PackedScene" uid="uid://crgass4c8kjy0" path="res://scenes/empty_hitpoints_container.tscn" id="10_frqtg"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_850rr"]
 radius = 137.131
@@ -15,6 +17,8 @@ radius = 137.131
 collision_layer = 4
 collision_mask = 7
 script = ExtResource("2_c4gs6")
+max_hitpoints = 5
+hitpoints = 5
 
 [node name="Hurtbox" parent="." index="4"]
 collision_layer = 4
@@ -25,7 +29,7 @@ collision_layer = 4
 collision_mask = 2
 monitoring = true
 
-[node name="StateMachine" type="Node" parent="." index="7" node_paths=PackedStringArray("state")]
+[node name="StateMachine" type="Node" parent="." index="6" node_paths=PackedStringArray("state")]
 script = ExtResource("3_fnkcm")
 state = NodePath("WanderState")
 
@@ -47,7 +51,7 @@ script = ExtResource("7_gqxc3")
 actor = NodePath("../..")
 animation_player = NodePath("../../AnimationPlayer")
 
-[node name="objective_detection_area" type="Area2D" parent="." index="8"]
+[node name="objective_detection_area" type="Area2D" parent="." index="7"]
 visible = false
 collision_layer = 4
 collision_mask = 2
@@ -56,9 +60,13 @@ monitorable = false
 [node name="CollisionShape2D" type="CollisionShape2D" parent="objective_detection_area" index="0"]
 shape = SubResource("CircleShape2D_850rr")
 
-[node name="basic_attack_area" type="Area2D" parent="." index="9"]
+[node name="basic_attack_area" type="Area2D" parent="." index="8"]
 collision_layer = 4
 collision_mask = 2
 monitorable = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="basic_attack_area" index="0"]
+
+[node name="empty_hitpoints_container" parent="." index="9" instance=ExtResource("10_frqtg")]
+
+[node name="hitpoints_container" parent="." index="10" instance=ExtResource("9_xxbht")]

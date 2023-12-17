@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://3irbhf3kcg6a"]
+
+[ext_resource type="Script" path="res://scripts/hitpoints_container.gd" id="1_qq43i"]
+
+[node name="hitpoints_container" type="HBoxContainer"]
+offset_right = 4.0
+offset_bottom = 1.0
+theme_override_constants/separation = -1
+script = ExtResource("1_qq43i")

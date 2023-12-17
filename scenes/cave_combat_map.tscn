@@ -1,0 +1,46 @@
+[gd_scene load_steps=8 format=3 uid="uid://ocdfdkaa7r74"]
+
+[ext_resource type="PackedScene" uid="uid://cp83aqs75i6ld" path="res://scenes/base_map.tscn" id="1_mn0ln"]
+[ext_resource type="Texture2D" uid="uid://4loimtxghujo" path="res://tiles/cave_tile.png" id="2_twfp8"]
+[ext_resource type="Texture2D" uid="uid://cyq51sfes50lg" path="res://tiles/selected_tile.png" id="3_ma1gs"]
+[ext_resource type="Script" path="res://scripts/TileMap.gd" id="3_yyxpq"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_5dxhi"]
+texture = ExtResource("2_twfp8")
+0:0/size_in_atlas = Vector2i(2, 2)
+0:0/0 = 0
+2:0/size_in_atlas = Vector2i(2, 2)
+2:0/0 = 0
+0:2/size_in_atlas = Vector2i(2, 2)
+0:2/0 = 0
+2:2/size_in_atlas = Vector2i(2, 2)
+2:2/0 = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_s2c82"]
+texture = ExtResource("3_ma1gs")
+texture_region_size = Vector2i(32, 32)
+0:0/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_oiwxh"]
+tile_size = Vector2i(32, 32)
+sources/0 = SubResource("TileSetAtlasSource_5dxhi")
+sources/3 = SubResource("TileSetAtlasSource_s2c82")
+
+[node name="cave_combat_map" instance=ExtResource("1_mn0ln")]
+
+[node name="TileMap" parent="." index="0"]
+tile_set = SubResource("TileSet_oiwxh")
+layer_0/name = "ground"
+layer_0/tile_data = PackedInt32Array(0, 131072, 0, 1, 131072, 0, 2, 131072, 0, 3, 131072, 2, 4, 131072, 0, 5, 131072, 0, 6, 131072, 0, 7, 0, 2, 8, 131072, 2, 9, 0, 0, 10, 131072, 0, 11, 0, 2, 65547, 131072, 2, 131083, 0, 2, 196619, 131072, 2, 262155, 131072, 2, 327691, 0, 2, 393227, 131072, 2, 458763, 131072, 2, 524299, 131072, 2, 524298, 0, 2, 524297, 131072, 0, 524296, 131072, 0, 524295, 0, 2, 524294, 131072, 0, 524293, 131072, 0, 524292, 0, 2, 524291, 131072, 0, 524290, 131072, 0, 524289, 0, 2, 524288, 131072, 0, 65536, 0, 2, 131072, 0, 0, 196608, 131072, 2, 262144, 0, 2, 327680, 0, 0, 393216, 0, 0, 458752, 0, 0, 196611, 0, 2, 262147, 0, 2, 196612, 0, 2, 262148, 131072, 2, 196613, 0, 2, 262149, 0, 2, 196614, 131072, 0, 262150, 0, 2, 196615, 0, 0, 131079, 0, 0, 131078, 0, 0, 65540, 0, 0, 393222, 131072, 2, 393225, 0, 2, 327689, 0, 0, 196618, 0, 2, 262154, 131072, 2, 262153, 0, 0, 393224, 131072, 0, 393223, 131072, 2, 327685, 0, 2, 327684, 131072, 0, 327683, 0, 0, 196610, 0, 0, 131074, 0, 2, 196609, 0, 0, 262145, 131072, 0, 327681, 131072, 2, 393217, 0, 0, 393218, 131072, 2, 458754, 0, 2, 458755, 0, 2, 458756, 0, 2, 458757, 131072, 2, 458758, 0, 2, 458759, 0, 2, 65546, 0, 2, 65537, 0, 2, 65542, 0, 2, 458762, 0, 2, 327687, 0, 0, 131081, 0, 2, 131075, 131072, 0, 458761, 131072, 2, 65539, 0, 0, 65538, 131072, 2, 131082, 131072, 2, 65541, 131072, 2, 65543, 131072, 2, 65544, 131072, 2, 393226, 131072, 2, 131073, 0, 0, 327682, 0, 0, 458753, 0, 0, 393219, 0, 0, 393221, 131072, 0, 131080, 0, 0, 65545, 0, 0, 196617, 0, 0, 196616, 131072, 0, 327690, 0, 0, 262151, 131072, 0, 327688, 0, 0, 131077, 131072, 0, 458760, 131072, 0, 262152, 131072, 0, 327686, 131072, 0, 393220, 131072, 0, 262146, 131072, 0, 131076, 131072, 0, -131072, 1, 0, -131071, 65537, 0)
+layer_1/name = "selected_tile"
+layer_1/enabled = true
+layer_1/modulate = Color(1, 1, 1, 1)
+layer_1/y_sort_enabled = false
+layer_1/y_sort_origin = 0
+layer_1/z_index = 0
+layer_1/tile_data = PackedInt32Array()
+script = ExtResource("3_yyxpq")
+
+[node name="Camera2D" type="Camera2D" parent="." index="1"]
+position = Vector2(191, 140)
+zoom = Vector2(2, 2)

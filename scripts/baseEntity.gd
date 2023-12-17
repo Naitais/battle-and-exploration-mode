@@ -14,6 +14,15 @@ extends CharacterBody2D
 @export var max_mana: int = 5
 @export var mana: int = max_mana
 
+@export var max_armor: int = 0
+@export var armor: int = max_armor
+
+@export var max_magic_shield: int = 0
+@export var magic_shield: int = max_magic_shield
+
+@export var max_hitpoints: int = 1
+@export var hitpoints: int = max_hitpoints
+
 @export var initiative: int = 10
 
 @export var speed: int = 40
@@ -30,12 +39,8 @@ extends CharacterBody2D
 
 func _process(_delta):
 	pass
-	#if current_state == States.IDLE:
-	#	animate.set_modulate(Color(1, 1, 1, 1))
-	#	animate.rotation = 0
-			
-		
-		#await $AnimationPlayer.animation_finished
 	
 func _ready():
 	$Hitbox/CollisionShape2D.disabled = true
+	
+

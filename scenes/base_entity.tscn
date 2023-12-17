@@ -25,5 +25,3 @@ monitoring = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
 disabled = true
-
-[node name="basicAttackCooldown" type="Timer" parent="."]

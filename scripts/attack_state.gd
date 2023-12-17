@@ -1,7 +1,7 @@
 class_name AttackState
 extends State
 
-@export var actor = Entity
+@export var actor: Entity
 @export var animation_player: AnimationPlayer
 @export var hitbox_collision: CollisionShape2D
 @export var basic_attack_detection_area: CollisionShape2D

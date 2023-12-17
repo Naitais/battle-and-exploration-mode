@@ -3,4 +3,5 @@
 [node name="baseMap" type="Node2D"]
 
 [node name="TileMap" type="TileMap" parent="."]
+cell_quadrant_size = 32
 format = 2
