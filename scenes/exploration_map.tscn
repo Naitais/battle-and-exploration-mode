@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://bw1mdgw3k36c2"]
+[gd_scene load_steps=6 format=3 uid="uid://bw1mdgw3k36c2"]
 
 [ext_resource type="PackedScene" uid="uid://cp83aqs75i6ld" path="res://scenes/base_map.tscn" id="1_32jcj"]
 [ext_resource type="Texture2D" uid="uid://4loimtxghujo" path="res://tiles/cave_tile.png" id="2_538ax"]
+[ext_resource type="Script" path="res://scenes/exploration_map.gd" id="2_sk242"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_hh2b6"]
 texture = ExtResource("2_538ax")
@@ -17,6 +18,7 @@ sources/1 = SubResource("TileSetAtlasSource_hh2b6")
 
 [node name="explorationMap" instance=ExtResource("1_32jcj")]
 y_sort_enabled = true
+script = ExtResource("2_sk242")
 
 [node name="TileMap" parent="." index="0"]
 tile_set = SubResource("TileSet_3yvcf")

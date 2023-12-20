@@ -24,3 +24,5 @@ func _process(_delta):
 			
 	if map_dictionary.has(str(selected_tile)): #si el diccionario de arriba contiene la tile seleccionada entonces estamos en el mapa
 		set_cell(1, selected_tile, 3,Vector2i(0,0),0) #seteo tile de "mira" como ayuda visual de tile seleccionada
+
+

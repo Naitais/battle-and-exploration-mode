@@ -20,7 +20,7 @@ func _ready():
 	#add_child(spider)
 	
 	spider.global_position = Vector2(100,200)
-
+	
 func _process(delta):
 	if GlobalVar.combat_mode and GlobalVar.exploration_mode == false:
 		#combat_mode_state.combat_mode_active.emit()
@@ -35,6 +35,8 @@ func _process(delta):
 			player.position = cave_combat_map.get_node("TileMap").map_to_local(Vector2(0, 4))
 			spider.position = cave_combat_map.get_node("TileMap").map_to_local(Vector2(11, 4))
 	
+	
 	if Input.is_action_pressed("exit"):
 		get_tree().quit()
+	
 	
