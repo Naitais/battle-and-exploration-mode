@@ -2,6 +2,8 @@ class_name Entity
 extends CharacterBody2D
 
 #ESTADISTICAS BASE
+@export var level: int = 0
+
 @export var max_health: int = 10
 @export var health: int = max_health
 

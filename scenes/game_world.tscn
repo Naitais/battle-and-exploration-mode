@@ -1,10 +1,11 @@
-[gd_scene load_steps=6 format=3 uid="uid://bnkhfj65i0ylx"]
+[gd_scene load_steps=7 format=3 uid="uid://bnkhfj65i0ylx"]
 
 [ext_resource type="Script" path="res://scripts/gameWorld.gd" id="1_e2akv"]
 [ext_resource type="Script" path="res://scripts/State Machine.gd" id="2_qrjuw"]
 [ext_resource type="Script" path="res://scripts/combat_mode_state.gd" id="3_ulnwx"]
 [ext_resource type="Script" path="res://scripts/exploration_mode_state.gd" id="4_78xmb"]
 [ext_resource type="PackedScene" uid="uid://kgtxgpf05tf7" path="res://scenes/ui.tscn" id="5_idnic"]
+[ext_resource type="Script" path="res://scenes/ui.gd" id="6_gykcb"]
 
 [node name="gameWorld" type="Node2D"]
 script = ExtResource("1_e2akv")
@@ -22,3 +23,4 @@ script = ExtResource("4_78xmb")
 game_world = NodePath("../..")
 
 [node name="UI" parent="." instance=ExtResource("5_idnic")]
+script = ExtResource("6_gykcb")
