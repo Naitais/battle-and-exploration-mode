@@ -1,5 +1,19 @@
 extends Node2D
+
+var mob_scene_paths = {
+	"spider": "res://scenes/spider.tscn",
+	"slime": "res://scenes/spider.tscn",
+	"goblin": "res://scenes/spider.tscn"
+}
+
 var spider = load("res://scenes/spider.tscn").instantiate() #mobs should be instantiates in their map not here
+@onready var state_machine = $StateMachine as StateMachine
+@onready var mob_pack_tooltip_state = $StateMachine/MobPackTooltipState as MobPackTooltipState
+@onready var hide_mob_tooltip_state = $StateMachine/HideMobTooltipState as HideMobTooltipState
+@onready var mouse_area = $mouseArea/CollisionShape2D
+@onready var mob_pack_tooltip_ui = $MobPackTooltipUI
+
+var spawned_mob_packs: Array
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -9,12 +23,18 @@ func _ready():
 	
 	spider.global_position = Vector2(100,200)
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	pass
 
+	mob_pack_tooltip_state.show_tooltip_true.connect(state_machine.change_state.bind(mob_pack_tooltip_state))
+	hide_mob_tooltip_state.show_tooltip_false.connect(state_machine.change_state.bind(hide_mob_tooltip_state))
+	
+
+
+func _process(delta):
+	mouse_area.position = get_global_mouse_position()
+	
 # This function will generate random data for a mob pack
 func randomize_mob_pack_data() -> Array:
-	var mob_types = ["spider", "slime", "goblin"]  # Add more mob types as needed
+	var mob_types = ["spider"]  # Add more mob types as needed
 	var mob_pack_data = []
 
 	# Randomize the number of mobs in the pack (you can adjust the range as needed)
@@ -62,10 +82,22 @@ func get_strongest_mob(mob_pack):
 			return [mob_data, mob_pack]
 	
 func spawn_mob_from_mob_pack(strongest_mob_data):
+	
 	var strongest_mob_type: String = strongest_mob_data[0].get("mob_type")
 	var mob_pack: Array = strongest_mob_data[1]
-	GlobalVar.spawned_mob_packs.append(mob_pack)
-	add_child(spider)
+	spawned_mob_packs.append(mob_pack)
+	#print(strongest_mob_type)
+	#add_child(strongest_mob_type)
 	#here we would add the strongest mob from the mob pack but i need to create the rest of the mobs
 	#I still need to think about the locations I would place the mobs in
 	#maybe I will make it spawn in a random area of specific spots of the map
+	
+
+func _on_mouse_area_body_entered(body):
+	mob_pack_tooltip_state.show_tooltip_true.emit()
+
+
+
+func _on_mouse_area_body_exited(body):
+	hide_mob_tooltip_state.show_tooltip_false.emit()
+

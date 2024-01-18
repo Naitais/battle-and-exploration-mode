@@ -479,19 +479,19 @@ animation_name = "take_damage"
 hitpoints_container = NodePath("../../hitpoints_container")
 
 [node name="empty_hitpoints_container" parent="." index="8" node_paths=PackedStringArray("actor", "empty_hitpoints_container") instance=ExtResource("13_nkxty")]
-offset_left = -23.0
-offset_top = -30.0
-offset_right = -18.0
-offset_bottom = -29.0
+offset_left = -24.0
+offset_top = -49.0
+offset_right = -19.0
+offset_bottom = -48.0
 actor = NodePath("..")
 empty_hitpoints_container = NodePath(".")
 metadata/_edit_use_anchors_ = true
 
 [node name="hitpoints_container" parent="." index="9" node_paths=PackedStringArray("actor", "hitpoints_container") instance=ExtResource("12_h5lg5")]
 offset_left = -23.0
-offset_top = -30.0
+offset_top = -49.0
 offset_right = -19.0
-offset_bottom = -29.0
+offset_bottom = -48.0
 actor = NodePath("..")
 hitpoints_container = NodePath(".")
 metadata/_edit_use_anchors_ = true

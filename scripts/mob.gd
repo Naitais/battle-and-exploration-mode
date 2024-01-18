@@ -8,6 +8,8 @@ extends "res://scripts/baseEntity.gd"
 @onready var chase_state = $StateMachine/Chase as ChaseState
 @onready var attack_state = $StateMachine/AttackState as AttackState
 @onready var hurt_state = $StateMachine/HurtState as HurtState
+
+
 #@onready var game_mode_state = $StateMachine/GameModeState as GameModeState
 
 func _ready():
@@ -18,7 +20,8 @@ func _ready():
 	attack_state.execute_basic_attack.connect(state_machine.change_state.bind(attack_state))
 	hurt_state.damage_taken.connect(state_machine.change_state.bind(hurt_state))
 	hurt_state.damage_taken_finished.connect(state_machine.change_state.bind(chase_state))
-	#hurt_state.combat_mode_started.connect(state_machine.change_state.bind(game_mode_state))
+	
+	
 	
 func exploration_mode_movement():
 	if velocity.length() > 0:
@@ -62,3 +65,4 @@ func _on_hurtbox_area_entered(hitbox):
 		hitpoints -=1
 		hurt_state.damage_taken.emit()
 		#hitpoints_bar_state.empty_hitpoint.emit()
+

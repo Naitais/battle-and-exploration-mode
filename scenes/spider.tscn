@@ -342,19 +342,19 @@ position = Vector2(-9.5, 13.5)
 shape = SubResource("RectangleShape2D_tsdlg")
 
 [node name="empty_hitpoints_container" parent="." index="9" node_paths=PackedStringArray("actor", "empty_hitpoints_container")]
-offset_left = -3.0
-offset_top = -17.0
-offset_right = 1.0
-offset_bottom = -16.0
+offset_left = -5.0
+offset_top = -25.0
+offset_right = -1.0
+offset_bottom = -24.0
 actor = NodePath("..")
 empty_hitpoints_container = NodePath(".")
 metadata/_edit_use_anchors_ = true
 
 [node name="hitpoints_container" parent="." index="10" node_paths=PackedStringArray("actor", "hitpoints_container")]
-offset_left = -3.0
-offset_top = -17.0
-offset_right = 1.0
-offset_bottom = -16.0
+offset_left = -5.0
+offset_top = -25.0
+offset_right = -1.0
+offset_bottom = -24.0
 actor = NodePath("..")
 hitpoints_container = NodePath(".")
 metadata/_edit_use_anchors_ = true

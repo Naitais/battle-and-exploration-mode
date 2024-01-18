@@ -4,16 +4,7 @@ var exploration_map = load("res://scenes/exploration_map.tscn").instantiate()
 var cave_combat_map = load("res://scenes/cave_combat_map.tscn").instantiate()
 var player = load("res://scenes/player.tscn").instantiate()
 
- 
-@export var playerr: Player
-
-@onready var state_machine = $StateMachine as StateMachine
-@onready var combat_mode_state = $StateMachine/CombatModeState as CombatModeState
-@onready var exploration_mode_state = $StateMachine/ExplorationModeState as ExplorationModeState
-
 func _ready():
-	combat_mode_state.exploration_mode_active.connect(state_machine.change_state.bind(combat_mode_state))
-	combat_mode_state.combat_mode_active.connect(state_machine.change_state.bind(combat_mode_state))
 	add_child(exploration_map)
 	add_child(player)
 	
