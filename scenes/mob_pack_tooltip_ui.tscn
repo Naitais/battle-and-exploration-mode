@@ -23,3 +23,9 @@ offset_left = 40.0
 offset_right = 215.0
 offset_bottom = 26.0
 text = "Mob pack information"
+
+[node name="mob_pack_id_label" type="Label" parent="Panel"]
+layout_mode = 0
+offset_top = 2.0
+offset_right = 40.0
+offset_bottom = 25.0

@@ -19,9 +19,11 @@ func show_tooltip():
 	#for i in (exploration_map.spawned_mob_packs):
 		#for r in i:
 			#print(r)
-	for mob_pack in exploration_map.spawned_mob_packs:
+	for mob_pack in GlobalVar.spawned_mob_packs:
 		var	mob_pack_info = ""
 		for mob_data in mob_pack:
+			print(GlobalVar.spawned_mob_packs)
+			#print(mob_data.get("mob_pack_id"))
 			var mob_info = str(mob_data.get("mob_type")) + " lvl " + str(mob_data.get("mob_level")) + " Power " + str(mob_data.get("power"))
 			mob_pack_info += mob_info + "\n"
 

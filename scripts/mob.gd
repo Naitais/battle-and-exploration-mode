@@ -9,6 +9,8 @@ extends "res://scripts/baseEntity.gd"
 @onready var attack_state = $StateMachine/AttackState as AttackState
 @onready var hurt_state = $StateMachine/HurtState as HurtState
 
+#mob_pack_identifier
+var mob_pack_identifier: int
 
 #@onready var game_mode_state = $StateMachine/GameModeState as GameModeState
 
@@ -36,6 +38,7 @@ func exploration_mode_movement():
 		attack_state.basic_attack_detection_area.position.x = attack_state.basic_attack_det_area_flip_false
 		
 func _physics_process(_delta):
+	
 	if GlobalVar.exploration_mode:
 		move_and_slide()
 		exploration_mode_movement()
