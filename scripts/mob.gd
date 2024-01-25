@@ -10,7 +10,8 @@ extends "res://scripts/baseEntity.gd"
 @onready var hurt_state = $StateMachine/HurtState as HurtState
 
 var mob_level: int = randi() % 5 + 1
-var mob_power: float = (((randi() % 100 + 1) + mob_level) * mob_level) / 10
+var mob_power: int = 3 * mob_level
+#var mob_power: int = (((randi() % 100 + 1) + mob_level) * mob_level) / 10
 
 #@onready var game_mode_state = $StateMachine/GameModeState as GameModeState
 

@@ -289,7 +289,7 @@ top_level = true
 position = Vector2(2, -21)
 max_hitpoints = 2
 hitpoints = 2
-speed = 30
+speed = 15
 
 [node name="CollisionShape2D" parent="." index="1"]
 position = Vector2(4, 17)

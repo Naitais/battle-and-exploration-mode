@@ -1,8 +1,9 @@
 extends Node2D
 
-@onready var ui_panel = $ui_panel
 @onready var mob_pack_area = $mob_pack_area
-@onready var grid_container = $ui_panel/GridContainer
+@onready var panel_container = $PanelContainer
+@onready var grid_container = $PanelContainer/MarginContainer/GridContainer
+
 
 
 var mob_number: int
@@ -65,17 +66,29 @@ func spawn_roaming_mob():
 			add_child(roaming_mob)
 
 func set_ui_position():
-	ui_panel.position = roaming_mob.global_position
+	panel_container.position = roaming_mob.global_position
 
 func manage_mob_pack_tooltip_ui():
 	for mob in instantiated_mobs:
+			#create and add nodes
+			var mob_icon = TextureRect.new()
 			var mob_data = Label.new()
+			grid_container.add_child(mob_icon)
 			grid_container.add_child(mob_data)
+			
+			#get info
 			var mob_info = str(mob.name) + " lvl " + str(mob.mob_level) + " Power " + str(mob.mob_power)
+			
+			#settings
+			mob_icon.expand_mode = TextureRect.EXPAND_FIT_WIDTH
+			mob_icon.texture = load("res://icons/"+mob.name.to_lower()+"_icon.png")
 			mob_data.text = mob_info
-
-		#print(mob_pack_info)
-	print(instantiated_mobs)
+	#pruebas
+			#label.text = mob_info
+			#texture_rect.texture = load("res://icons/"+mob.name.to_lower()+"_icon.png")
+	
+		
+			
 #funcion para clasificar mod packs en dificultad tengo que adaptarla a nueva logica
 #no esta en uso aun
 
@@ -93,10 +106,10 @@ func mod_pack_difficulty_rating(mob_pack):
 	mob_pack_rating += mob_count + mob_sum_levels + pack_power
 
 func _on_mob_pack_area_mouse_entered():
-	ui_panel.visible = true
+	panel_container.visible = true
 	print(instantiated_mobs)
 	
 	#mob_pack_tooltip_state.show_tooltip_true.emit()
 func _on_mob_pack_area_mouse_exited():
-	ui_panel.visible = false
+	panel_container.visible = false
 	pass

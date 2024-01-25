@@ -1,6 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://dcbn3gfwigt6s"]
+[gd_scene load_steps=4 format=3 uid="uid://dcbn3gfwigt6s"]
 
 [ext_resource type="Script" path="res://mob_pack.gd" id="1_mfxsp"]
+[ext_resource type="Texture2D" uid="uid://j2bf02knhp7t" path="res://icons/mob_pack.png" id="2_nw8fm"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ggsru"]
 radius = 34.3657
@@ -8,32 +9,39 @@ radius = 34.3657
 [node name="mob_pack" type="Node2D"]
 script = ExtResource("1_mfxsp")
 
-[node name="ui_panel" type="Panel" parent="."]
-top_level = true
-z_index = 1
-offset_left = 2.0
-offset_top = 2.0
-offset_right = 170.0
-offset_bottom = 96.0
-scale = Vector2(0.5, 0.5)
-
-[node name="GridContainer" type="GridContainer" parent="ui_panel"]
-layout_mode = 1
-anchors_preset = 14
-anchor_top = 0.5
-anchor_right = 1.0
-anchor_bottom = 0.5
-offset_top = -28.0
-offset_bottom = 28.0
-grow_horizontal = 2
-grow_vertical = 2
-
 [node name="mob_pack_area" type="Area2D" parent="."]
 position = Vector2(100, 0)
 collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="mob_pack_area"]
 shape = SubResource("CircleShape2D_ggsru")
+
+[node name="PanelContainer" type="PanelContainer" parent="."]
+visible = false
+z_index = 1
+offset_right = 40.0
+offset_bottom = 40.0
+scale = Vector2(0.5, 0.5)
+
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="GridContainer" type="GridContainer" parent="PanelContainer/MarginContainer"]
+layout_mode = 2
+columns = 2
+
+[node name="TextureRect" type="TextureRect" parent="PanelContainer/MarginContainer/GridContainer"]
+layout_mode = 2
+texture = ExtResource("2_nw8fm")
+expand_mode = 2
+
+[node name="Label" type="Label" parent="PanelContainer/MarginContainer/GridContainer"]
+layout_mode = 2
+text = "Mob Pack info"
 
 [connection signal="mouse_entered" from="mob_pack_area" to="." method="_on_mob_pack_area_mouse_entered"]
 [connection signal="mouse_exited" from="mob_pack_area" to="." method="_on_mob_pack_area_mouse_exited"]
