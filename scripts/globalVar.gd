@@ -18,9 +18,7 @@ var mouse_pos: Vector2
 
 func _physics_process(_delta):
 	#print(on_hand_weapon_slot_one)
-	entities = get_tree().get_nodes_in_group("entities")
-	for entity in GlobalVar.entities:
-		if entity.name == "player":
-			player = entity
 	
+	
+	print(created_mob_packs)
 	

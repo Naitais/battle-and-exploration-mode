@@ -4,8 +4,6 @@ extends Node2D
 @onready var panel_container = $PanelContainer
 @onready var grid_container = $PanelContainer/MarginContainer/GridContainer
 
-
-
 var mob_number: int
 var mob_pack_difficulty_rating: float
 var mob_pack_id: String
@@ -51,6 +49,7 @@ func create_mob_pack():
 func spawn_roaming_mob():
 	
 	var mob_power_list: Array = []
+	var roaming_mob_list: Array = []
 	for mob_scene in instantiated_mobs:
 		#add mob's power to list
 		mob_power_list.append(mob_scene.mob_power)
@@ -58,13 +57,18 @@ func spawn_roaming_mob():
 	#get maximum power number
 	var max_mob_power: int = mob_power_list.max()
 	
-	#gets strongest mob as the roaming mob, can cause problems if two mobs have same stats
-	#add something so that it gets a mob even if there is a tie in power
+	#gets strongest mob as the roaming mob
 	for mob_scene in instantiated_mobs:
 		if mob_scene.mob_power == max_mob_power:
-			roaming_mob = mob_scene
-			add_child(roaming_mob)
-
+			roaming_mob_list.append(mob_scene)
+			#if mobs match power, choose at random
+			if roaming_mob_list.size() > 1:
+				roaming_mob = roaming_mob_list[randi() % roaming_mob_list.size()]
+				add_child(roaming_mob)
+			else:
+				roaming_mob = roaming_mob_list[0]
+				add_child(roaming_mob)
+		
 func set_ui_position():
 	panel_container.position = roaming_mob.global_position
 
