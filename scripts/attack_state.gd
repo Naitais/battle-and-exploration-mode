@@ -35,9 +35,13 @@ func _physics_process(delta):
 	actor.velocity.x = 0
 	actor.velocity.y = 0
 	
+	if actor.name != "Player":
+		#print(actor.position - GlobalVar.player.position)
+		#actor.position +=  Vector2(1,0)
+		pass
+	
 	if actor.name == "player":
 		if animated_sprite.flip_h:
-			
 			hitbox_collision.position.x = hitbox_pos_flip_true
 			
 		else:

@@ -14,6 +14,7 @@ position = Vector2(100, 0)
 collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="mob_pack_area"]
+visible = false
 shape = SubResource("CircleShape2D_ggsru")
 
 [node name="PanelContainer" type="PanelContainer" parent="."]

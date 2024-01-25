@@ -34,8 +34,3 @@ func _physics_process(delta):
 		
 	if actor:
 		actor.velocity = move_direction * actor.speed
-	#func fix_dupli
-	#	if actor.name == "spider2":
-	#		print(actor.name.length())
-	
-	

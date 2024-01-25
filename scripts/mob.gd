@@ -1,7 +1,6 @@
 class_name Mob
 
 extends "res://scripts/baseEntity.gd"
-#@onready var ray_cast_2d = $RayCast2D
 
 @onready var state_machine = $StateMachine as StateMachine
 @onready var wander_state = $StateMachine/WanderState as WanderState
@@ -11,6 +10,9 @@ extends "res://scripts/baseEntity.gd"
 
 var mob_level: int = randi() % 5 + 1
 var mob_power: int = (3 * mob_level) + (randi() % mob_level + 1) + mob_level
+
+#attack variables
+
 #var mob_power: int = (((randi() % 100 + 1) + mob_level) * mob_level) / 10
 
 #@onready var game_mode_state = $StateMachine/GameModeState as GameModeState
@@ -65,5 +67,10 @@ func _on_hurtbox_area_entered(hitbox):
 	if hitbox:
 		hitpoints -=1
 		hurt_state.damage_taken.emit()
+		
+		#get the attacker so that I later know who goes first and to get
+		#mob_pack info
+		attacker = hitbox.get_parent()
+		
 		#hitpoints_bar_state.empty_hitpoint.emit()
 

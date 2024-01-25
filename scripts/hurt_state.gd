@@ -15,6 +15,19 @@ func update_hitpoints():
 		hitpoints_container.get_child(-1).queue_free()
 		
 	if actor.hitpoints == 0:
+		
+		
+		#the following logic should be in its own function but too lazy right now
+		#when the mob defeats the player
+		if actor.attacker.name != 'player':
+			#save mob_pack
+			GlobalVar.mob_pack_involved_in_combat = actor.attacker.get_parent()
+			
+		#when the attacker is the player, then the mob_pack is the parent of
+		#current actor taking damage
+		else:
+			GlobalVar.mob_pack_involved_in_combat = actor.get_parent()
+		
 		combat_mode_started.emit()
 		GlobalVar.exploration_mode = false
 		GlobalVar.combat_mode = true
@@ -37,4 +50,3 @@ func _physics_process(delta):
 	await animation_player.animation_finished
 	update_hitpoints()
 	damage_taken_finished.emit()
-	

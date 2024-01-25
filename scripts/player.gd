@@ -9,6 +9,7 @@ extends "res://scripts/baseEntity.gd"
 #@onready var game_mode_state = $StateMachine/GameModeState as GameModeState
 
 func _ready():
+	GlobalVar.player = self
 	$Hitbox/CollisionShape2D.disabled = true
 	move_state.movement_key_pressed.connect(state_machine.change_state.bind(move_state))
 	move_state.player_not_moving.connect(state_machine.change_state.bind(idle_state))
@@ -49,3 +50,8 @@ func _on_hurtbox_area_entered(hitbox):
 		hitpoints -=1
 		hurt_state.damage_taken.emit()
 		#hitpoints_bar_state.empty_hitpoint.emit()
+		
+		#get the attacker so that I later know who goes first and to get
+		#mob_pack info
+		attacker = hitbox.get_parent()
+		

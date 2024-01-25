@@ -38,6 +38,7 @@ extends CharacterBody2D
 
 #ENTIDADES
 #var entities = get_tree().get_nodes_in_group("entities")
+var attacker: CharacterBody2D
 
 func _process(_delta):
 	pass

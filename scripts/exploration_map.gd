@@ -6,8 +6,13 @@ func create_unique_mob_pack() -> void:
 	GlobalVar.created_mob_packs.append(mob_pack)
 	#print("Added mob_pack:", mob_pack)
 
+
+
 func _ready():
 	create_unique_mob_pack()
 	create_unique_mob_pack()
+	create_unique_mob_pack()
+	pass
+	
 func _process(delta):
 	pass
