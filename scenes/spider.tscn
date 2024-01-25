@@ -1,8 +1,9 @@
-[gd_scene load_steps=29 format=3 uid="uid://djbn7cbpwgsnw"]
+[gd_scene load_steps=30 format=3 uid="uid://djbn7cbpwgsnw"]
 
 [ext_resource type="PackedScene" uid="uid://c23mkal03nk45" path="res://scenes/mob.tscn" id="1_4igrd"]
 [ext_resource type="Texture2D" uid="uid://c5yw6sycua8rw" path="res://sprites/spider_sprite_sheet.png" id="2_r61g4"]
 [ext_resource type="Script" path="res://scripts/idle_state.gd" id="3_oollw"]
+[ext_resource type="Texture2D" uid="uid://n05en3xa0u61" path="res://icons/spider_icon.png" id="4_o5dq0"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ci2rq"]
 radius = 3.0
@@ -358,6 +359,10 @@ offset_bottom = -24.0
 actor = NodePath("..")
 hitpoints_container = NodePath(".")
 metadata/_edit_use_anchors_ = true
+
+[node name="mob_icon" parent="." index="11"]
+visible = false
+texture = ExtResource("4_o5dq0")
 
 [connection signal="area_entered" from="Hurtbox" to="." method="_on_hurtbox_area_entered" flags=18]
 [connection signal="body_entered" from="objective_detection_area" to="." method="_on_objective_detection_area_body_entered"]

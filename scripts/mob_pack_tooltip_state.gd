@@ -1,8 +1,6 @@
 class_name MobPackTooltipState extends State
 
 @export var canvas_ui: CanvasLayer
-@export var mouse_area: Area2D
-@export var exploration_map: Node2D
 @onready var ui_panel: Panel
 @onready var text_label: RichTextLabel
 

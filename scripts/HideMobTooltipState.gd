@@ -2,7 +2,7 @@ class_name HideMobTooltipState extends State
 
 @export var canvas_ui: CanvasLayer
 @onready var ui_panel: Panel
-@export var mouse_area: Area2D
+
 
 
 signal show_tooltip_false

@@ -5,6 +5,7 @@
 [node name="Panel" type="Panel" parent="."]
 offset_right = 264.0
 offset_bottom = 140.0
+metadata/_edit_use_anchors_ = true
 
 [node name="RichTextLabel" type="RichTextLabel" parent="Panel"]
 layout_mode = 1
@@ -16,6 +17,7 @@ offset_top = 36.0
 grow_horizontal = 2
 grow_vertical = 2
 fit_content = true
+metadata/_edit_use_anchors_ = true
 
 [node name="Label" type="Label" parent="Panel"]
 layout_mode = 0
@@ -23,9 +25,11 @@ offset_left = 40.0
 offset_right = 215.0
 offset_bottom = 26.0
 text = "Mob pack information"
+metadata/_edit_use_anchors_ = true
 
 [node name="mob_pack_id_label" type="Label" parent="Panel"]
 layout_mode = 0
 offset_top = 2.0
 offset_right = 40.0
 offset_bottom = 25.0
+metadata/_edit_use_anchors_ = true

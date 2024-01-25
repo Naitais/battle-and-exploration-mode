@@ -70,3 +70,7 @@ monitorable = false
 [node name="empty_hitpoints_container" parent="." index="9" instance=ExtResource("10_frqtg")]
 
 [node name="hitpoints_container" parent="." index="10" instance=ExtResource("9_xxbht")]
+
+[node name="mob_icon" type="TextureRect" parent="." index="11"]
+offset_right = 40.0
+offset_bottom = 40.0

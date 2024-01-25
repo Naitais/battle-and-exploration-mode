@@ -9,8 +9,8 @@ extends "res://scripts/baseEntity.gd"
 @onready var attack_state = $StateMachine/AttackState as AttackState
 @onready var hurt_state = $StateMachine/HurtState as HurtState
 
-#mob_pack_identifier
-var mob_pack_identifier: int
+var mob_level: int = randi() % 5 + 1
+var mob_power: float = (((randi() % 100 + 1) + mob_level) * mob_level) / 10
 
 #@onready var game_mode_state = $StateMachine/GameModeState as GameModeState
 
@@ -22,8 +22,6 @@ func _ready():
 	attack_state.execute_basic_attack.connect(state_machine.change_state.bind(attack_state))
 	hurt_state.damage_taken.connect(state_machine.change_state.bind(hurt_state))
 	hurt_state.damage_taken_finished.connect(state_machine.change_state.bind(chase_state))
-	
-	
 	
 func exploration_mode_movement():
 	if velocity.length() > 0:
@@ -38,7 +36,6 @@ func exploration_mode_movement():
 		attack_state.basic_attack_detection_area.position.x = attack_state.basic_attack_det_area_flip_false
 		
 func _physics_process(_delta):
-	
 	if GlobalVar.exploration_mode:
 		move_and_slide()
 		exploration_mode_movement()
