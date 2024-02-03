@@ -7,15 +7,21 @@ extends "res://scripts/baseEntity.gd"
 @onready var chase_state = $StateMachine/Chase as ChaseState
 @onready var attack_state = $StateMachine/AttackState as AttackState
 @onready var hurt_state = $StateMachine/HurtState as HurtState
+@onready var panel_container = $PanelContainer
 
 var mob_level: int = randi() % 5 + 1
 var mob_power: int = (3 * mob_level) + (randi() % mob_level + 1) + mob_level
 
-#attack variables
+#dictionary with mob info
 
-#var mob_power: int = (((randi() % 100 + 1) + mob_level) * mob_level) / 10
-
-#@onready var game_mode_state = $StateMachine/GameModeState as GameModeState
+var mob_info: Dictionary = {
+	"power": mob_power,
+	"level":mob_level,
+	"armor": armor,
+	"magic shield": magic_shield,
+	"initiative": initiative,
+	"physical damage": physical_damage
+}
 
 func _ready():
 	#emito señales para que se cambie el estado de la state machine
@@ -26,6 +32,7 @@ func _ready():
 	hurt_state.damage_taken.connect(state_machine.change_state.bind(hurt_state))
 	hurt_state.damage_taken_finished.connect(state_machine.change_state.bind(chase_state))
 	
+	print(mob_info)
 func exploration_mode_movement():
 	if velocity.length() > 0:
 		animate.play("idle") #here we place the run animation
@@ -74,3 +81,13 @@ func _on_hurtbox_area_entered(hitbox):
 		
 		#hitpoints_bar_state.empty_hitpoint.emit()
 
+
+
+func _on_tooltip_info_area_mouse_entered():
+	if GlobalVar.combat_mode:
+		panel_container.visible = true
+
+
+func _on_tooltip_info_area_mouse_exited():
+	if GlobalVar.combat_mode:
+		panel_container.visible = false

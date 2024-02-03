@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://c23mkal03nk45"]
+[gd_scene load_steps=12 format=3 uid="uid://c23mkal03nk45"]
 
 [ext_resource type="PackedScene" uid="uid://d26543ubrvlv7" path="res://scenes/base_entity.tscn" id="1_yxnpw"]
 [ext_resource type="Script" path="res://scripts/mob.gd" id="2_c4gs6"]
@@ -12,6 +12,9 @@
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_850rr"]
 radius = 137.131
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_vcl7v"]
+radius = 13.0
 
 [node name="mob" instance=ExtResource("1_yxnpw")]
 top_level = true
@@ -76,3 +79,38 @@ monitorable = false
 [node name="mob_icon" type="TextureRect" parent="." index="11"]
 offset_right = 40.0
 offset_bottom = 40.0
+
+[node name="PanelContainer" type="PanelContainer" parent="." index="12"]
+visible = false
+z_index = 1
+offset_right = 40.0
+offset_bottom = 40.0
+scale = Vector2(0.5, 0.5)
+
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer" index="0"]
+layout_mode = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="GridContainer" type="GridContainer" parent="PanelContainer/MarginContainer" index="0"]
+layout_mode = 2
+columns = 2
+
+[node name="TextureRect" type="TextureRect" parent="PanelContainer/MarginContainer/GridContainer" index="0"]
+layout_mode = 2
+expand_mode = 2
+
+[node name="Label" type="Label" parent="PanelContainer/MarginContainer/GridContainer" index="1"]
+layout_mode = 2
+text = "Mob Pack info"
+
+[node name="tooltip_info_area" type="Area2D" parent="." index="13"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="tooltip_info_area" index="0"]
+position = Vector2(2, 4)
+shape = SubResource("CircleShape2D_vcl7v")
+
+[connection signal="mouse_entered" from="tooltip_info_area" to="." method="_on_tooltip_info_area_mouse_entered"]
+[connection signal="mouse_exited" from="tooltip_info_area" to="." method="_on_tooltip_info_area_mouse_exited"]

@@ -8,3 +8,7 @@ func _ready():
 		var empty_hitpoint = load("res://scenes/empty_hitpoint.tscn").instantiate()
 		empty_hitpoints_container.add_child(empty_hitpoint)
 
+func _process(delta):
+	if GlobalVar.exploration_mode == false and GlobalVar.combat_mode:
+		visible = false
+		

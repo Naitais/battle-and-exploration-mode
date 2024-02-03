@@ -24,9 +24,6 @@ func spawn_entities_in_combat_map():
 			#create logic which sets in a position not occupied randi() % 11
 			#for now it is just in order of i variable
 			combat_mob.position = game_world.combat_map.map_to_local(Vector2(11, i))
-			
-	#spawning the player
-	#combat_map.player.position = combat_map.map_to_local(Vector2(0, 4))
 
 func _ready():
 	#con esto hago que este desactivado el fisics prouces

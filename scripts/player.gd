@@ -30,15 +30,13 @@ func _input(event):
 			for character in characters:
 				if character == key_pressed.to_lower():
 					move_state.movement_key_pressed.emit()
-	
+
 func _physics_process(delta: float) -> void:
 	if GlobalVar.exploration_mode:
 		move_and_slide()
 		basic_attack()
 	if GlobalVar.combat_mode:
 		$Camera2D.enabled = false
-	
-	
 	
 func basic_attack():
 	if Input.is_action_pressed("left_click"):
@@ -56,4 +54,3 @@ func _on_hurtbox_area_entered(hitbox):
 		#get the attacker so that I later know who goes first and to get
 		#mob_pack info
 		attacker = hitbox.get_parent()
-		

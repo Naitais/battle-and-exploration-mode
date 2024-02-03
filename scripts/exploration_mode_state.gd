@@ -2,6 +2,9 @@ class_name  ExplorationModeState
 extends State
 
 @export var game_world: Node2D
+@export var mob_packs: Node2D
+
+
 
 var exploration_map = load("res://scenes/exploration_map.tscn").instantiate()
 
@@ -28,9 +31,11 @@ func _enter_state() -> void:
 	
 func _exit_state() -> void:
 	#cuando se sale se pone false
-	game_world.remove_child(game_world.mob_pack)
-	game_world.remove_child(exploration_map)
 	set_physics_process(false)
+	
+	game_world.remove_child(game_world.mob_packs)
+	game_world.remove_child(exploration_map)
+	
 	
 func _physics_process(delta):
 	pass

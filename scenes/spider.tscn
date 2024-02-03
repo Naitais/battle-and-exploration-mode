@@ -363,6 +363,12 @@ metadata/_edit_use_anchors_ = true
 visible = false
 texture = ExtResource("4_o5dq0")
 
+[node name="TextureRect" parent="PanelContainer/MarginContainer/GridContainer" index="0"]
+texture = ExtResource("4_o5dq0")
+
+[node name="Label" parent="PanelContainer/MarginContainer/GridContainer" index="1"]
+text = "Mob info"
+
 [connection signal="area_entered" from="Hurtbox" to="." method="_on_hurtbox_area_entered" flags=18]
 [connection signal="body_entered" from="objective_detection_area" to="." method="_on_objective_detection_area_body_entered"]
 [connection signal="body_exited" from="objective_detection_area" to="." method="_on_objective_detection_area_body_exited"]

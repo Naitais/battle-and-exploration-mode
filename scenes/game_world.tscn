@@ -17,10 +17,13 @@ script = ExtResource("6_ex5rh")
 script = ExtResource("4_nhiho")
 state = NodePath("ExplorationModeState")
 
-[node name="ExplorationModeState" type="Node" parent="StateMachine" node_paths=PackedStringArray("game_world")]
+[node name="ExplorationModeState" type="Node" parent="StateMachine" node_paths=PackedStringArray("game_world", "mob_packs")]
 script = ExtResource("5_81s06")
 game_world = NodePath("../..")
+mob_packs = NodePath("../../mobPacks")
 
 [node name="CombatModeState" type="Node" parent="StateMachine" node_paths=PackedStringArray("game_world")]
 script = ExtResource("6_l5yep")
 game_world = NodePath("../..")
+
+[node name="mobPacks" type="Node2D" parent="."]
