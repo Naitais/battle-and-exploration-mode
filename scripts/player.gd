@@ -38,6 +38,8 @@ func _physics_process(delta: float) -> void:
 	if GlobalVar.combat_mode:
 		$Camera2D.enabled = false
 	
+	
+	
 func basic_attack():
 	if Input.is_action_pressed("left_click"):
 		attack_state.execute_basic_attack.emit()

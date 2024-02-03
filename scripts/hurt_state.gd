@@ -16,7 +16,6 @@ func update_hitpoints():
 		
 	if actor.hitpoints == 0:
 		
-		
 		#the following logic should be in its own function but too lazy right now
 		#when the mob defeats the player
 		if actor.attacker.name != 'player':
@@ -26,7 +25,7 @@ func update_hitpoints():
 		#when the attacker is the player, then the mob_pack is the parent of
 		#current actor taking damage
 		else:
-			GlobalVar.mob_pack_involved_in_combat = actor.get_parent()
+			GlobalVar.mob_pack_involved_in_combat = actor.get_parent()#.duplicate()
 		
 		combat_mode_started.emit()
 		GlobalVar.exploration_mode = false

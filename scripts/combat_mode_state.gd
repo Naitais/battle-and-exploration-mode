@@ -3,29 +3,39 @@ extends State
 
 @export var game_world: Node2D
 var cave_combat_map = load("res://scenes/cave_combat_map.tscn").instantiate()
+# var for while which controls mobs spawned
+var i: int = 0
 
 signal exploration_mode_active
 signal combat_mode_active
 
-func start_combat_mode():
-	if GlobalVar.exploration_mode == false and combat_mode_active:
-		if cave_combat_map.get_parent() == null:#solo agrego el nivel si no existe, si ya existe
-													#no corro cosntantemente esto porque sino tira error
-													#todo el tiempo al tratar de agregarlo constantemente
-			print("it works")
-			remove_child(game_world.exploration_map)
-			add_child(cave_combat_map)
-			move_child(cave_combat_map, 0) #con esta funcion el mapa que cargo siempre esta primero en el orden de nodos
-
-			GlobalVar.player.position = cave_combat_map.get_node("TileMap").map_to_local(Vector2(0, 4))
-			#enemy.position = current_map_tilemap.map_to_local(Vector2(16, 4))
+func spawn_entities_in_combat_map():
+	game_world.player.position = game_world.combat_map.map_to_local(Vector2(0, 4))
+	
+	#get the mob_pack involved in combat
+	var mobs: Array = GlobalVar.mob_pack_involved_in_combat.instantiated_mobs
+	
+	while i != mobs.size():
+		for mob in mobs:
+			var combat_mob = mob.duplicate()
+			game_world.add_child(combat_mob)
+			
+			i += 1
+			#create logic which sets in a position not occupied randi() % 11
+			#for now it is just in order of i variable
+			combat_mob.position = game_world.combat_map.map_to_local(Vector2(11, i))
+			
+	#spawning the player
+	#combat_map.player.position = combat_map.map_to_local(Vector2(0, 4))
 
 func _ready():
 	#con esto hago que este desactivado el fisics prouces
 	set_physics_process(false)
+	game_world.add_child.call_deferred(cave_combat_map)
 	
 func _enter_state() -> void:
 	#solo se activa cuando entro al state wander
+	
 	set_physics_process(true)
 		
 func _exit_state() -> void:
@@ -33,6 +43,8 @@ func _exit_state() -> void:
 	set_physics_process(false)
 	
 func _physics_process(delta):
-	#start_combat_mode()
-	#print("it works")
-	pass
+	
+	#game_world.remove_child(game_world.mob_pack)
+	spawn_entities_in_combat_map()
+	
+	

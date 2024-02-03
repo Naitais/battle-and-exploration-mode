@@ -1,5 +1,7 @@
 extends Node2D
 
+var player = load("res://scenes/player.tscn").instantiate()
+
 func create_unique_mob_pack() -> void:
 	var mob_pack = load("res://scenes/mob_pack.tscn").instantiate()
 	add_child(mob_pack)
@@ -9,10 +11,7 @@ func create_unique_mob_pack() -> void:
 
 
 func _ready():
-	create_unique_mob_pack()
-	create_unique_mob_pack()
-	create_unique_mob_pack()
+	#create_unique_mob_pack()
 	pass
-	
 func _process(delta):
 	pass

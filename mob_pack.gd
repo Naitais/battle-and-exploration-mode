@@ -24,8 +24,11 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	set_ui_position()
-	mob_pack_area.global_position = roaming_mob.global_position
+	if GlobalVar.exploration_mode:
+		set_ui_position()
+		mob_pack_area.global_position = roaming_mob.global_position
+	
+	
 	
 func create_mob_pack():
 	mob_number = randi() % 4 + 1
@@ -61,13 +64,17 @@ func spawn_roaming_mob():
 	for mob_scene in instantiated_mobs:
 		if mob_scene.mob_power == max_mob_power:
 			roaming_mob_list.append(mob_scene)
-			#if mobs match power, choose at random
-			if roaming_mob_list.size() > 1:
-				roaming_mob = roaming_mob_list[randi() % roaming_mob_list.size()]
-				add_child(roaming_mob)
-			else:
-				roaming_mob = roaming_mob_list[0]
-				add_child(roaming_mob)
+			
+	#if mobs match power, choose at random
+	if roaming_mob_list.size() > 1:
+		roaming_mob = roaming_mob_list[randi() % roaming_mob_list.size()]
+				#var cloned_mob = roaming_mob.duplicate()
+				#change owner so that i dont get errors
+				#cloned_moba.get_parent().remove_child(cloned_mob)
+		add_child(roaming_mob)
+	else:
+		roaming_mob = roaming_mob_list[0]
+		add_child(roaming_mob)
 		
 func set_ui_position():
 	panel_container.position = roaming_mob.global_position
