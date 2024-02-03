@@ -9,10 +9,15 @@ extends "res://scripts/baseEntity.gd"
 @onready var hurt_state = $StateMachine/HurtState as HurtState
 @onready var panel_container = $PanelContainer
 
+
+
 var mob_level: int = randi() % 5 + 1
 var mob_power: int = (3 * mob_level) + (randi() % mob_level + 1) + mob_level
 
 #dictionary with mob info
+@onready var mob_level_lbl = $PanelContainer/MarginContainer/GridContainer/mob_level_lbl
+@onready var mob_power_lbl = $PanelContainer/MarginContainer/GridContainer/mob_power_lbl
+
 
 var mob_info: Dictionary = {
 	"power": mob_power,
@@ -33,6 +38,24 @@ func _ready():
 	hurt_state.damage_taken_finished.connect(state_machine.change_state.bind(chase_state))
 	
 	print(mob_info)
+
+func manage_mob_pack_tooltip_ui():
+	
+	mob_level_lbl.text = str(mob_level)
+	mob_power_lbl.text = str(mob_power)
+		#var mob_icon = TextureRect.new()
+		#var mob_data = Label.new()
+		#grid_container.add_child(mob_icon)
+		#grid_container.add_child(mob_data)
+				
+		#get info
+		#var mob_info = str(mob.name) + " lvl " + str(mob.mob_level) + " Power " + str(mob.mob_power)
+		
+		#settings
+		#mob_icon.expand_mode = TextureRect.EXPAND_FIT_WIDTH
+		#mob_icon.texture = load("res://icons/"+mob.name.to_lower()+"_icon.png")
+		#mob_data.text = mob_info
+
 func exploration_mode_movement():
 	if velocity.length() > 0:
 		animate.play("idle") #here we place the run animation
@@ -49,7 +72,10 @@ func _physics_process(_delta):
 	if GlobalVar.exploration_mode:
 		move_and_slide()
 		exploration_mode_movement()
-	
+		
+	if GlobalVar.combat_mode:
+		manage_mob_pack_tooltip_ui()
+		
 func _on_objective_detection_area_body_entered(body):
 	#emito señales para que se cambie el estado de la state machine
 	if body == GlobalVar.player:

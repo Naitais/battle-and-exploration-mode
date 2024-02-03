@@ -13,7 +13,6 @@ var combat_map = cave_combat_map.get_child(0)
 @onready var exploration_mode_state = $StateMachine/ExplorationModeState as ExplorationModeState
 @onready var combat_mode_state = $StateMachine/CombatModeState as CombatModeState
 
-
 func _ready():
 	#state machine connextions
 	exploration_mode_state.exploration_mode_active.connect(state_machine.change_state.bind(exploration_mode_state))

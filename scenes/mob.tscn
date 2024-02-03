@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://c23mkal03nk45"]
+[gd_scene load_steps=14 format=3 uid="uid://c23mkal03nk45"]
 
 [ext_resource type="PackedScene" uid="uid://d26543ubrvlv7" path="res://scenes/base_entity.tscn" id="1_yxnpw"]
 [ext_resource type="Script" path="res://scripts/mob.gd" id="2_c4gs6"]
@@ -8,7 +8,9 @@
 [ext_resource type="Script" path="res://scripts/attack_state.gd" id="6_calw4"]
 [ext_resource type="Script" path="res://scripts/hurt_state.gd" id="7_gqxc3"]
 [ext_resource type="PackedScene" uid="uid://3irbhf3kcg6a" path="res://scenes/hitpoints_container.tscn" id="9_xxbht"]
+[ext_resource type="Texture2D" uid="uid://cpvk1udv8qqvp" path="res://icons/lvl_icon.png" id="10_0jt7o"]
 [ext_resource type="PackedScene" uid="uid://crgass4c8kjy0" path="res://scenes/empty_hitpoints_container.tscn" id="10_frqtg"]
+[ext_resource type="Texture2D" uid="uid://ctroymoha6e01" path="res://icons/purepng.com-musclemusclemuscle-manbody-builderssix-packmuscle-boysclipart-1421526926338lnu1b.png" id="11_qp1di"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_850rr"]
 radius = 137.131
@@ -98,13 +100,29 @@ theme_override_constants/margin_bottom = 5
 layout_mode = 2
 columns = 2
 
-[node name="TextureRect" type="TextureRect" parent="PanelContainer/MarginContainer/GridContainer" index="0"]
+[node name="mob_icon2" type="TextureRect" parent="PanelContainer/MarginContainer/GridContainer" index="0"]
 layout_mode = 2
 expand_mode = 2
 
-[node name="Label" type="Label" parent="PanelContainer/MarginContainer/GridContainer" index="1"]
+[node name="tooltip_title" type="Label" parent="PanelContainer/MarginContainer/GridContainer" index="1"]
 layout_mode = 2
-text = "Mob Pack info"
+text = "Mob info"
+
+[node name="mob_level_rect" type="TextureRect" parent="PanelContainer/MarginContainer/GridContainer" index="2"]
+layout_mode = 2
+texture = ExtResource("10_0jt7o")
+expand_mode = 2
+
+[node name="mob_level_lbl" type="Label" parent="PanelContainer/MarginContainer/GridContainer" index="3"]
+layout_mode = 2
+
+[node name="mob_power_rect" type="TextureRect" parent="PanelContainer/MarginContainer/GridContainer" index="4"]
+layout_mode = 2
+texture = ExtResource("11_qp1di")
+expand_mode = 2
+
+[node name="mob_power_lbl" type="Label" parent="PanelContainer/MarginContainer/GridContainer" index="5"]
+layout_mode = 2
 
 [node name="tooltip_info_area" type="Area2D" parent="." index="13"]
 
