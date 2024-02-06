@@ -22,8 +22,11 @@ script = ExtResource("5_81s06")
 game_world = NodePath("../..")
 mob_packs = NodePath("../../mobPacks")
 
-[node name="CombatModeState" type="Node" parent="StateMachine" node_paths=PackedStringArray("game_world")]
+[node name="CombatModeState" type="Node" parent="StateMachine" node_paths=PackedStringArray("game_world", "combat_mobs_container")]
 script = ExtResource("6_l5yep")
 game_world = NodePath("../..")
+combat_mobs_container = NodePath("../../combatMobsContainer")
 
 [node name="mobPacks" type="Node2D" parent="."]
+
+[node name="combatMobsContainer" type="Node2D" parent="."]

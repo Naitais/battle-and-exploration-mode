@@ -24,12 +24,12 @@ func _ready():
 	#add_child(exploration_map)
 	add_child(player)
 	create_unique_mob_pack()
-	create_unique_mob_pack()	
 	
 func _process(delta):
 	if GlobalVar.combat_mode and GlobalVar.exploration_mode == false:
 		combat_mode_state.combat_mode_active.emit()
 		#remove_child(mob_pack)
+	
 		
 		#if cave_combat_map.get_parent() == null:#solo agrego el nivel si no existe, si ya existe
 													#no corro cosntantemente esto porque sino tira error
@@ -50,6 +50,3 @@ func create_unique_mob_pack() -> void:
 	var mob_pack = load("res://scenes/mob_pack.tscn").instantiate()
 	mob_packs.add_child(mob_pack)
 	GlobalVar.created_mob_packs.append(mob_pack)
-	
-
-

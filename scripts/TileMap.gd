@@ -13,7 +13,7 @@ func _ready():
 				"Selected Tile" : str(Vector2(x,y))
 			}
 			#set_cell(0, Vector2(x, y), 3, Vector2i(0,0), 0)
-
+	
 func _process(_delta):
 	selected_tile = local_to_map(get_global_mouse_position())  #get mouse pos
 	#print(selected_tile)

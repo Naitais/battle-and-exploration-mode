@@ -2,7 +2,9 @@ class_name  CombatModeState
 extends State
 
 @export var game_world: Node2D
+@export var combat_mobs_container: Node2D
 var cave_combat_map = load("res://scenes/cave_combat_map.tscn").instantiate()
+
 # var for while which controls mobs spawned
 var i: int = 0
 
@@ -17,13 +19,15 @@ func spawn_entities_in_combat_map():
 	
 	while i != mobs.size():
 		for mob in mobs:
-			var combat_mob = mob.duplicate()
-			game_world.add_child(combat_mob)
+			
+			var combat_mob = mob
+			combat_mobs_container.add_child(combat_mob)
 			
 			i += 1
 			#create logic which sets in a position not occupied randi() % 11
 			#for now it is just in order of i variable
 			combat_mob.position = game_world.combat_map.map_to_local(Vector2(11, i))
+			#
 
 func _ready():
 	#con esto hago que este desactivado el fisics prouces

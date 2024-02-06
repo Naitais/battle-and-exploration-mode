@@ -21,14 +21,14 @@ func _ready():
 	create_mob_pack()
 	spawn_roaming_mob()
 	manage_mob_pack_tooltip_ui()
-
+	print("mobpack roaming mob ",roaming_mob)
+	print("mobpack mobs ",instantiated_mobs)
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
+	
 	if GlobalVar.exploration_mode:
 		set_ui_position()
 		mob_pack_area.global_position = roaming_mob.global_position
-	
-	
 	
 func create_mob_pack():
 	mob_number = randi() % 4 + 1
@@ -46,8 +46,8 @@ func create_mob_pack():
 		var mob_scene: PackedScene = load(mob_path)
 		var new_mob = mob_scene.instantiate()
 		
-		#mobs are contained in an array to later be spawned
 		instantiated_mobs.append(new_mob)
+		
 	
 func spawn_roaming_mob():
 	
@@ -55,14 +55,14 @@ func spawn_roaming_mob():
 	var roaming_mob_list: Array = []
 	for mob_scene in instantiated_mobs:
 		#add mob's power to list
-		mob_power_list.append(mob_scene.mob_power)
-		
+		mob_power_list.append(mob_scene.power)
+	
 	#get maximum power number
 	var max_mob_power: int = mob_power_list.max()
 	
 	#gets strongest mob as the roaming mob
 	for mob_scene in instantiated_mobs:
-		if mob_scene.mob_power == max_mob_power:
+		if mob_scene.power == max_mob_power:
 			roaming_mob_list.append(mob_scene)
 			
 	#if mobs match power, choose at random
@@ -75,12 +75,14 @@ func spawn_roaming_mob():
 	else:
 		roaming_mob = roaming_mob_list[0]
 		add_child(roaming_mob)
+	GlobalVar.roaming_mob = roaming_mob
 		
 func set_ui_position():
 	panel_container.position = roaming_mob.global_position
 
 func manage_mob_pack_tooltip_ui():
 	if GlobalVar.exploration_mode:
+		#sacar info de los hijos agregados
 		for mob in instantiated_mobs:
 				#create and add nodes
 				var mob_icon = TextureRect.new()
@@ -89,35 +91,12 @@ func manage_mob_pack_tooltip_ui():
 				grid_container.add_child(mob_data)
 				
 				#get info
-				var mob_info = str(mob.name) + " lvl " + str(mob.mob_level) + " Power " + str(mob.mob_power)
+				var mob_info = str(mob.name) + " lvl " + str(mob.level) + " Power " + str(mob.power)
 				
 				#settings
 				mob_icon.expand_mode = TextureRect.EXPAND_FIT_WIDTH
 				mob_icon.texture = load("res://icons/"+mob.name.to_lower()+"_icon.png")
 				mob_data.text = mob_info
-	
-	
-			#label.text = mob_info
-			#texture_rect.texture = load("res://icons/"+mob.name.to_lower()+"_icon.png")
-	else:
-		print("asdasda")
-		
-			
-#funcion para clasificar mod packs en dificultad tengo que adaptarla a nueva logica
-#no esta en uso aun
-
-func mod_pack_difficulty_rating(mob_pack):
-	var mob_count: int = 0
-	var mob_sum_levels: int = 0
-	var pack_power: int = 0
-	#power should be the result of a mob's stats
-	for mob_data in mob_pack:
-		mob_count +=1
-		mob_sum_levels += mob_data.get("mob_level")
-		pack_power += mob_data.get("power") 
-	pack_power = pack_power / mob_count
-	var mob_pack_rating: int
-	mob_pack_rating += mob_count + mob_sum_levels + pack_power
 
 func _on_mob_pack_area_mouse_entered():
 	panel_container.visible = true

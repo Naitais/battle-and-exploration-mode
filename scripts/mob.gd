@@ -2,6 +2,8 @@ class_name Mob
 
 extends "res://scripts/baseEntity.gd"
 
+
+
 @onready var state_machine = $StateMachine as StateMachine
 @onready var wander_state = $StateMachine/WanderState as WanderState
 @onready var chase_state = $StateMachine/Chase as ChaseState
@@ -9,26 +11,14 @@ extends "res://scripts/baseEntity.gd"
 @onready var hurt_state = $StateMachine/HurtState as HurtState
 @onready var panel_container = $PanelContainer
 
-
-
-var mob_level: int = randi() % 5 + 1
-var mob_power: int = (3 * mob_level) + (randi() % mob_level + 1) + mob_level
-
 #dictionary with mob info
 @onready var mob_level_lbl = $PanelContainer/MarginContainer/GridContainer/mob_level_lbl
 @onready var mob_power_lbl = $PanelContainer/MarginContainer/GridContainer/mob_power_lbl
 
 
-var mob_info: Dictionary = {
-	"power": mob_power,
-	"level":mob_level,
-	"armor": armor,
-	"magic shield": magic_shield,
-	"initiative": initiative,
-	"physical damage": physical_damage
-}
 
 func _ready():
+	
 	#emito señales para que se cambie el estado de la state machine
 	wander_state.objective_found.connect(state_machine.change_state.bind(chase_state))
 	chase_state.objective_lost.connect(state_machine.change_state.bind(wander_state))
@@ -37,12 +27,20 @@ func _ready():
 	hurt_state.damage_taken.connect(state_machine.change_state.bind(hurt_state))
 	hurt_state.damage_taken_finished.connect(state_machine.change_state.bind(chase_state))
 	
-	print(mob_info)
-
-func manage_mob_pack_tooltip_ui():
 	
-	mob_level_lbl.text = str(mob_level)
-	mob_power_lbl.text = str(mob_power)
+	
+	#level = randi() % 5 + 1
+	print("mob mob ",self)
+	
+func manage_mob_pack_tooltip_ui():
+	#print("mob scene; name ",self)
+	#for child in GlobalVar.mob_pack_involved_in_combat.get_children():
+	#	if child.name == "spider":
+	#		print("global var; name ",child)
+			
+	#fill tooltip lbls with info
+	mob_level_lbl.text = str(level)
+	mob_power_lbl.text = str(power)
 		#var mob_icon = TextureRect.new()
 		#var mob_data = Label.new()
 		#grid_container.add_child(mob_icon)
@@ -69,12 +67,15 @@ func exploration_mode_movement():
 		attack_state.basic_attack_detection_area.position.x = attack_state.basic_attack_det_area_flip_false
 		
 func _physics_process(_delta):
+	
+	
+	
 	if GlobalVar.exploration_mode:
 		move_and_slide()
 		exploration_mode_movement()
 		
-	if GlobalVar.combat_mode:
-		manage_mob_pack_tooltip_ui()
+	
+	manage_mob_pack_tooltip_ui()
 		
 func _on_objective_detection_area_body_entered(body):
 	#emito señales para que se cambie el estado de la state machine
