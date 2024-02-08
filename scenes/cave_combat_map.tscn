@@ -51,6 +51,7 @@ position = Vector2(191, 140)
 zoom = Vector2(2, 2)
 
 [node name="entities_involved_in_combat" type="Area2D" parent="." index="2"]
+collision_mask = 6
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="entities_involved_in_combat" index="0"]
 position = Vector2(192.25, 143.75)
