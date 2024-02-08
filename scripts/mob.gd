@@ -27,10 +27,10 @@ func _ready():
 	hurt_state.damage_taken.connect(state_machine.change_state.bind(hurt_state))
 	hurt_state.damage_taken_finished.connect(state_machine.change_state.bind(chase_state))
 	
-	
+	print("combat state roaming mob ",GlobalVar.roaming_mob)
 	
 	#level = randi() % 5 + 1
-	print("mob mob ",self)
+	#print("mob mob ",self)
 	
 func manage_mob_pack_tooltip_ui():
 	#print("mob scene; name ",self)

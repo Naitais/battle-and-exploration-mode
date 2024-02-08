@@ -19,24 +19,30 @@ func spawn_entities_in_combat_map():
 	
 	while i != mobs.size():
 		for mob in mobs:
-			
 			var combat_mob = mob
-			combat_mobs_container.add_child(combat_mob)
 			
+			#if mob already has a parent, do not add it again
+			if combat_mob.get_parent() == null: 
+				combat_mobs_container.add_child(combat_mob)
 			i += 1
 			#create logic which sets in a position not occupied randi() % 11
 			#for now it is just in order of i variable
 			combat_mob.position = game_world.combat_map.map_to_local(Vector2(11, i))
-			#
+
+func combat_start():
+	pass
 
 func _ready():
 	#con esto hago que este desactivado el fisics prouces
 	set_physics_process(false)
-	game_world.add_child.call_deferred(cave_combat_map)
+	
 	
 func _enter_state() -> void:
 	#solo se activa cuando entro al state wander
 	
+	#if already has a parent, do not add it again
+	if cave_combat_map.get_parent() == null:
+		game_world.add_child.call_deferred(cave_combat_map)
 	set_physics_process(true)
 		
 func _exit_state() -> void:

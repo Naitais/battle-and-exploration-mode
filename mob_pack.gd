@@ -10,6 +10,12 @@ var mob_pack_id: String
 var instantiated_mobs: Array
 var roaming_mob
 
+#spiderling
+#spider
+#guardian spider
+#carrier spider
+#venomweaver
+
 var mobs_and_paths: Dictionary = {
 	"spider": "res://scenes/spider.tscn",
 	"slime": "res://scenes/spider.tscn",
@@ -21,8 +27,8 @@ func _ready():
 	create_mob_pack()
 	spawn_roaming_mob()
 	manage_mob_pack_tooltip_ui()
-	print("mobpack roaming mob ",roaming_mob)
-	print("mobpack mobs ",instantiated_mobs)
+	#print("mobpack roaming mob ",roaming_mob)
+	#print("mobpack mobs ",instantiated_mobs)
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	
@@ -48,7 +54,6 @@ func create_mob_pack():
 		
 		instantiated_mobs.append(new_mob)
 		
-	
 func spawn_roaming_mob():
 	
 	var mob_power_list: Array = []
@@ -71,12 +76,17 @@ func spawn_roaming_mob():
 				#var cloned_mob = roaming_mob.duplicate()
 				#change owner so that i dont get errors
 				#cloned_moba.get_parent().remove_child(cloned_mob)
+				
+		#adds roaming mob to combat_mobs_container
+		#get_parent().get_parent().get_child(3).add_child(roaming_mob)
 		add_child(roaming_mob)
 	else:
 		roaming_mob = roaming_mob_list[0]
+		#adds roaming mob to combat_mobs_container
+		#get_parent().get_parent().get_child(3).add_child(roaming_mob)
 		add_child(roaming_mob)
 	GlobalVar.roaming_mob = roaming_mob
-		
+	
 func set_ui_position():
 	panel_container.position = roaming_mob.global_position
 

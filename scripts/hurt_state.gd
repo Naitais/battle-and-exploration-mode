@@ -21,12 +21,18 @@ func update_hitpoints():
 		if actor.attacker.name != 'player':
 			#save mob_pack
 			GlobalVar.mob_pack_involved_in_combat = actor.attacker.get_parent()
+			#removing roaming mob so i can add it later somewhere else
+			remove_child(actor.attacker)
 			
 		#when the attacker is the player, then the mob_pack is the parent of
 		#current actor taking damage
 		else:
-			GlobalVar.mob_pack_involved_in_combat = actor.get_parent()#.duplicate()
-		
+			GlobalVar.mob_pack_involved_in_combat = actor.get_parent()
+			
+			
+			
+			
+			
 		combat_mode_started.emit()
 		GlobalVar.exploration_mode = false
 		GlobalVar.combat_mode = true

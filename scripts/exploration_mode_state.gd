@@ -25,6 +25,7 @@ func _ready():
 	set_physics_process(false)
 	game_world.add_child.call_deferred(exploration_map)
 	
+	
 func _enter_state() -> void:
 	#solo se activa cuando entro al state wander
 	set_physics_process(true)
@@ -33,8 +34,11 @@ func _exit_state() -> void:
 	#cuando se sale se pone false
 	set_physics_process(false)
 	
-	game_world.remove_child(game_world.mob_packs)
-	game_world.remove_child(exploration_map)
+	#game_world.remove_child(game_world.mob_packs)
+	
+	#if exists in the tree, remove it
+	if exploration_map.get_parent():
+		game_world.remove_child(exploration_map)
 	
 	
 func _physics_process(delta):
