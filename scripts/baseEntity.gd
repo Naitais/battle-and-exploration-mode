@@ -52,6 +52,8 @@ var level: int = randi() % 5 + 1
 #will be a sum of all stats 
 var power: int = ((strength + intellect + dexterity + spirit + constitution) * level)
 
+#entity type
+@export var type: String = " "
 
 var entity_info: Dictionary = {
 	"power": power,
@@ -69,6 +71,8 @@ var entity_info: Dictionary = {
 	"constitution": constitution,
 	"dexterity": dexterity,
 	"spirit": spirit,
+	"type": type,
+	"team_tag": " ",
 }
 
 @onready var sprite = $Sprite2D

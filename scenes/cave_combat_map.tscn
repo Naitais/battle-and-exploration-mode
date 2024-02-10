@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://ocdfdkaa7r74"]
+[gd_scene load_steps=12 format=3 uid="uid://ocdfdkaa7r74"]
 
 [ext_resource type="PackedScene" uid="uid://cp83aqs75i6ld" path="res://scenes/base_map.tscn" id="1_mn0ln"]
 [ext_resource type="Script" path="res://scenes/cave_combat_map.gd" id="2_o4sv2"]
@@ -30,6 +30,12 @@ sources/3 = SubResource("TileSetAtlasSource_s2c82")
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_yosyx"]
 size = Vector2(383.5, 286.5)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_x1j1a"]
+size = Vector2(64, 288)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_mhgwh"]
+size = Vector2(63, 288)
+
 [node name="cave_combat_map" instance=ExtResource("1_mn0ln")]
 script = ExtResource("2_o4sv2")
 
@@ -51,11 +57,30 @@ position = Vector2(191, 140)
 zoom = Vector2(2, 2)
 
 [node name="entities_involved_in_combat" type="Area2D" parent="." index="2"]
+visible = false
 collision_mask = 6
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="entities_involved_in_combat" index="0"]
 position = Vector2(192.25, 143.75)
 shape = SubResource("RectangleShape2D_yosyx")
 
+[node name="red_team_area" type="Area2D" parent="." index="3"]
+collision_mask = 6
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="red_team_area" index="0"]
+position = Vector2(32, 144)
+shape = SubResource("RectangleShape2D_x1j1a")
+
+[node name="blue_team_area" type="Area2D" parent="." index="4"]
+collision_mask = 6
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="blue_team_area" index="0"]
+position = Vector2(352, 144)
+shape = SubResource("RectangleShape2D_mhgwh")
+
 [connection signal="body_entered" from="entities_involved_in_combat" to="." method="_on_entities_involved_in_combat_body_entered"]
 [connection signal="body_exited" from="entities_involved_in_combat" to="." method="_on_entities_involved_in_combat_body_exited"]
+[connection signal="body_entered" from="red_team_area" to="." method="_on_red_team_area_body_entered"]
+[connection signal="body_exited" from="red_team_area" to="." method="_on_red_team_area_body_exited"]
+[connection signal="body_entered" from="blue_team_area" to="." method="_on_blue_team_area_body_entered"]
+[connection signal="body_exited" from="blue_team_area" to="." method="_on_blue_team_area_body_exited"]

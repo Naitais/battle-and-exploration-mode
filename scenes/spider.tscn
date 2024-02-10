@@ -289,6 +289,7 @@ position = Vector2(-2, -27)
 max_hitpoints = 2
 hitpoints = 2
 speed = 15
+type = " arachnid"
 
 [node name="CollisionShape2D" parent="." index="1"]
 position = Vector2(4, 17)

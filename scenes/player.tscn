@@ -410,6 +410,7 @@ script = ExtResource("2_iqklm")
 max_hitpoints = 3
 hitpoints = 3
 speed = 150
+type = "  adventurer"
 metadata/_edit_lock_ = true
 
 [node name="CollisionShape2D" parent="." index="1"]

@@ -19,6 +19,12 @@ func _ready():
 	hurt_state.damage_taken_finished.connect(state_machine.change_state.bind(idle_state))
 	#hurt_state.combat_mode_started.connect(state_machine.change_state.bind(game_mode_state))
 	
+	#set type of entity when added
+	entity_info["type"] = type
+	
+	#set level 1
+	entity_info["level"] = 1
+	
 func _input(event):
 	if GlobalVar.exploration_mode:
 		if $AnimationPlayer.current_animation == attack_state.animation_name:

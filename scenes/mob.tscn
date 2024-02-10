@@ -100,13 +100,12 @@ theme_override_constants/margin_bottom = 5
 layout_mode = 2
 columns = 2
 
-[node name="mob_icon2" type="TextureRect" parent="PanelContainer/MarginContainer/GridContainer" index="0"]
+[node name="mob_type_rect" type="TextureRect" parent="PanelContainer/MarginContainer/GridContainer" index="0"]
 layout_mode = 2
 expand_mode = 2
 
 [node name="tooltip_title" type="Label" parent="PanelContainer/MarginContainer/GridContainer" index="1"]
 layout_mode = 2
-text = "Mob info"
 
 [node name="mob_level_rect" type="TextureRect" parent="PanelContainer/MarginContainer/GridContainer" index="2"]
 layout_mode = 2
@@ -122,6 +121,14 @@ texture = ExtResource("11_qp1di")
 expand_mode = 2
 
 [node name="mob_power_lbl" type="Label" parent="PanelContainer/MarginContainer/GridContainer" index="5"]
+layout_mode = 2
+
+[node name="mob_initiative_rect" type="TextureRect" parent="PanelContainer/MarginContainer/GridContainer" index="6"]
+layout_mode = 2
+texture = ExtResource("11_qp1di")
+expand_mode = 2
+
+[node name="mob_initiative_lbl" type="Label" parent="PanelContainer/MarginContainer/GridContainer" index="7"]
 layout_mode = 2
 
 [node name="tooltip_info_area" type="Area2D" parent="." index="13"]

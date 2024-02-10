@@ -11,6 +11,9 @@ var created_mob_packs: Array = []
 var mob_pack_involved_in_combat: Node
 var instantiated_mobs: Array
 var roaming_mob: CharacterBody2D
+var entities_in_combat: Array = []
+var red_team: Array = []
+var blue_team: Array = []
 
 #in the futurre I will need a globalvar for different things such as managing spawned mob packs
 #this array stores every spawned mob_pack so that when a combat starts, it will get a specific mob_pack

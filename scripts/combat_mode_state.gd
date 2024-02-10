@@ -4,6 +4,7 @@ extends State
 @export var game_world: Node2D
 @export var combat_mobs_container: Node2D
 var cave_combat_map = load("res://scenes/cave_combat_map.tscn").instantiate()
+var entities_in_combat: Array = GlobalVar.entities_in_combat
 
 # var for while which controls mobs spawned
 var i: int = 0
@@ -29,6 +30,16 @@ func spawn_entities_in_combat_map():
 			#for now it is just in order of i variable
 			combat_mob.position = game_world.combat_map.map_to_local(Vector2(11, i))
 
+func compare_entities(a, b):
+	return a.entity_info["initiative"] > b.entity_info["initiative"]
+	
+func get_turn_order():
+	GlobalVar.entities_in_combat.sort_custom(compare_entities)
+	print("TERMINA PRINT   ",GlobalVar.entities_in_combat)
+	
+# Define a custom comparison function to compare entities based on initiative
+
+
 func combat_start():
 	pass
 
@@ -53,5 +64,5 @@ func _physics_process(delta):
 	
 	#game_world.remove_child(game_world.mob_pack)
 	spawn_entities_in_combat_map()
-	
+	get_turn_order()
 	

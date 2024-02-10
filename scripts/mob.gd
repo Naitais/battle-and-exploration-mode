@@ -2,8 +2,6 @@ class_name Mob
 
 extends "res://scripts/baseEntity.gd"
 
-
-
 @onready var state_machine = $StateMachine as StateMachine
 @onready var wander_state = $StateMachine/WanderState as WanderState
 @onready var chase_state = $StateMachine/Chase as ChaseState
@@ -14,6 +12,8 @@ extends "res://scripts/baseEntity.gd"
 #dictionary with mob info
 @onready var mob_level_lbl = $PanelContainer/MarginContainer/GridContainer/mob_level_lbl
 @onready var mob_power_lbl = $PanelContainer/MarginContainer/GridContainer/mob_power_lbl
+@onready var tooltip_title = $PanelContainer/MarginContainer/GridContainer/tooltip_title
+@onready var mob_initiative_lbl = $PanelContainer/MarginContainer/GridContainer/mob_initiative_lbl
 
 
 
@@ -27,6 +27,15 @@ func _ready():
 	hurt_state.damage_taken.connect(state_machine.change_state.bind(hurt_state))
 	hurt_state.damage_taken_finished.connect(state_machine.change_state.bind(chase_state))
 	
+	#set type of mob when added
+	entity_info["type"] = type
+	entity_info["inititive"] = level
+	
+	#spiderling 
+	#spider
+	#carrier spider
+	#guardian spider
+	#venomweaver
 func manage_mob_pack_tooltip_ui():
 	#print("mob scene; name ",self)
 	#for child in GlobalVar.mob_pack_involved_in_combat.get_children():
@@ -34,8 +43,10 @@ func manage_mob_pack_tooltip_ui():
 	#		print("global var; name ",child)
 			
 	#fill tooltip lbls with info
+	tooltip_title.text = str(self)
 	mob_level_lbl.text = str(level)
 	mob_power_lbl.text = str(power)
+	mob_initiative_lbl.text = str(level)
 		#var mob_icon = TextureRect.new()
 		#var mob_data = Label.new()
 		#grid_container.add_child(mob_icon)
