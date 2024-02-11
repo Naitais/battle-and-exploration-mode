@@ -84,6 +84,7 @@ func _physics_process(_delta):
 	manage_mob_pack_tooltip_ui()
 		
 func _on_objective_detection_area_body_entered(body):
+	print(body)
 	#emito señales para que se cambie el estado de la state machine
 	if body == GlobalVar.player:
 		wander_state.objective_found.emit()

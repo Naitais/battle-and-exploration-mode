@@ -17,9 +17,9 @@ var roaming_mob
 #venomweaver
 
 var mobs_and_paths: Dictionary = {
-	"spider": "res://scenes/spider.tscn",
-	"slime": "res://scenes/spider.tscn",
-	"goblin": "res://scenes/spider.tscn"
+	"spider": "res://scenes/spiderling.tscn",
+	"spiderling": "res://scenes/spiderling.tscn",
+	"goblin": "res://scenes/spiderling.tscn"
 	}
 
 # Called when the node enters the scene tree for the first time.
