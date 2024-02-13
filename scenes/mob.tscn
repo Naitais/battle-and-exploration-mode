@@ -131,6 +131,9 @@ expand_mode = 2
 [node name="mob_initiative_lbl" type="Label" parent="PanelContainer/MarginContainer/GridContainer" index="7"]
 layout_mode = 2
 
+[node name="mob_debug_lbl" type="Label" parent="PanelContainer/MarginContainer/GridContainer" index="8"]
+layout_mode = 2
+
 [node name="tooltip_info_area" type="Area2D" parent="." index="13"]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="tooltip_info_area" index="0"]

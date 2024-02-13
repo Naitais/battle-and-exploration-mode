@@ -10,6 +10,7 @@ var i: int = 0
 
 # var for while which controls mobs spawned
 var r: int = 0
+var start_round: bool = true
 
 signal exploration_mode_active
 signal combat_mode_active
@@ -36,23 +37,36 @@ func spawn_entities_in_combat_map():
 				combat_mob.position = game_world.combat_map.map_to_local(Vector2(11, i))
 
 func compare_entities(a, b):
+	#sort by initiative stat
 	return a.entity_info["initiative"] > b.entity_info["initiative"]
 	
 func get_turn_order():
-	GlobalVar.entities_in_combat.sort_custom(compare_entities)
+	if start_round:
+		#wait so that all entities are spawned before sorting
+		await get_tree().create_timer(1).timeout
+		#sort by initiative stat
+		GlobalVar.entities_in_combat.sort_custom(compare_entities)
+		
+		# Reset playing_turn for all entities
+		for entity in GlobalVar.entities_in_combat:
+			entity.playing_turn = false
+		
+		# set only the first one as true so that it can start the round of turns
+		if GlobalVar.entities_in_combat.size() > 0:
+			GlobalVar.entities_in_combat[0].playing_turn = true
+	start_round = false
 
 func play_turn():
+	#check if array is empty
 	if GlobalVar.entities_in_combat.size() > 0:
-		
-		print(GlobalVar.entities_in_combat[0])
 		for entity in GlobalVar.entities_in_combat:
 			if entity.playing_turn:
-				print("turn action ", entity)
-			
+				#print(entity, entity.playing_turn)
+				pass
+				
 func _ready():
 	#con esto hago que este desactivado el fisics prouces
 	set_physics_process(false)
-	OS.delay_msec(500)
 	
 func _enter_state() -> void:
 	#solo se activa cuando entro al state wander
@@ -68,16 +82,19 @@ func _exit_state() -> void:
 	set_physics_process(false)
 	
 func _physics_process(_delta):
-	
 	#game_world.remove_child(game_world.mob_pack)
 	spawn_entities_in_combat_map()
 	get_turn_order()
 	play_turn()
+	finish_turn() 
+	
+func finish_turn():
+	if Input.is_action_just_pressed("finish_turn"):
+		
+		if r < GlobalVar.entities_in_combat.size()-1:
+			print("entro")
+			GlobalVar.entities_in_combat[r].playing_turn = false
+			GlobalVar.entities_in_combat[r+1].playing_turn = true
+			r +=1
 
 
-func _on_button_pressed():
-	GlobalVar.entities_in_combat[r].turn_end = true
-	r+=1
-	
-	
-	

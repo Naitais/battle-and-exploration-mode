@@ -14,6 +14,7 @@ extends "res://scripts/baseEntity.gd"
 @onready var mob_power_lbl = $PanelContainer/MarginContainer/GridContainer/mob_power_lbl
 @onready var tooltip_title = $PanelContainer/MarginContainer/GridContainer/tooltip_title
 @onready var mob_initiative_lbl = $PanelContainer/MarginContainer/GridContainer/mob_initiative_lbl
+@onready var mob_debug_lbl = $PanelContainer/MarginContainer/GridContainer/mob_debug_lbl
 
 
 
@@ -47,6 +48,7 @@ func manage_mob_pack_tooltip_ui():
 	mob_level_lbl.text = str(level)
 	mob_power_lbl.text = str(power)
 	mob_initiative_lbl.text = str(level)
+	mob_debug_lbl.text = str(playing_turn)
 		#var mob_icon = TextureRect.new()
 		#var mob_data = Label.new()
 		#grid_container.add_child(mob_icon)
