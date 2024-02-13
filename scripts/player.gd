@@ -9,6 +9,15 @@ extends "res://scripts/baseEntity.gd"
 @onready var pathfind_state = $StateMachine/PathfindState as PathfindState
 
 #@onready var game_mode_state = $StateMachine/GameModeState as GameModeState
+@onready var panel_container = $PanelContainer
+@onready var tooltip_title = $PanelContainer/MarginContainer/GridContainer/tooltip_title
+@onready var mob_level_lbl = $PanelContainer/MarginContainer/GridContainer/mob_level_lbl
+@onready var mob_power_lbl = $PanelContainer/MarginContainer/GridContainer/mob_power_lbl
+@onready var mob_initiative_lbl = $PanelContainer/MarginContainer/GridContainer/mob_initiative_lbl
+@onready var mob_debug_lbl = $PanelContainer/MarginContainer/GridContainer/mob_debug_lbl
+
+
+
 
 func _ready():
 	GlobalVar.player = self
@@ -39,12 +48,36 @@ func _input(event):
 			for character in characters:
 				if character == key_pressed.to_lower():
 					move_state.movement_key_pressed.emit()
-
+func manage_mob_pack_tooltip_ui():
+	#print("mob scene; name ",self)
+	#for child in GlobalVar.mob_pack_involved_in_combat.get_children():
+	#	if child.name == "spider":
+	#		print("global var; name ",child)
+			
+	#fill tooltip lbls with info
+	tooltip_title.text = str(self)
+	mob_level_lbl.text = str(level)
+	mob_power_lbl.text = str(power)
+	mob_initiative_lbl.text = str(level)
+	mob_debug_lbl.text = str(playing_turn)
+		#var mob_icon = TextureRect.new()
+		#var mob_data = Label.new()
+		#grid_container.add_child(mob_icon)
+		#grid_container.add_child(mob_data)
+				
+		#get info
+		#var mob_info = str(mob.name) + " lvl " + str(mob.mob_level) + " Power " + str(mob.mob_power)
+		
+		#settings
+		#mob_icon.expand_mode = TextureRect.EXPAND_FIT_WIDTH
+		#mob_icon.texture = load("res://icons/"+mob.name.to_lower()+"_icon.png")
+		#mob_data.text = mob_info
 func _physics_process(_delta: float) -> void:
 	if GlobalVar.exploration_mode:
 		move_and_slide()
 		basic_attack()
 	if GlobalVar.combat_mode:
+		manage_mob_pack_tooltip_ui()
 		$Camera2D.enabled = false
 	
 func basic_attack():
@@ -63,3 +96,13 @@ func _on_hurtbox_area_entered(hitbox):
 		#get the attacker so that I later know who goes first and to get
 		#mob_pack info
 		attacker = hitbox.get_parent()
+
+
+func _on_tooltip_info_area_mouse_entered():
+	if GlobalVar.combat_mode:
+		panel_container.visible = true
+
+
+func _on_tooltip_info_area_mouse_exited():
+	if GlobalVar.combat_mode:
+		panel_container.visible = false

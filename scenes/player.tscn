@@ -1,4 +1,4 @@
-[gd_scene load_steps=45 format=3 uid="uid://xay4yew45pn4"]
+[gd_scene load_steps=48 format=3 uid="uid://xay4yew45pn4"]
 
 [ext_resource type="PackedScene" uid="uid://d26543ubrvlv7" path="res://scenes/base_entity.tscn" id="1_kdndf"]
 [ext_resource type="Texture2D" uid="uid://20kdx77v3k6u" path="res://sprites/base_character.png" id="2_85hw2"]
@@ -13,6 +13,8 @@
 [ext_resource type="Script" path="res://scripts/pathfind_state.gd" id="11_8msbo"]
 [ext_resource type="PackedScene" uid="uid://3irbhf3kcg6a" path="res://scenes/hitpoints_container.tscn" id="12_h5lg5"]
 [ext_resource type="PackedScene" uid="uid://crgass4c8kjy0" path="res://scenes/empty_hitpoints_container.tscn" id="13_nkxty"]
+[ext_resource type="Texture2D" uid="uid://cpvk1udv8qqvp" path="res://icons/lvl_icon.png" id="14_viky6"]
+[ext_resource type="Texture2D" uid="uid://ctroymoha6e01" path="res://icons/purepng.com-musclemusclemuscle-manbody-builderssix-packmuscle-boysclipart-1421526926338lnu1b.png" id="15_kcaep"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_3pdjn"]
 radius = 2.0
@@ -402,6 +404,9 @@ height = 44.0
 radius = 9.39958
 height = 24.0
 
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_xvloh"]
+height = 46.0
+
 [node name="player" groups=["Entities"] instance=ExtResource("1_kdndf")]
 top_level = true
 position = Vector2(10, -12)
@@ -504,5 +509,65 @@ actor = NodePath("..")
 hitpoints_container = NodePath(".")
 metadata/_edit_use_anchors_ = true
 
+[node name="PanelContainer" type="PanelContainer" parent="." index="10"]
+visible = false
+z_index = 1
+offset_right = 40.0
+offset_bottom = 40.0
+scale = Vector2(0.5, 0.5)
+
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer" index="0"]
+layout_mode = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="GridContainer" type="GridContainer" parent="PanelContainer/MarginContainer" index="0"]
+layout_mode = 2
+columns = 2
+
+[node name="mob_type_rect" type="TextureRect" parent="PanelContainer/MarginContainer/GridContainer" index="0"]
+layout_mode = 2
+expand_mode = 2
+
+[node name="tooltip_title" type="Label" parent="PanelContainer/MarginContainer/GridContainer" index="1"]
+layout_mode = 2
+
+[node name="mob_level_rect" type="TextureRect" parent="PanelContainer/MarginContainer/GridContainer" index="2"]
+layout_mode = 2
+texture = ExtResource("14_viky6")
+expand_mode = 2
+
+[node name="mob_level_lbl" type="Label" parent="PanelContainer/MarginContainer/GridContainer" index="3"]
+layout_mode = 2
+
+[node name="mob_power_rect" type="TextureRect" parent="PanelContainer/MarginContainer/GridContainer" index="4"]
+layout_mode = 2
+texture = ExtResource("15_kcaep")
+expand_mode = 2
+
+[node name="mob_power_lbl" type="Label" parent="PanelContainer/MarginContainer/GridContainer" index="5"]
+layout_mode = 2
+
+[node name="mob_initiative_rect" type="TextureRect" parent="PanelContainer/MarginContainer/GridContainer" index="6"]
+layout_mode = 2
+texture = ExtResource("15_kcaep")
+expand_mode = 2
+
+[node name="mob_initiative_lbl" type="Label" parent="PanelContainer/MarginContainer/GridContainer" index="7"]
+layout_mode = 2
+
+[node name="mob_debug_lbl" type="Label" parent="PanelContainer/MarginContainer/GridContainer" index="8"]
+layout_mode = 2
+
+[node name="tooltip_info_area" type="Area2D" parent="." index="11"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="tooltip_info_area" index="0"]
+position = Vector2(-2, -17)
+shape = SubResource("CapsuleShape2D_xvloh")
+
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
 [connection signal="area_entered" from="Hurtbox" to="." method="_on_hurtbox_area_entered"]
+[connection signal="mouse_entered" from="tooltip_info_area" to="." method="_on_tooltip_info_area_mouse_entered"]
+[connection signal="mouse_exited" from="tooltip_info_area" to="." method="_on_tooltip_info_area_mouse_exited"]

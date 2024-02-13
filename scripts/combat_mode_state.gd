@@ -9,7 +9,7 @@ var current_entity_turn: CharacterBody2D
 var i: int = 0
 
 # var for while which controls mobs spawned
-var r: int = 0
+var entity_index: int = 0
 var start_round: bool = true
 
 signal exploration_mode_active
@@ -61,8 +61,7 @@ func play_turn():
 	if GlobalVar.entities_in_combat.size() > 0:
 		for entity in GlobalVar.entities_in_combat:
 			if entity.playing_turn:
-				#print(entity, entity.playing_turn)
-				pass
+				print("current entity playing turn: ",entity)
 				
 func _ready():
 	#con esto hago que este desactivado el fisics prouces
@@ -91,10 +90,17 @@ func _physics_process(_delta):
 func finish_turn():
 	if Input.is_action_just_pressed("finish_turn"):
 		
-		if r < GlobalVar.entities_in_combat.size()-1:
-			print("entro")
-			GlobalVar.entities_in_combat[r].playing_turn = false
-			GlobalVar.entities_in_combat[r+1].playing_turn = true
-			r +=1
+		if entity_index < GlobalVar.entities_in_combat.size()-1:
+			#sets false when turn finishes and sets true to next entity
+			GlobalVar.entities_in_combat[entity_index].playing_turn = false
+			GlobalVar.entities_in_combat[entity_index+1].playing_turn = true
+			entity_index +=1
+		else:
+			entity_index = 0
+			#for i in GlobalVar.entities_in_combat:
+			#	i = false
+			#GlobalVar.entities_in_combat[0] = true
+			start_round = true
+			print("RESETING ROUND")
 
 
