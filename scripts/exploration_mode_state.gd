@@ -41,5 +41,5 @@ func _exit_state() -> void:
 		game_world.remove_child(exploration_map)
 	
 	
-func _physics_process(delta):
+func _physics_process(_delta):
 	pass

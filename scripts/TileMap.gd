@@ -2,11 +2,11 @@ extends TileMap
 
 var grid_x: int = 12
 var grid_y: int = 9
-var selected_tile
-var map_dictionary = {}
+var selected_tile: Vector2
+var map_dictionary: Dictionary = {}
 
 func _ready():
-	
+	GlobalVar.combat_map = self
 	for x in grid_x:
 		for y in grid_y:
 			map_dictionary[str(Vector2(x,y))] = { #get a dic with x and y pos of all grass type tiles
@@ -15,6 +15,7 @@ func _ready():
 			#set_cell(0, Vector2(x, y), 3, Vector2i(0,0), 0)
 	
 func _process(_delta):
+	
 	selected_tile = local_to_map(get_global_mouse_position())  #get mouse pos
 	#print(selected_tile)
 	#print(player)

@@ -43,7 +43,7 @@ var level: int = randi() % 5 + 1
 @export var max_hitpoints: int = 1
 @export var hitpoints: int = max_hitpoints
 
-@export var initiative: int = 10
+@export var initiative: int = level
 
 #game logic stats
 @export var speed: int = 40
@@ -82,6 +82,7 @@ var entity_info: Dictionary = {
 #ENTIDADES
 #var entities = get_tree().get_nodes_in_group("entities")
 var attacker: CharacterBody2D
+var playing_turn: bool = false
 
 func _process(_delta):
 	pass

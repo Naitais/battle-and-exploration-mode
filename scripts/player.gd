@@ -6,6 +6,8 @@ extends "res://scripts/baseEntity.gd"
 @onready var attack_state = $StateMachine/AttackState as AttackState
 @onready var move_state = $StateMachine/MoveState as MoveState
 @onready var hurt_state = $StateMachine/HurtState as HurtState
+@onready var pathfind_state = $StateMachine/PathfindState as PathfindState
+
 #@onready var game_mode_state = $StateMachine/GameModeState as GameModeState
 
 func _ready():
@@ -17,6 +19,7 @@ func _ready():
 	attack_state.basic_attack_animation_finished.connect(state_machine.change_state.bind(idle_state))
 	hurt_state.damage_taken.connect(state_machine.change_state.bind(hurt_state))
 	hurt_state.damage_taken_finished.connect(state_machine.change_state.bind(idle_state))
+	pathfind_state.create_pathfind.connect(state_machine.change_state.bind(idle_state))
 	#hurt_state.combat_mode_started.connect(state_machine.change_state.bind(game_mode_state))
 	
 	#set type of entity when added
@@ -37,7 +40,7 @@ func _input(event):
 				if character == key_pressed.to_lower():
 					move_state.movement_key_pressed.emit()
 
-func _physics_process(delta: float) -> void:
+func _physics_process(_delta: float) -> void:
 	if GlobalVar.exploration_mode:
 		move_and_slide()
 		basic_attack()
@@ -48,7 +51,7 @@ func basic_attack():
 	if Input.is_action_pressed("left_click"):
 		attack_state.execute_basic_attack.emit()
 
-func _on_animation_player_animation_finished(basic_attack_animation_name):
+func _on_animation_player_animation_finished(_basic_attack_animation_name):
 	attack_state.basic_attack_animation_finished.emit()
 
 func _on_hurtbox_area_entered(hitbox):

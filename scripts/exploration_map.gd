@@ -11,5 +11,5 @@ func create_unique_mob_pack() -> void:
 func _ready():
 	#create_unique_mob_pack()
 	pass
-func _process(delta):
+func _process(_delta):
 	pass

@@ -21,8 +21,6 @@ func update_hitpoints():
 		if actor.attacker.name != 'player':
 			#save mob_pack
 			GlobalVar.mob_pack_involved_in_combat = actor.attacker.get_parent()
-			#removing roaming mob so i can add it later somewhere else
-			remove_child(actor.attacker)
 			
 		#when the attacker is the player, then the mob_pack is the parent of
 		#current actor taking damage
@@ -49,7 +47,7 @@ func _exit_state() -> void:
 	#cuando se sale se pone false
 	set_physics_process(false)
 	
-func _physics_process(delta):
+func _physics_process(_delta):
 	animation_player.play("take_damage")
 	#if $AnimationPlayer.current_animation == animation_name:
 	await animation_player.animation_finished

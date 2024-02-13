@@ -17,9 +17,8 @@ var roaming_mob
 #venomweaver
 
 var mobs_and_paths: Dictionary = {
-	"spider": "res://scenes/spiderling.tscn",
+	"spider": "res://scenes/spider.tscn",
 	"spiderling": "res://scenes/spiderling.tscn",
-	"goblin": "res://scenes/spiderling.tscn"
 	}
 
 # Called when the node enters the scene tree for the first time.
@@ -30,7 +29,7 @@ func _ready():
 	#print("mobpack roaming mob ",roaming_mob)
 	#print("mobpack mobs ",instantiated_mobs)
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
+func _process(_delta):
 	
 	if GlobalVar.exploration_mode:
 		set_ui_position()

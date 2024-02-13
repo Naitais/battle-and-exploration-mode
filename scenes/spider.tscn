@@ -287,7 +287,7 @@ size = Vector2(17, 21)
 [node name="spider" instance=ExtResource("1_4igrd")]
 position = Vector2(-2, -27)
 max_hitpoints = 1
-hitpoints = 2
+hitpoints = 1
 speed = 15
 type = " arachnid"
 

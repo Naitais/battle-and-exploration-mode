@@ -1,4 +1,4 @@
-[gd_scene load_steps=44 format=3 uid="uid://xay4yew45pn4"]
+[gd_scene load_steps=45 format=3 uid="uid://xay4yew45pn4"]
 
 [ext_resource type="PackedScene" uid="uid://d26543ubrvlv7" path="res://scenes/base_entity.tscn" id="1_kdndf"]
 [ext_resource type="Texture2D" uid="uid://20kdx77v3k6u" path="res://sprites/base_character.png" id="2_85hw2"]
@@ -10,6 +10,7 @@
 [ext_resource type="Script" path="res://scripts/attack_state.gd" id="8_b6fae"]
 [ext_resource type="Script" path="res://scripts/move_state.gd" id="9_o5los"]
 [ext_resource type="Script" path="res://scripts/hurt_state.gd" id="10_ffmv8"]
+[ext_resource type="Script" path="res://scripts/pathfind_state.gd" id="11_8msbo"]
 [ext_resource type="PackedScene" uid="uid://3irbhf3kcg6a" path="res://scenes/hitpoints_container.tscn" id="12_h5lg5"]
 [ext_resource type="PackedScene" uid="uid://crgass4c8kjy0" path="res://scenes/empty_hitpoints_container.tscn" id="13_nkxty"]
 
@@ -480,6 +481,10 @@ actor = NodePath("../..")
 animation_player = NodePath("../../AnimationPlayer")
 animation_name = "take_damage"
 hitpoints_container = NodePath("../../hitpoints_container")
+
+[node name="PathfindState" type="Node" parent="StateMachine" index="4" node_paths=PackedStringArray("actor")]
+script = ExtResource("11_8msbo")
+actor = NodePath("../..")
 
 [node name="empty_hitpoints_container" parent="." index="8" node_paths=PackedStringArray("actor", "empty_hitpoints_container") instance=ExtResource("13_nkxty")]
 offset_left = -24.0

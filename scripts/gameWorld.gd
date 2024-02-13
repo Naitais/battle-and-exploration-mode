@@ -24,7 +24,7 @@ func _ready():
 	add_child(player)
 	create_unique_mob_pack()
 	
-func _process(delta):
+func _process(_delta):
 	if GlobalVar.combat_mode and GlobalVar.exploration_mode == false:
 		combat_mode_state.combat_mode_active.emit()
 			
@@ -35,3 +35,6 @@ func create_unique_mob_pack() -> void:
 	var mob_pack = load("res://scenes/mob_pack.tscn").instantiate()
 	mob_packs.add_child(mob_pack)
 	#GlobalVar.created_mob_packs.append(mob_pack)
+
+
+	

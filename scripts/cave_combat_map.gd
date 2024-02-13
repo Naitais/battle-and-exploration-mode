@@ -7,7 +7,7 @@ func _ready():
 	detect_teams = true
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
+func _process(_delta):
 	pass
 
 func _on_entities_involved_in_combat_body_entered(body):
@@ -24,7 +24,7 @@ func _on_red_team_area_body_entered(body):
 		GlobalVar.red_team.append(body)
 		body.entity_info["team_tag"] = "red"
 		
-func _on_red_team_area_body_exited(body):
+func _on_red_team_area_body_exited(_body):
 	pass # Replace with function body.
 
 #detects entities in BLUE TEAM
@@ -34,5 +34,5 @@ func _on_blue_team_area_body_entered(body):
 		GlobalVar.blue_team.append(body)
 		body.entity_info["team_tag"] = "blue"
 		
-func _on_blue_team_area_body_exited(body):
+func _on_blue_team_area_body_exited(_body):
 	pass # Replace with function body.

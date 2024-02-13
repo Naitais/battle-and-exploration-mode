@@ -19,7 +19,7 @@ func _exit_state() -> void:
 	#cuando se sale se pone false
 	set_physics_process(false)
 	
-func _physics_process(delta):
+func _physics_process(_delta):
 	animator.play("idle")
 	actor.velocity.x = 0
 	actor.velocity.y = 0
