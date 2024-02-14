@@ -60,8 +60,12 @@ func play_turn():
 	#check if array is empty
 	if GlobalVar.entities_in_combat.size() > 0:
 		for entity in GlobalVar.entities_in_combat:
-			if entity.playing_turn:
-				print("current entity playing turn: ",entity)
+			
+			#manage player states for combat
+			if entity.playing_turn and entity.name == 'player':
+				entity.pathfind_state.activar_prueba.emit()
+				#maybe trigger signal or something
+				
 				
 func _ready():
 	#con esto hago que este desactivado el fisics prouces
@@ -97,9 +101,6 @@ func finish_turn():
 			entity_index +=1
 		else:
 			entity_index = 0
-			#for i in GlobalVar.entities_in_combat:
-			#	i = false
-			#GlobalVar.entities_in_combat[0] = true
 			start_round = true
 			print("RESETING ROUND")
 

@@ -48,7 +48,7 @@ func manage_mob_pack_tooltip_ui():
 	mob_level_lbl.text = str(level)
 	mob_power_lbl.text = str(power)
 	mob_initiative_lbl.text = str(level)
-	mob_debug_lbl.text = str(playing_turn)
+	mob_debug_lbl.text = str("turn: ",playing_turn)
 		#var mob_icon = TextureRect.new()
 		#var mob_data = Label.new()
 		#grid_container.add_child(mob_icon)
@@ -75,8 +75,6 @@ func exploration_mode_movement():
 		attack_state.basic_attack_detection_area.position.x = attack_state.basic_attack_det_area_flip_false
 		
 func _physics_process(_delta):
-	
-	
 	
 	if GlobalVar.exploration_mode:
 		move_and_slide()

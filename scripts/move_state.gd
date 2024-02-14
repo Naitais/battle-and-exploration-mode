@@ -48,6 +48,6 @@ func player_movement(_delta):
 			actor.velocity.x = 0
 			actor.velocity.y = 0
 			
-	elif GlobalVar.combat_mode:
-
-		pass
+	elif GlobalVar.combat_mode and actor.playing_turn:
+		print("player turn starts")
+		

@@ -3,8 +3,12 @@ extends State
 
 @export var actor: CharacterBody2D
 var astargrid = AStarGrid2D.new()
+var initial_pos: Vector2
+var final_pos: Vector2
+var path: Array
 
 signal create_pathfind
+signal activar_prueba
 
 func set_astargrid():
 	#PATHFINDING display players movement path
@@ -16,9 +20,23 @@ func set_astargrid():
 
 func get_pathfinding(initial_pos, final_pos):
 	#creo el path
-	var path = astargrid.get_id_path(initial_pos, final_pos)
-	return path
+	path = astargrid.get_id_path(initial_pos, final_pos)
 
+func animate_grid_movement():
+	var tween_path = create_tween()
+	for point in path:
+		print(point)
+		#translate into coordinates
+		point = GlobalVar.combat_map.local_to_map(Vector2(point))
+		tween_path.tween_property(self, "position", point,0.30)
+		
+func move_player():
+	if Input.is_action_just_pressed("left_click"):
+		initial_pos = GlobalVar.combat_map.local_to_map(actor.global_position)
+		final_pos  = GlobalVar.combat_map.local_to_map(actor.get_global_mouse_position())
+		get_pathfinding(initial_pos, final_pos)
+		animate_grid_movement()
+		
 func _ready():
 	#con esto hago que este desactivado el fisics prouces
 	set_physics_process(false)
@@ -33,4 +51,5 @@ func _exit_state() -> void:
 	set_physics_process(false)
 	
 func _physics_process(_delta):
-	print(get_pathfinding(actor.global_position, actor.get_global_mouse_position()))
+	#get initial and final positions for pathfinding
+	move_player()

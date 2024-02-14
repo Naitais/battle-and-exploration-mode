@@ -28,7 +28,7 @@ func _ready():
 	attack_state.basic_attack_animation_finished.connect(state_machine.change_state.bind(idle_state))
 	hurt_state.damage_taken.connect(state_machine.change_state.bind(hurt_state))
 	hurt_state.damage_taken_finished.connect(state_machine.change_state.bind(idle_state))
-	pathfind_state.create_pathfind.connect(state_machine.change_state.bind(idle_state))
+	pathfind_state.activar_prueba.connect(state_machine.change_state.bind(pathfind_state))
 	#hurt_state.combat_mode_started.connect(state_machine.change_state.bind(game_mode_state))
 	
 	#set type of entity when added
@@ -59,7 +59,7 @@ func manage_mob_pack_tooltip_ui():
 	mob_level_lbl.text = str(level)
 	mob_power_lbl.text = str(power)
 	mob_initiative_lbl.text = str(level)
-	mob_debug_lbl.text = str(playing_turn)
+	mob_debug_lbl.text = str("turn: ",playing_turn)
 		#var mob_icon = TextureRect.new()
 		#var mob_data = Label.new()
 		#grid_container.add_child(mob_icon)
