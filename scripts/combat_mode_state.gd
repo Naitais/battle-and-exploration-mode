@@ -69,8 +69,6 @@ func play_turn():
 			#manage player states for combat
 			if entity.playing_turn and entity.name == 'player':
 				entity.pathfind_state.activar_prueba.emit()
-				#maybe trigger signal or something
-				
 				
 func _ready():
 	#con esto hago que este desactivado el fisics prouces

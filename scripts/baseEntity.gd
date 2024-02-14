@@ -53,7 +53,10 @@ var level: int = randi() % 5 + 1
 var power: int = ((strength + intellect + dexterity + spirit + constitution) * level)
 
 #entity type
-@export var type: String = " "
+@export var type: String = ""
+
+#entity type
+@export var entity_name: String = ""
 
 var entity_info: Dictionary = {
 	"power": power,
@@ -88,5 +91,4 @@ func _process(_delta):
 	pass
 	
 func _ready():
-	
 	$Hitbox/CollisionShape2D.disabled = true

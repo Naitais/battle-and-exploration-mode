@@ -153,7 +153,8 @@ height = 16.0
 max_hitpoints = 1
 hitpoints = 1
 speed = 20
-type = " arachnid"
+type = "arachnid"
+entity_name = "spiderling"
 metadata/_edit_lock_ = true
 
 [node name="CollisionShape2D" parent="." index="1"]

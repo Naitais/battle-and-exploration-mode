@@ -1,10 +1,11 @@
-[gd_scene load_steps=12 format=3 uid="uid://ocdfdkaa7r74"]
+[gd_scene load_steps=13 format=3 uid="uid://ocdfdkaa7r74"]
 
 [ext_resource type="PackedScene" uid="uid://cp83aqs75i6ld" path="res://scenes/base_map.tscn" id="1_mn0ln"]
 [ext_resource type="Script" path="res://scripts/cave_combat_map.gd" id="2_d6dc5"]
 [ext_resource type="Texture2D" uid="uid://4loimtxghujo" path="res://tiles/cave_tile.png" id="2_twfp8"]
 [ext_resource type="Texture2D" uid="uid://cyq51sfes50lg" path="res://tiles/selected_tile.png" id="3_ma1gs"]
 [ext_resource type="Script" path="res://scripts/TileMap.gd" id="3_yyxpq"]
+[ext_resource type="PackedScene" uid="uid://kgtxgpf05tf7" path="res://scenes/combat_ui.tscn" id="8_fq17a"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_5dxhi"]
 texture = ExtResource("2_twfp8")
@@ -77,6 +78,8 @@ collision_mask = 6
 [node name="CollisionShape2D" type="CollisionShape2D" parent="blue_team_area" index="0"]
 position = Vector2(352, 144)
 shape = SubResource("RectangleShape2D_mhgwh")
+
+[node name="UI" parent="." index="5" instance=ExtResource("8_fq17a")]
 
 [connection signal="body_entered" from="entities_involved_in_combat" to="." method="_on_entities_involved_in_combat_body_entered"]
 [connection signal="body_exited" from="entities_involved_in_combat" to="." method="_on_entities_involved_in_combat_body_exited"]
