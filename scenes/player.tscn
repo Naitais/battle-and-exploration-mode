@@ -487,9 +487,10 @@ animation_player = NodePath("../../AnimationPlayer")
 animation_name = "take_damage"
 hitpoints_container = NodePath("../../hitpoints_container")
 
-[node name="PathfindState" type="Node" parent="StateMachine" index="4" node_paths=PackedStringArray("actor")]
+[node name="PathfindState" type="Node" parent="StateMachine" index="4" node_paths=PackedStringArray("actor", "animated_sprite")]
 script = ExtResource("11_8msbo")
 actor = NodePath("../..")
+animated_sprite = NodePath("../../AnimatedSprite2D")
 
 [node name="empty_hitpoints_container" parent="." index="8" node_paths=PackedStringArray("actor", "empty_hitpoints_container") instance=ExtResource("13_nkxty")]
 offset_left = -24.0
