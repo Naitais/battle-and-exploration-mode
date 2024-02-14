@@ -18,10 +18,12 @@ layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -5.0
-offset_right = 5.0
-offset_bottom = 10.0
+offset_left = -53.0
+offset_top = 1.0
+offset_right = -43.0
+offset_bottom = 11.0
 grow_horizontal = 2
+scale = Vector2(1.5, 1.5)
 
 [node name="entitiesContainer" type="GridContainer" parent="Control/PanelContainer"]
 clip_contents = true
@@ -33,5 +35,6 @@ size_flags_vertical = 0
 script = ExtResource("1_m6u1i")
 state = NodePath("RoundBarState")
 
-[node name="RoundBarState" type="Node" parent="StateMachine"]
+[node name="RoundBarState" type="Node" parent="StateMachine" node_paths=PackedStringArray("combat_ui")]
 script = ExtResource("2_0bxdm")
+combat_ui = NodePath("../..")

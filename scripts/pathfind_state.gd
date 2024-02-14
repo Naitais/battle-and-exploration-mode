@@ -10,7 +10,8 @@ var final_pos: Vector2
 var path: Array
 
 signal create_pathfind
-signal activar_prueba
+signal player_turn_finished
+signal player_turn_started
 signal finished_movement
 
 func set_astargrid():

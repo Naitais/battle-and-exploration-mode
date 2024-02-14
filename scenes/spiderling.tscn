@@ -1,8 +1,9 @@
-[gd_scene load_steps=15 format=3 uid="uid://cwsuimnqypd62"]
+[gd_scene load_steps=16 format=3 uid="uid://cwsuimnqypd62"]
 
 [ext_resource type="PackedScene" uid="uid://c23mkal03nk45" path="res://scenes/mob.tscn" id="1_ei46i"]
 [ext_resource type="Texture2D" uid="uid://bmbe4fny2b7o" path="res://sprites/spiderling_sprite_sheet-Sheet.png" id="2_p8qhc"]
 [ext_resource type="Texture2D" uid="uid://bjhpfubhidxib" path="res://icons/spiderling_icon.png" id="3_0t8vt"]
+[ext_resource type="Texture2D" uid="uid://nvn8dnd5ef44" path="res://sprites/characters/spiderling_portrait.png" id="4_74g84"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_c2ml3"]
 radius = 1.0
@@ -215,6 +216,9 @@ texture = ExtResource("3_0t8vt")
 position = Vector2(-2, 1)
 rotation = 1.08734
 shape = SubResource("CapsuleShape2D_d3iet")
+
+[node name="entity_portrait" parent="." index="14"]
+texture = ExtResource("4_74g84")
 
 [connection signal="area_entered" from="Hurtbox" to="." method="_on_hurtbox_area_entered"]
 [connection signal="body_entered" from="objective_detection_area" to="." method="_on_objective_detection_area_body_entered"]

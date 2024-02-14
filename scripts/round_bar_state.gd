@@ -28,10 +28,21 @@ func start_round_entities_bar_controller():
 				entities_container.add_child(entity_texture)
 				
 				#si respeto siempre la misma estrucutra para los archivos con los nombre esto funciona
-				entity_texture.texture = load("res://sprites/characters/"+entity.entity_name.to_lower()+"_icon.png")
-				
+				#entity_texture.texture = load("res://sprites/characters/"+entity.entity_name.to_lower()+"_icon.png")
+				entity_texture.texture = entity.get_node("entity_portrait").texture
+				#print(entity.get_node("entity_portrait"))
 		entity_bar_empty = false
-
+		
+		#logic for showing something to know which is the current entity playing
+		for entity in GlobalVar.entities_in_combat:
+			if entity.playing_turn == false:
+				#print(GlobalVar.entities_in_combat.find(entity))
+				#print(entities_container.get_child(0))
+				#HERE MAKE EVERY RECT GRAY OR SOMTHING
+				pass
+			else: 
+				#HERE MAKE THE RECT OF THE PLAYING EMTITY NORMAL
+				pass
 func _enter_state() -> void:
 	#solo se activa cuando entro al state wander
 	set_physics_process(true)
