@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://d26543ubrvlv7"]
+[gd_scene load_steps=3 format=3 uid="uid://d26543ubrvlv7"]
 
 [ext_resource type="Script" path="res://scripts/baseEntity.gd" id="1_l2khp"]
+[ext_resource type="PackedScene" uid="uid://cea5fxqbr2ysc" path="res://scenes/entity_top_selector.tscn" id="2_dgmoq"]
 
 [node name="baseEntity" type="CharacterBody2D" groups=["entities"]]
 platform_floor_layers = 4294901761
@@ -33,3 +34,5 @@ offset_bottom = 10.0
 
 [node name="Portrait" type="TextureRect" parent="PortraitContainer"]
 layout_mode = 2
+
+[node name="entity_top_selector" parent="." instance=ExtResource("2_dgmoq")]

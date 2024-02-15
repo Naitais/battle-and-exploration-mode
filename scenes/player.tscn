@@ -419,7 +419,6 @@ hitpoints = 3
 speed = 150
 type = "adventurer"
 entity_name = "player"
-metadata/_edit_lock_ = true
 
 [node name="CollisionShape2D" parent="." index="1"]
 position = Vector2(-2, 7)

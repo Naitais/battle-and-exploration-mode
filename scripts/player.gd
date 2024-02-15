@@ -29,6 +29,8 @@ func _ready():
 	hurt_state.damage_taken.connect(state_machine.change_state.bind(hurt_state))
 	hurt_state.damage_taken_finished.connect(state_machine.change_state.bind(idle_state))
 	pathfind_state.player_turn_started.connect(state_machine.change_state.bind(pathfind_state))
+	pathfind_state.player_turn_finished.connect(state_machine.change_state.bind(idle_state))
+	
 	#hurt_state.combat_mode_started.connect(state_machine.change_state.bind(game_mode_state))
 	
 	#set type of entity when added

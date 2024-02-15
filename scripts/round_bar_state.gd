@@ -15,14 +15,26 @@ func start_round_entities_bar_controller():
 	if GlobalVar.entities_in_combat.size() > 0:
 		if entities_container.get_children().size() > 0:
 			
-			for child in entities_container.get_children():
-				if entities_container.get_children().find(child) == GlobalVar.entity_index:
-					child.self_modulate = Color(16,8,2)
-					
+			for portrait_container in entities_container.get_children():
+				
+				#changes colour of portrait container depending on the entity who is playing its turn
+				if entities_container.get_children().find(portrait_container) == GlobalVar.entity_index:
+					portrait_container.self_modulate = Color(16,8,2)
 				else: 
-					#if it is not their turn
-					child.self_modulate = Color(1,1,1)
+					portrait_container.self_modulate = Color(1,1,1)
 					
+				#get the portrait_rect of the container to lower its opacity
+				var portrait: TextureRect = portrait_container.get_child(0)
+				#when its turn has already ended in the current round lower opacity
+				if entities_container.get_children().find(portrait_container) < GlobalVar.entity_index:
+					portrait.self_modulate = Color(1,1,1,0.4)
+				
+				else:
+					portrait.self_modulate = Color(1,1,1,1)
+				
+					
+				
+				
 		#wait until entities in combat list is filled
 		await get_tree().create_timer(1).timeout
 		entities_container.columns = GlobalVar.entities_in_combat.size()

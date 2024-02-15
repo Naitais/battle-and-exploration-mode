@@ -4,12 +4,12 @@ extends State
 @export var game_world: Node2D
 @export var combat_mobs_container: Node2D
 var cave_combat_map = load("res://scenes/cave_combat_map.tscn").instantiate()
+var entity_top_selector = load("res://scenes/entity_top_selector.tscn").instantiate()
 var entities_in_combat: Array = GlobalVar.entities_in_combat
 var current_entity_turn: CharacterBody2D
 var i: int = 0
 
 # var for while which controls mobs spawned
-
 var start_round: bool = true
 
 #run only the first time, make it false when combat ends
@@ -67,9 +67,24 @@ func play_turn():
 		for entity in GlobalVar.entities_in_combat:
 			
 			#manage player states for combat
+			#ADD LOGIC TO PREVENT PLAYER FROM PLAYING AFTER THIS IS ACTIVATED FPR THE FIRST TIME
 			if entity.playing_turn and entity.name == 'player':
 				entity.pathfind_state.player_turn_started.emit()
 				
+			#LOGIC TO MAKE THE PLAYER UNABLE TO PLAY
+			elif entity.playing_turn == false and entity.name == 'player':
+				entity.pathfind_state.player_turn_finished.emit()
+			
+			#test showing top selector on active entity just for testing
+			if entity.playing_turn == false:
+				#entity.add_child(entity_top_selector)
+				pass
+
+func set_opacity_for_entities_in_combat():
+	#this function will make every entity who already played its turn to have a lower opacity until the round resets
+	#will do the same with the portraits in the bar turn controller
+	pass
+
 func _ready():
 	#con esto hago que este desactivado el fisics prouces
 	set_physics_process(false)
