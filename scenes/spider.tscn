@@ -372,9 +372,6 @@ offset_right = 40.0
 offset_bottom = 40.0
 texture = ExtResource("5_uv3xm")
 
-[node name="PortraitContainer" parent="." index="15"]
-visible = false
-
 [node name="Portrait" parent="PortraitContainer" index="0"]
 texture = ExtResource("5_uv3xm")
 
