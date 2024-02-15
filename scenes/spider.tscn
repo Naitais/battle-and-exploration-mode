@@ -366,7 +366,16 @@ metadata/_edit_use_anchors_ = true
 visible = false
 texture = ExtResource("4_o5dq0")
 
-[node name="entity_portrait" parent="." index="14"]
+[node name="entity_portrait" type="TextureRect" parent="." index="14"]
+visible = false
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("5_uv3xm")
+
+[node name="PortraitContainer" parent="." index="15"]
+visible = false
+
+[node name="Portrait" parent="PortraitContainer" index="0"]
 texture = ExtResource("5_uv3xm")
 
 [connection signal="area_entered" from="Hurtbox" to="." method="_on_hurtbox_area_entered" flags=18]

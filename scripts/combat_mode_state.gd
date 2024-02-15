@@ -9,7 +9,7 @@ var current_entity_turn: CharacterBody2D
 var i: int = 0
 
 # var for while which controls mobs spawned
-var entity_index: int = 0
+
 var start_round: bool = true
 
 #run only the first time, make it false when combat ends
@@ -98,13 +98,13 @@ func _physics_process(_delta):
 func finish_turn():
 	if Input.is_action_just_pressed("finish_turn"):
 		
-		if entity_index < GlobalVar.entities_in_combat.size()-1:
+		if GlobalVar.entity_index < GlobalVar.entities_in_combat.size()-1:
 			#sets false when turn finishes and sets true to next entity
-			GlobalVar.entities_in_combat[entity_index].playing_turn = false
-			GlobalVar.entities_in_combat[entity_index+1].playing_turn = true
-			entity_index +=1
+			GlobalVar.entities_in_combat[GlobalVar.entity_index].playing_turn = false
+			GlobalVar.entities_in_combat[GlobalVar.entity_index+1].playing_turn = true
+			GlobalVar.entity_index +=1
 		else:
-			entity_index = 0
+			GlobalVar.entity_index = 0
 			start_round = true
 			print("RESETING ROUND")
 

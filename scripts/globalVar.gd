@@ -20,7 +20,8 @@ var red_team: Array = []
 var blue_team: Array = []
 var turn_end: bool
 var combat_map: TileMap
-
+#for managing turns
+var entity_index: int = 0
 #in the futurre I will need a globalvar for different things such as managing spawned mob packs
 #this array stores every spawned mob_pack so that when a combat starts, it will get a specific mob_pack
 #(maybe it will get the mob_pack id when I get a database) to spawn every mob in the pack in a battle map

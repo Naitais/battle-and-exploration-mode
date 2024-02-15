@@ -217,7 +217,16 @@ position = Vector2(-2, 1)
 rotation = 1.08734
 shape = SubResource("CapsuleShape2D_d3iet")
 
-[node name="entity_portrait" parent="." index="14"]
+[node name="entity_portrait" type="TextureRect" parent="." index="14"]
+visible = false
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("4_74g84")
+
+[node name="PortraitContainer" parent="." index="15"]
+visible = false
+
+[node name="Portrait" parent="PortraitContainer" index="0"]
 texture = ExtResource("4_74g84")
 
 [connection signal="area_entered" from="Hurtbox" to="." method="_on_hurtbox_area_entered"]

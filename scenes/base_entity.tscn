@@ -26,7 +26,10 @@ monitoring = false
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
 disabled = true
 
-[node name="entity_portrait" type="TextureRect" parent="."]
+[node name="PortraitContainer" type="PanelContainer" parent="."]
 visible = false
-offset_right = 40.0
-offset_bottom = 40.0
+offset_right = 10.0
+offset_bottom = 10.0
+
+[node name="Portrait" type="TextureRect" parent="PortraitContainer"]
+layout_mode = 2
