@@ -3,6 +3,8 @@ extends State
 
 @export var combat_ui: CanvasLayer
 @onready var entities_container = $"../../Control/PanelContainer/entitiesContainer"
+#@onready var portrait_area2d = load("res://scenes/portrait_area_2d.tscn").instantiate()
+
 var entity_bar_empty: bool = true
 signal player_not_moving
 
@@ -25,6 +27,7 @@ func start_round_entities_bar_controller():
 					
 				#get the portrait_rect of the container to lower its opacity
 				var portrait: TextureRect = portrait_container.get_child(0)
+				
 				#when its turn has already ended in the current round lower opacity
 				if entities_container.get_children().find(portrait_container) < GlobalVar.entity_index:
 					portrait.self_modulate = Color(1,1,1,0.4)
@@ -45,6 +48,10 @@ func start_round_entities_bar_controller():
 				var entity_portrait: PanelContainer = entity.get_node("PortraitContainer").duplicate()
 				entity_portrait.visible = true
 				entities_container.add_child(entity_portrait)
+				
+				var portrait_area2d = load("res://scenes/portrait_area_2d.tscn").instantiate()
+				entity_portrait.get_child(0).add_child(portrait_area2d)
+				
 		entity_bar_empty = false
 		
 func _enter_state() -> void:
