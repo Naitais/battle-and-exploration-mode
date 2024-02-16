@@ -2,7 +2,7 @@ class_name Entity
 extends CharacterBody2D
 
 #main stats
-var level: int = randi() % 5 + 1
+@export var level: int = randi() % 5 + 1
 
 @export var strength: int = 1 * level
 @export var intellect: int = 1 * level
@@ -10,8 +10,8 @@ var level: int = randi() % 5 + 1
 @export var dexterity: int = 1 * level
 @export var spirit: int = 1 * level
 
-@export var max_AP: int = 12
-@export var AP: int = max_AP
+@export var max_action_points: int = 1 * level
+@export var action_points: int = max_action_points
 
 #game stats affected by main stats
 
@@ -62,6 +62,8 @@ var entity_info: Dictionary = {
 	"power": power,
 	"level":level,
 	"health":health,
+	"mana":mana,
+	"action_points":action_points,
 	"armor": armor,
 	"magic shield": magic_shield,
 	"initiative": initiative,

@@ -2,11 +2,13 @@ class_name Player
 
 extends "res://scripts/baseEntity.gd"
 @onready var state_machine = $StateMachine as StateMachine
+@onready var state_machine_2 = $StateMachine2 as StateMachine
 @onready var idle_state = $StateMachine/IdleState as IdleState
 @onready var attack_state = $StateMachine/AttackState as AttackState
 @onready var move_state = $StateMachine/MoveState as MoveState
 @onready var hurt_state = $StateMachine/HurtState as HurtState
-@onready var pathfind_state = $StateMachine/PathfindState as PathfindState
+@onready var pathfind_state = $StateMachine2/PathfindState as PathfindState
+@onready var grid_movement_state = $StateMachine/GridMovementState as GridMovementState
 
 #@onready var game_mode_state = $StateMachine/GameModeState as GameModeState
 @onready var panel_container = $PanelContainer
@@ -15,9 +17,7 @@ extends "res://scripts/baseEntity.gd"
 @onready var mob_power_lbl = $PanelContainer/MarginContainer/GridContainer/mob_power_lbl
 @onready var mob_initiative_lbl = $PanelContainer/MarginContainer/GridContainer/mob_initiative_lbl
 @onready var mob_debug_lbl = $PanelContainer/MarginContainer/GridContainer/mob_debug_lbl
-
-
-
+@onready var mob_action_points_lbl = $PanelContainer/MarginContainer/GridContainer/mob_action_points_lbl
 
 func _ready():
 	GlobalVar.player = self
@@ -28,16 +28,20 @@ func _ready():
 	attack_state.basic_attack_animation_finished.connect(state_machine.change_state.bind(idle_state))
 	hurt_state.damage_taken.connect(state_machine.change_state.bind(hurt_state))
 	hurt_state.damage_taken_finished.connect(state_machine.change_state.bind(idle_state))
-	pathfind_state.player_turn_started.connect(state_machine.change_state.bind(pathfind_state))
-	pathfind_state.player_turn_finished.connect(state_machine.change_state.bind(idle_state))
+	#pathfind_state.turn_started.connect(state_machine.change_state.bind(pathfind_state))
+	#pathfind_state.turn_finished.connect(state_machine.change_state.bind(idle_state))
+	grid_movement_state.turn_started.connect(state_machine.change_state.bind(grid_movement_state))
+	grid_movement_state.turn_finished.connect(state_machine.change_state.bind(idle_state))
 	
 	#hurt_state.combat_mode_started.connect(state_machine.change_state.bind(game_mode_state))
 	
 	#set type of entity when added
 	entity_info["type"] = type
 	
+	entity_info["initiative"] = initiative
+	
 	#set level 1
-	entity_info["level"] = 1
+	#entity_info["level"] = 1
 	
 func _input(event):
 	if GlobalVar.exploration_mode:
@@ -50,6 +54,8 @@ func _input(event):
 			for character in characters:
 				if character == key_pressed.to_lower():
 					move_state.movement_key_pressed.emit()
+					
+
 func manage_mob_pack_tooltip_ui():
 	#print("mob scene; name ",self)
 	#for child in GlobalVar.mob_pack_involved_in_combat.get_children():
@@ -60,8 +66,10 @@ func manage_mob_pack_tooltip_ui():
 	tooltip_title.text = str(self)
 	mob_level_lbl.text = str(level)
 	mob_power_lbl.text = str(power)
-	mob_initiative_lbl.text = str(level)
-	mob_debug_lbl.text = str("turn: ",playing_turn)
+	mob_initiative_lbl.text = str("iniciativa: ",initiative)
+	#mob_debug_lbl.text = str("turn: ",playing_turn)
+	mob_debug_lbl.text = str("max_ap: ",max_action_points)
+	mob_action_points_lbl.text = str("AP: ",entity_info["action_points"])
 		#var mob_icon = TextureRect.new()
 		#var mob_data = Label.new()
 		#grid_container.add_child(mob_icon)
@@ -99,11 +107,9 @@ func _on_hurtbox_area_entered(hitbox):
 		#mob_pack info
 		attacker = hitbox.get_parent()
 
-
 func _on_tooltip_info_area_mouse_entered():
 	if GlobalVar.combat_mode:
 		panel_container.visible = true
-
 
 func _on_tooltip_info_area_mouse_exited():
 	if GlobalVar.combat_mode:

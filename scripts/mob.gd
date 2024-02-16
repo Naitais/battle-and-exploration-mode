@@ -30,7 +30,7 @@ func _ready():
 	
 	#set type of mob when added
 	entity_info["type"] = type
-	entity_info["inititive"] = level
+	entity_info["inititive"] = initiative
 	
 	#spiderling 
 	#spider
@@ -47,7 +47,7 @@ func manage_mob_pack_tooltip_ui():
 	tooltip_title.text = str(self)
 	mob_level_lbl.text = str(level)
 	mob_power_lbl.text = str(power)
-	mob_initiative_lbl.text = str(level)
+	mob_initiative_lbl.text = str(initiative)
 	mob_debug_lbl.text = str("turn: ",playing_turn)
 		#var mob_icon = TextureRect.new()
 		#var mob_data = Label.new()

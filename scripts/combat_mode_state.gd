@@ -44,11 +44,20 @@ func spawn_entities_in_combat_map():
 func compare_entities(a, b):
 	#sort by initiative stat
 	return a.entity_info["initiative"] > b.entity_info["initiative"]
+
+
+func reset_resources():
+	for entity in GlobalVar.entities_in_combat:
+		entity.action_points = entity.max_action_points
 	
 func get_turn_order():
 	if start_round:
 		#wait so that all entities are spawned before sorting
 		await get_tree().create_timer(1).timeout
+		
+		#reset resources
+		reset_resources()
+		
 		#sort by initiative stat
 		GlobalVar.entities_in_combat.sort_custom(compare_entities)
 		
@@ -69,16 +78,13 @@ func play_turn():
 			#manage player states for combat
 			#ADD LOGIC TO PREVENT PLAYER FROM PLAYING AFTER THIS IS ACTIVATED FPR THE FIRST TIME
 			if entity.playing_turn and entity.name == 'player':
-				entity.pathfind_state.player_turn_started.emit()
+				entity.grid_movement_state.turn_started.emit()
 				
 			#LOGIC TO MAKE THE PLAYER UNABLE TO PLAY
 			elif entity.playing_turn == false and entity.name == 'player':
-				entity.pathfind_state.player_turn_finished.emit()
+				#entity.pathfind_state.turn_finished.emit()
+				entity.grid_movement_state.turn_finished.emit()
 			
-			#test showing top selector on active entity just for testing
-			if entity.playing_turn == false:
-				#entity.add_child(entity_top_selector)
-				pass
 
 func set_opacity_for_entities_in_combat():
 	#this function will make every entity who already played its turn to have a lower opacity until the round resets

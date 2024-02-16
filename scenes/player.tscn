@@ -415,8 +415,12 @@ position = Vector2(10, -12)
 collision_layer = 2
 collision_mask = 7
 script = ExtResource("2_iqklm")
+level = 10
+max_action_points = 5
+action_points = 5
 max_hitpoints = 3
 hitpoints = 3
+initiative = 10
 speed = 150
 type = "adventurer"
 entity_name = "player"
@@ -489,15 +493,22 @@ animation_player = NodePath("../../AnimationPlayer")
 animation_name = "take_damage"
 hitpoints_container = NodePath("../../hitpoints_container")
 
-[node name="PathfindState" type="Node" parent="StateMachine" index="4" node_paths=PackedStringArray("actor", "animated_sprite")]
+[node name="GridMovementState" type="Node" parent="StateMachine" index="4" node_paths=PackedStringArray("actor", "animated_sprite")]
+script = ExtResource("12_cvuxk")
+actor = NodePath("../..")
+animated_sprite = NodePath("../../AnimatedSprite2D")
+
+[node name="StateMachine2" type="Node" parent="." index="8" node_paths=PackedStringArray("state")]
+script = ExtResource("6_bshu7")
+state = NodePath("PathfindState")
+
+[node name="PathfindState" type="Node" parent="StateMachine2" index="0" node_paths=PackedStringArray("actor", "animated_sprite")]
 script = ExtResource("11_8msbo")
 actor = NodePath("../..")
 animated_sprite = NodePath("../../AnimatedSprite2D")
 
-[node name="GridMovementState" type="Node" parent="StateMachine" index="5"]
-script = ExtResource("12_cvuxk")
-
-[node name="empty_hitpoints_container" parent="." index="8" node_paths=PackedStringArray("actor", "empty_hitpoints_container") instance=ExtResource("13_nkxty")]
+[node name="empty_hitpoints_container" parent="." index="9" node_paths=PackedStringArray("actor", "empty_hitpoints_container") instance=ExtResource("13_nkxty")]
+visible = false
 offset_left = -24.0
 offset_top = -49.0
 offset_right = -19.0
@@ -506,7 +517,7 @@ actor = NodePath("..")
 empty_hitpoints_container = NodePath(".")
 metadata/_edit_use_anchors_ = true
 
-[node name="hitpoints_container" parent="." index="9" node_paths=PackedStringArray("actor", "hitpoints_container") instance=ExtResource("12_h5lg5")]
+[node name="hitpoints_container" parent="." index="10" node_paths=PackedStringArray("actor", "hitpoints_container") instance=ExtResource("12_h5lg5")]
 offset_left = -23.0
 offset_top = -49.0
 offset_right = -19.0
@@ -515,7 +526,7 @@ actor = NodePath("..")
 hitpoints_container = NodePath(".")
 metadata/_edit_use_anchors_ = true
 
-[node name="PanelContainer" type="PanelContainer" parent="." index="10"]
+[node name="PanelContainer" type="PanelContainer" parent="." index="11"]
 visible = false
 z_index = 1
 offset_right = 40.0
@@ -572,19 +583,27 @@ expand_mode = 2
 [node name="mob_debug_lbl" type="Label" parent="PanelContainer/MarginContainer/GridContainer" index="9"]
 layout_mode = 2
 
-[node name="tooltip_info_area" type="Area2D" parent="." index="11"]
+[node name="mob_initiative_rect3" type="TextureRect" parent="PanelContainer/MarginContainer/GridContainer" index="10"]
+layout_mode = 2
+texture = ExtResource("15_kcaep")
+expand_mode = 2
+
+[node name="mob_action_points_lbl" type="Label" parent="PanelContainer/MarginContainer/GridContainer" index="11"]
+layout_mode = 2
+
+[node name="tooltip_info_area" type="Area2D" parent="." index="12"]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="tooltip_info_area" index="0"]
 position = Vector2(-2, -17)
 shape = SubResource("CapsuleShape2D_xvloh")
 
-[node name="PortraitContainer" parent="." index="12"]
+[node name="PortraitContainer" parent="." index="13"]
 self_modulate = Color(0, 0, 0, 1)
 
 [node name="Portrait" parent="PortraitContainer" index="0"]
 texture = ExtResource("16_3mm3c")
 
-[node name="entity_top_selector" parent="." index="13"]
+[node name="entity_top_selector" parent="." index="14"]
 position = Vector2(-2, -51)
 
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
