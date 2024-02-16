@@ -304,12 +304,14 @@ libraries = {
 }
 
 [node name="AnimatedSprite2D" parent="." index="3"]
-position = Vector2(4, 0)
+position = Vector2(6, 4)
 scale = Vector2(0.7, 0.7)
 sprite_frames = SubResource("SpriteFrames_mvxvm")
 animation = &"basic_attack_spider"
 flip_h = true
-metadata/_edit_lock_ = true
+
+[node name="Hurtbox" parent="." index="4"]
+visible = false
 
 [node name="CollisionShape2D" parent="Hurtbox" index="0"]
 position = Vector2(-1, 6)
@@ -366,6 +368,9 @@ metadata/_edit_use_anchors_ = true
 visible = false
 texture = ExtResource("4_o5dq0")
 
+[node name="CollisionShape2D" parent="tooltip_info_area" index="0"]
+visible = false
+
 [node name="entity_portrait" type="TextureRect" parent="." index="14"]
 visible = false
 offset_right = 40.0
@@ -374,6 +379,9 @@ texture = ExtResource("5_uv3xm")
 
 [node name="Portrait" parent="PortraitContainer" index="0"]
 texture = ExtResource("5_uv3xm")
+
+[node name="entity_top_selector" parent="." index="16"]
+position = Vector2(4, -16)
 
 [connection signal="area_entered" from="Hurtbox" to="." method="_on_hurtbox_area_entered" flags=18]
 [connection signal="body_entered" from="objective_detection_area" to="." method="_on_objective_detection_area_body_entered"]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=49 format=3 uid="uid://xay4yew45pn4"]
+[gd_scene load_steps=50 format=3 uid="uid://xay4yew45pn4"]
 
 [ext_resource type="PackedScene" uid="uid://d26543ubrvlv7" path="res://scenes/base_entity.tscn" id="1_kdndf"]
 [ext_resource type="Texture2D" uid="uid://20kdx77v3k6u" path="res://sprites/base_character.png" id="2_85hw2"]
@@ -11,6 +11,7 @@
 [ext_resource type="Script" path="res://scripts/move_state.gd" id="9_o5los"]
 [ext_resource type="Script" path="res://scripts/hurt_state.gd" id="10_ffmv8"]
 [ext_resource type="Script" path="res://scripts/pathfind_state.gd" id="11_8msbo"]
+[ext_resource type="Script" path="res://scripts/grid_movement_state.gd" id="12_cvuxk"]
 [ext_resource type="PackedScene" uid="uid://3irbhf3kcg6a" path="res://scenes/hitpoints_container.tscn" id="12_h5lg5"]
 [ext_resource type="PackedScene" uid="uid://crgass4c8kjy0" path="res://scenes/empty_hitpoints_container.tscn" id="13_nkxty"]
 [ext_resource type="Texture2D" uid="uid://cpvk1udv8qqvp" path="res://icons/lvl_icon.png" id="14_viky6"]
@@ -493,6 +494,9 @@ script = ExtResource("11_8msbo")
 actor = NodePath("../..")
 animated_sprite = NodePath("../../AnimatedSprite2D")
 
+[node name="GridMovementState" type="Node" parent="StateMachine" index="5"]
+script = ExtResource("12_cvuxk")
+
 [node name="empty_hitpoints_container" parent="." index="8" node_paths=PackedStringArray("actor", "empty_hitpoints_container") instance=ExtResource("13_nkxty")]
 offset_left = -24.0
 offset_top = -49.0
@@ -579,6 +583,9 @@ self_modulate = Color(0, 0, 0, 1)
 
 [node name="Portrait" parent="PortraitContainer" index="0"]
 texture = ExtResource("16_3mm3c")
+
+[node name="entity_top_selector" parent="." index="13"]
+position = Vector2(-2, -51)
 
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
 [connection signal="area_entered" from="Hurtbox" to="." method="_on_hurtbox_area_entered"]

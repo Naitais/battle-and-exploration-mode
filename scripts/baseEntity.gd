@@ -87,6 +87,9 @@ var entity_info: Dictionary = {
 var attacker: CharacterBody2D
 var playing_turn: bool = false
 
+#for pathfinding path
+var path: Array = []
+
 func _process(_delta):
 	pass
 	
