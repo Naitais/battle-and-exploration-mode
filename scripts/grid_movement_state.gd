@@ -15,8 +15,6 @@ func move_player():
 		animate_grid_movement()
 
 func calculate_ap_consumption_on_movement():
-	
-	
 	#calculates how much ap is needed to move entity
 	var available_action_points: int = actor.entity_info.action_points
 	var action_points_consumption: int = actor.path.size()
@@ -43,8 +41,6 @@ func animate_grid_movement():
 		message_lbl.text = "You need " + str(actor.path.size()) + " action points to move there"
 		await get_tree().create_timer(1).timeout
 		message_lbl.queue_free()
-		
-		
 		
 func _ready():
 	#con esto hago que este desactivado el fisics prouces
