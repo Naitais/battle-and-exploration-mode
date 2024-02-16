@@ -30,5 +30,6 @@ func _process(_delta):
 	
 func display_path():
 	if GlobalVar.player.path:
+		GlobalVar.player.path.remove_at(0)
 		for point in GlobalVar.player.path:
 			set_cell(1, point, 1,Vector2i(0,0),0) #sets reachable tile

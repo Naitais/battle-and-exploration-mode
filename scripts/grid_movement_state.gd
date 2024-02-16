@@ -19,19 +19,13 @@ func calculate_ap_consumption_on_movement():
 	
 	#calculates how much ap is needed to move entity
 	var available_action_points: int = actor.entity_info.action_points
-	var action_points_consumption: int = actor.path.size() -1
-	
-	print("ACTION POINTS: ",available_action_points)
-	print("ACTION POINTS TO BE CONSUMED: ",action_points_consumption)
-	
+	var action_points_consumption: int = actor.path.size()
 	var result: int = available_action_points - action_points_consumption
 	
 	if result >= 0:
-		print("RESULT: ",result)
 		actor.action_points -= action_points_consumption
 		return true
 	else:
-		print("RESULT: ",result)
 		return false
 
 func animate_grid_movement():
@@ -41,12 +35,17 @@ func animate_grid_movement():
 			#translate into coordinates
 			point = GlobalVar.combat_map.map_to_local(Vector2(point))
 			tween_path.tween_property(actor, "position", point,0.20)
-			
-		#reduce ap after moving entity
-		#actor.action_points -= calculate_ap_consumption_on_movement()
 		
 	else:
-		print("not enough action points: ", actor.entity_info.action_points)
+		var message_lbl = Label.new()
+		actor.get_parent().add_child(message_lbl)
+		message_lbl.position = actor.get_global_mouse_position()
+		message_lbl.text = "You need " + str(actor.path.size()) + " action points to move there"
+		await get_tree().create_timer(1).timeout
+		message_lbl.queue_free()
+		
+		
+		
 func _ready():
 	#con esto hago que este desactivado el fisics prouces
 	set_physics_process(false)

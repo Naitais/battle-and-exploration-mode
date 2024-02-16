@@ -24,8 +24,8 @@ func get_pathfinding(initial_pos, final_pos):
 	if GlobalVar.combat_map:
 		initial_pos = GlobalVar.combat_map.local_to_map(actor.global_position)
 		final_pos  = GlobalVar.combat_map.local_to_map(actor.get_global_mouse_position())
-		if final_pos > Vector2i(0,0) and final_pos < Vector2i(12,9):
-			actor.path = astargrid.get_id_path(initial_pos, final_pos)
+		#if final_pos > Vector2i(0,0) and final_pos < Vector2i(12,9):
+		actor.path = astargrid.get_id_path(initial_pos, final_pos)
 
 func _ready():
 	#con esto hago que este desactivado el fisics prouces
