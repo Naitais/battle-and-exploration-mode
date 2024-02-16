@@ -129,4 +129,4 @@ script = ExtResource("1_cdpha")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_lpp0k")
 animation = &"default_animation"
-frame_progress = 0.798267
+frame_progress = 0.333635

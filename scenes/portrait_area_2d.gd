@@ -1,6 +1,8 @@
 extends Area2D
 @onready var collision_shape_2d = $CollisionShape2D
-
+@onready var grid_container: GridContainer = get_parent().get_parent().get_parent()
+@onready var portrait_container: PanelContainer = get_parent().get_parent()
+@onready var selected_entity = GlobalVar.entities_in_combat[grid_container.get_children().find(portrait_container)]
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	
@@ -13,9 +15,7 @@ func _process(delta):
 	pass
 
 func _on_mouse_entered():
-	print(GlobalVar.entities_in_combat)
-	print(GlobalVar.entity_index)
-	
+	selected_entity.get_node("entity_top_selector").visible = true
 	
 func _on_mouse_exited():
-	pass # Replace with function body.
+	selected_entity.get_node("entity_top_selector").visible = false
