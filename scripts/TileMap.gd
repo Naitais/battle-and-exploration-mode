@@ -9,6 +9,7 @@ func _ready():
 	GlobalVar.combat_map = self
 	for x in grid_x:
 		for y in grid_y:
+			
 			map_dictionary[str(Vector2(x,y))] = { #get a dic with x and y pos of all grass type tiles
 				"Selected Tile" : str(Vector2(x,y))
 			}
@@ -27,7 +28,7 @@ func _process(_delta):
 		set_cell(2, selected_tile, 3,Vector2i(0,0),0) #seteo tile de "mira" como ayuda visual de tile seleccionada
 	
 	display_path()
-	
+
 func display_path():
 	if GlobalVar.player.path:
 		GlobalVar.player.path.remove_at(0)

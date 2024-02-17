@@ -27,6 +27,17 @@ func get_pathfinding(initial_pos, final_pos):
 		#if final_pos > Vector2i(0,0) and final_pos < Vector2i(12,9):
 		actor.path = astargrid.get_id_path(initial_pos, final_pos)
 
+func set_occupied_tiles():
+	for entity in GlobalVar.entities_in_combat:
+		if entity.playing_turn == false:
+			astargrid.set_point_solid(entity.entity_tile_position)
+		else:
+			astargrid.set_point_solid(entity.entity_tile_position, false)
+
+func reset_occupied_tiles():
+	for tile in GlobalVar.occupied_tiles:
+			astargrid.set_point_solid(tile, false)
+
 func _ready():
 	#con esto hago que este desactivado el fisics prouces
 	set_physics_process(false)
@@ -41,5 +52,7 @@ func _exit_state() -> void:
 	set_physics_process(false)
 	
 func _physics_process(_delta):
+	set_occupied_tiles()
+	#reset_occupied_tiles()
 	get_pathfinding(initial_pos, final_pos)
-		
+	

@@ -54,7 +54,6 @@ func _input(event):
 			for character in characters:
 				if character == key_pressed.to_lower():
 					move_state.movement_key_pressed.emit()
-					
 
 func manage_mob_pack_tooltip_ui():
 	#print("mob scene; name ",self)

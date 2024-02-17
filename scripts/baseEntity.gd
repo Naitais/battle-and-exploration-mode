@@ -92,8 +92,12 @@ var playing_turn: bool = false
 #for pathfinding path
 var path: Array = []
 
+#for setiing occupied tiles
+var entity_tile_position: Vector2
+
 func _process(_delta):
-	pass
+	if GlobalVar.combat_map:
+		entity_tile_position = GlobalVar.combat_map.local_to_map(global_position)
 	
 func _ready():
 	$Hitbox/CollisionShape2D.disabled = true

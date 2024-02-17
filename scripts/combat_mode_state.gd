@@ -45,11 +45,10 @@ func compare_entities(a, b):
 	#sort by initiative stat
 	return a.entity_info["initiative"] > b.entity_info["initiative"]
 
-
 func reset_resources():
 	for entity in GlobalVar.entities_in_combat:
 		entity.action_points = entity.max_action_points
-	
+
 func get_turn_order():
 	if start_round:
 		#wait so that all entities are spawned before sorting
@@ -57,6 +56,9 @@ func get_turn_order():
 		
 		#reset resources
 		reset_resources()
+		
+		#get position of all entities to set occupied tiles
+		#get_occupied_tiles()
 		
 		#sort by initiative stat
 		GlobalVar.entities_in_combat.sort_custom(compare_entities)
@@ -79,13 +81,12 @@ func play_turn():
 			#ADD LOGIC TO PREVENT PLAYER FROM PLAYING AFTER THIS IS ACTIVATED FPR THE FIRST TIME
 			if entity.playing_turn and entity.name == 'player':
 				entity.grid_movement_state.turn_started.emit()
-				
+			
 			#LOGIC TO MAKE THE PLAYER UNABLE TO PLAY
 			elif entity.playing_turn == false and entity.name == 'player':
 				#entity.pathfind_state.turn_finished.emit()
 				entity.grid_movement_state.turn_finished.emit()
 			
-
 func set_opacity_for_entities_in_combat():
 	#this function will make every entity who already played its turn to have a lower opacity until the round resets
 	#will do the same with the portraits in the bar turn controller
@@ -94,7 +95,6 @@ func set_opacity_for_entities_in_combat():
 func _ready():
 	#con esto hago que este desactivado el fisics prouces
 	set_physics_process(false)
-	
 	
 func _enter_state() -> void:
 	#solo se activa cuando entro al state wander
@@ -118,7 +118,6 @@ func _physics_process(_delta):
 	
 func finish_turn():
 	if Input.is_action_just_pressed("finish_turn"):
-		
 		if GlobalVar.entity_index < GlobalVar.entities_in_combat.size()-1:
 			#sets false when turn finishes and sets true to next entity
 			GlobalVar.entities_in_combat[GlobalVar.entity_index].playing_turn = false

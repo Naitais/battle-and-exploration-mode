@@ -11,7 +11,7 @@ signal turn_finished
 
 func move_player():
 	if Input.is_action_just_pressed("left_click") and actor.path.size() > 0:
-		print(actor.path)
+		
 		animate_grid_movement()
 
 func calculate_ap_consumption_on_movement():
