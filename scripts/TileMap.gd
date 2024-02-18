@@ -28,9 +28,15 @@ func _process(_delta):
 		set_cell(2, selected_tile, 3,Vector2i(0,0),0) #seteo tile de "mira" como ayuda visual de tile seleccionada
 	
 	display_path()
-
+	#display_occupied_tiles()
+	
 func display_path():
 	if GlobalVar.player.path:
 		GlobalVar.player.path.remove_at(0)
 		for point in GlobalVar.player.path:
 			set_cell(1, point, 1,Vector2i(0,0),0) #sets reachable tile
+			
+func display_occupied_tiles():
+	if GlobalVar.occupied_tiles:
+		for tile in GlobalVar.occupied_tiles:
+			set_cell(1, tile, 3,Vector2i(0,0),0) #sets reachable tile

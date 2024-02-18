@@ -41,7 +41,7 @@ func animate_grid_movement():
 			#translate into coordinates
 			point = GlobalVar.combat_map.map_to_local(Vector2(point))
 			tween_path.tween_property(actor, "position", point,0.20)
-		
+			
 	else:
 		var message_lbl = Label.new()
 		actor.get_parent().add_child(message_lbl)
@@ -69,7 +69,7 @@ func update_state() -> void:
 		set_state(EntityState.MOVE)
 	elif current_state == EntityState.MOVE:
 		# Change to idle state if needed
-		set_state(EntityState.IDLE)
+		pass
 
 func _ready():
 	#con esto hago que este desactivado el fisics prouces
@@ -85,5 +85,6 @@ func _exit_state() -> void:
 	set_physics_process(false)
 	
 func _physics_process(_delta):
+	update_state()
 	actor.entity_info["action_points"] = actor.action_points
 	

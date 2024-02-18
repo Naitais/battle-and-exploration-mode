@@ -9,6 +9,7 @@ extends "res://scripts/baseEntity.gd"
 @onready var hurt_state = $StateMachine/HurtState as HurtState
 @onready var pathfind_state = $StateMachine2/PathfindState as PathfindState
 @onready var grid_movement_state = $StateMachine/GridMovementState as GridMovementState
+@onready var player_combat_state = $StateMachine/PlayerCombatState as PlayerCombatState
 
 #@onready var game_mode_state = $StateMachine/GameModeState as GameModeState
 @onready var panel_container = $PanelContainer

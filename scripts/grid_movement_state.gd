@@ -11,7 +11,6 @@ signal turn_finished
 
 func move_player():
 	if Input.is_action_just_pressed("left_click") and actor.path.size() > 0:
-		
 		animate_grid_movement()
 
 func calculate_ap_consumption_on_movement():
@@ -29,6 +28,7 @@ func calculate_ap_consumption_on_movement():
 func animate_grid_movement():
 	if calculate_ap_consumption_on_movement():
 		var tween_path = create_tween()
+		tween_path.connect("finished", on_tween_path_finished)
 		for point in actor.path:
 			#translate into coordinates
 			point = GlobalVar.combat_map.map_to_local(Vector2(point))
@@ -41,6 +41,11 @@ func animate_grid_movement():
 		message_lbl.text = "You need " + str(actor.path.size()) + " action points to move there"
 		await get_tree().create_timer(1).timeout
 		message_lbl.queue_free()
+	
+func on_tween_path_finished():
+	#turn_finished.emit()
+	#actor.playing_turn = false
+	print("movement finished")
 		
 func _ready():
 	#con esto hago que este desactivado el fisics prouces

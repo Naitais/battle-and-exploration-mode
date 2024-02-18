@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://ocdfdkaa7r74"]
+[gd_scene load_steps=17 format=3 uid="uid://ocdfdkaa7r74"]
 
 [ext_resource type="PackedScene" uid="uid://cp83aqs75i6ld" path="res://scenes/base_map.tscn" id="1_mn0ln"]
 [ext_resource type="Script" path="res://scripts/cave_combat_map.gd" id="2_d6dc5"]
@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://cyq51sfes50lg" path="res://tiles/selected_tile.png" id="3_ma1gs"]
 [ext_resource type="Script" path="res://scripts/TileMap.gd" id="3_yyxpq"]
 [ext_resource type="Texture2D" uid="uid://dal5tgx3gl61s" path="res://tiles/playable_tile.png" id="4_000io"]
+[ext_resource type="Texture2D" uid="uid://x454jwwohmmg" path="res://tiles/blocked_tile.png" id="5_cm2xe"]
 [ext_resource type="PackedScene" uid="uid://kgtxgpf05tf7" path="res://scenes/combat_ui.tscn" id="8_fq17a"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_5dxhi"]
@@ -24,6 +25,11 @@ texture = ExtResource("4_000io")
 texture_region_size = Vector2i(32, 32)
 0:0/0 = 0
 
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ta6rg"]
+texture = ExtResource("5_cm2xe")
+texture_region_size = Vector2i(32, 32)
+0:0/0 = 0
+
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_s2c82"]
 texture = ExtResource("3_ma1gs")
 texture_region_size = Vector2i(32, 32)
@@ -34,6 +40,7 @@ tile_size = Vector2i(32, 32)
 sources/0 = SubResource("TileSetAtlasSource_5dxhi")
 sources/3 = SubResource("TileSetAtlasSource_s2c82")
 sources/1 = SubResource("TileSetAtlasSource_7k52q")
+sources/2 = SubResource("TileSetAtlasSource_ta6rg")
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_yosyx"]
 size = Vector2(383.5, 286.5)

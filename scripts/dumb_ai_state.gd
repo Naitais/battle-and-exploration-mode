@@ -21,6 +21,8 @@ func animate_grid_movement():
 	#if calculate_ap_consumption_on_movement():
 	var tween_path = create_tween()
 	tween_path.connect("finished", on_tween_path_finished)
+	
+	actor.path.pop_back()
 	for point in actor.path:
 		#translate into coordinates
 		point = GlobalVar.combat_map.map_to_local(Vector2(point))
@@ -30,6 +32,8 @@ func animate_grid_movement():
 func on_tween_path_finished():
 	turn_finished.emit()
 	actor.playing_turn = false
+	#set occupied tile when entity ends turn
+	GlobalVar.astargrid.set_point_solid(GlobalVar.combat_map.local_to_map(actor.global_position))
 	print("movement finished")
 	
 func _ready():
@@ -44,6 +48,7 @@ func set_state(state: EntityState) -> void:
 		EntityState.MOVE:
 			# Perform actions for the move state
 			print("moving")
+			GlobalVar.astargrid.set_point_solid(GlobalVar.combat_map.local_to_map(actor.global_position), false)
 			animate_grid_movement()
 			
 		EntityState.IDLE:
