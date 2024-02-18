@@ -26,11 +26,6 @@ func update_hitpoints():
 		#current actor taking damage
 		else:
 			GlobalVar.mob_pack_involved_in_combat = actor.get_parent()
-			
-			
-			
-			
-			
 		combat_mode_started.emit()
 		GlobalVar.exploration_mode = false
 		GlobalVar.combat_mode = true

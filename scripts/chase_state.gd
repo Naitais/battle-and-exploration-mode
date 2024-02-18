@@ -20,9 +20,4 @@ func _exit_state() -> void:
 	
 func _physics_process(_delta):
 	var direction = GlobalVar.player.global_position - actor.global_position
-	#actor.global_position += (GlobalVar.player.global_position - actor.global_position)/actor.speed
-	#if direction.length() > 25:
 	actor.velocity = direction.normalized() * actor.speed
-	pass	
-	#else:
-	#	actor.velocity = Vector2.ZERO

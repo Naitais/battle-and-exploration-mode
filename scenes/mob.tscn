@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://c23mkal03nk45"]
+[gd_scene load_steps=17 format=3 uid="uid://c23mkal03nk45"]
 
 [ext_resource type="PackedScene" uid="uid://d26543ubrvlv7" path="res://scenes/base_entity.tscn" id="1_yxnpw"]
 [ext_resource type="Script" path="res://scripts/mob.gd" id="2_c4gs6"]
@@ -7,9 +7,12 @@
 [ext_resource type="Script" path="res://scripts/chase_state.gd" id="5_1duql"]
 [ext_resource type="Script" path="res://scripts/attack_state.gd" id="6_calw4"]
 [ext_resource type="Script" path="res://scripts/hurt_state.gd" id="7_gqxc3"]
+[ext_resource type="Script" path="res://scripts/dumb_ai_state.gd" id="8_w6o7f"]
+[ext_resource type="Script" path="res://scripts/idle_state.gd" id="9_rjqmu"]
 [ext_resource type="PackedScene" uid="uid://3irbhf3kcg6a" path="res://scenes/hitpoints_container.tscn" id="9_xxbht"]
 [ext_resource type="Texture2D" uid="uid://cpvk1udv8qqvp" path="res://icons/lvl_icon.png" id="10_0jt7o"]
 [ext_resource type="PackedScene" uid="uid://crgass4c8kjy0" path="res://scenes/empty_hitpoints_container.tscn" id="10_frqtg"]
+[ext_resource type="Script" path="res://scripts/pathfind_state.gd" id="10_uhko7"]
 [ext_resource type="Texture2D" uid="uid://ctroymoha6e01" path="res://icons/purepng.com-musclemusclemuscle-manbody-builderssix-packmuscle-boysclipart-1421526926338lnu1b.png" id="11_qp1di"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_850rr"]
@@ -24,6 +27,8 @@ z_index = 1
 collision_layer = 4
 collision_mask = 7
 script = ExtResource("2_c4gs6")
+max_action_points = 5
+action_points = 5
 max_hitpoints = 5
 hitpoints = 5
 
@@ -58,7 +63,26 @@ script = ExtResource("7_gqxc3")
 actor = NodePath("../..")
 animation_player = NodePath("../../AnimationPlayer")
 
-[node name="objective_detection_area" type="Area2D" parent="." index="7"]
+[node name="DumbAiState" type="Node" parent="StateMachine" index="4" node_paths=PackedStringArray("actor", "animated_sprite")]
+script = ExtResource("8_w6o7f")
+actor = NodePath("../..")
+animated_sprite = NodePath("../../AnimatedSprite2D")
+
+[node name="IdleState" type="Node" parent="StateMachine" index="5" node_paths=PackedStringArray("actor", "animator")]
+script = ExtResource("9_rjqmu")
+actor = NodePath("../..")
+animator = NodePath("../../AnimatedSprite2D")
+
+[node name="StateMachine2" type="Node" parent="." index="7" node_paths=PackedStringArray("state")]
+script = ExtResource("3_fnkcm")
+state = NodePath("PathfindState")
+
+[node name="PathfindState" type="Node" parent="StateMachine2" index="0" node_paths=PackedStringArray("actor", "animated_sprite")]
+script = ExtResource("10_uhko7")
+actor = NodePath("../..")
+animated_sprite = NodePath("../../AnimatedSprite2D")
+
+[node name="objective_detection_area" type="Area2D" parent="." index="8"]
 visible = false
 collision_layer = 4
 collision_mask = 2
@@ -67,22 +91,22 @@ monitorable = false
 [node name="CollisionShape2D" type="CollisionShape2D" parent="objective_detection_area" index="0"]
 shape = SubResource("CircleShape2D_850rr")
 
-[node name="basic_attack_area" type="Area2D" parent="." index="8"]
+[node name="basic_attack_area" type="Area2D" parent="." index="9"]
 collision_layer = 4
 collision_mask = 2
 monitorable = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="basic_attack_area" index="0"]
 
-[node name="empty_hitpoints_container" parent="." index="9" instance=ExtResource("10_frqtg")]
+[node name="empty_hitpoints_container" parent="." index="10" instance=ExtResource("10_frqtg")]
 
-[node name="hitpoints_container" parent="." index="10" instance=ExtResource("9_xxbht")]
+[node name="hitpoints_container" parent="." index="11" instance=ExtResource("9_xxbht")]
 
-[node name="mob_icon" type="TextureRect" parent="." index="11"]
+[node name="mob_icon" type="TextureRect" parent="." index="12"]
 offset_right = 40.0
 offset_bottom = 40.0
 
-[node name="PanelContainer" type="PanelContainer" parent="." index="12"]
+[node name="PanelContainer" type="PanelContainer" parent="." index="13"]
 visible = false
 z_index = 1
 offset_right = 40.0
@@ -139,7 +163,23 @@ expand_mode = 2
 [node name="mob_debug_lbl" type="Label" parent="PanelContainer/MarginContainer/GridContainer" index="9"]
 layout_mode = 2
 
-[node name="tooltip_info_area" type="Area2D" parent="." index="13"]
+[node name="mob_initiative_rect3" type="TextureRect" parent="PanelContainer/MarginContainer/GridContainer" index="10"]
+layout_mode = 2
+texture = ExtResource("11_qp1di")
+expand_mode = 2
+
+[node name="mob_action_points_lbl" type="Label" parent="PanelContainer/MarginContainer/GridContainer" index="11"]
+layout_mode = 2
+
+[node name="mob_initiative_rect4" type="TextureRect" parent="PanelContainer/MarginContainer/GridContainer" index="12"]
+layout_mode = 2
+texture = ExtResource("11_qp1di")
+expand_mode = 2
+
+[node name="mob_team_tag_lbl" type="Label" parent="PanelContainer/MarginContainer/GridContainer" index="13"]
+layout_mode = 2
+
+[node name="tooltip_info_area" type="Area2D" parent="." index="14"]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="tooltip_info_area" index="0"]
 position = Vector2(2, 4)

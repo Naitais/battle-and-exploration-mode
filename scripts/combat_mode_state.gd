@@ -57,9 +57,6 @@ func get_turn_order():
 		#reset resources
 		reset_resources()
 		
-		#get position of all entities to set occupied tiles
-		#get_occupied_tiles()
-		
 		#sort by initiative stat
 		GlobalVar.entities_in_combat.sort_custom(compare_entities)
 		
@@ -73,20 +70,32 @@ func get_turn_order():
 	start_round = false
 
 func play_turn():
+	#THIS IS WHERE ACTION FOR THE TURN HAPPENS
+	
 	#check if array is empty
 	if GlobalVar.entities_in_combat.size() > 0:
 		for entity in GlobalVar.entities_in_combat:
+			if entity.name == 'player':
+				
+				#manage player states for combat
+				#ADD LOGIC TO PREVENT PLAYER FROM PLAYING AFTER THIS IS ACTIVATED FPR THE FIRST TIME
+				if entity.playing_turn:
+					entity.grid_movement_state.turn_started.emit()
+				
+				#LOGIC TO MAKE THE PLAYER UNABLE TO PLAY
+				elif entity.playing_turn == false:
+					entity.grid_movement_state.turn_finished.emit()
 			
-			#manage player states for combat
-			#ADD LOGIC TO PREVENT PLAYER FROM PLAYING AFTER THIS IS ACTIVATED FPR THE FIRST TIME
-			if entity.playing_turn and entity.name == 'player':
-				entity.grid_movement_state.turn_started.emit()
-			
-			#LOGIC TO MAKE THE PLAYER UNABLE TO PLAY
-			elif entity.playing_turn == false and entity.name == 'player':
-				#entity.pathfind_state.turn_finished.emit()
-				entity.grid_movement_state.turn_finished.emit()
-			
+			elif entity.name != "player":
+				
+				if entity.playing_turn:
+					entity.dumb_ai_state.turn_started.emit()
+					
+					
+				#LOGIC TO MAKE THE MOB UNABLE TO PLAY
+				elif entity.playing_turn == false:
+					entity.dumb_ai_state.turn_finished.emit()
+					
 func set_opacity_for_entities_in_combat():
 	#this function will make every entity who already played its turn to have a lower opacity until the round resets
 	#will do the same with the portraits in the bar turn controller

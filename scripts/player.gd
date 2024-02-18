@@ -18,6 +18,7 @@ extends "res://scripts/baseEntity.gd"
 @onready var mob_initiative_lbl = $PanelContainer/MarginContainer/GridContainer/mob_initiative_lbl
 @onready var mob_debug_lbl = $PanelContainer/MarginContainer/GridContainer/mob_debug_lbl
 @onready var mob_action_points_lbl = $PanelContainer/MarginContainer/GridContainer/mob_action_points_lbl
+@onready var mob_team_tag_lbl = $PanelContainer/MarginContainer/GridContainer/mob_team_tag_lbl
 
 func _ready():
 	GlobalVar.player = self
@@ -64,11 +65,11 @@ func manage_mob_pack_tooltip_ui():
 	#fill tooltip lbls with info
 	tooltip_title.text = str(self)
 	mob_level_lbl.text = str(level)
-	mob_power_lbl.text = str(power)
 	mob_initiative_lbl.text = str("iniciativa: ",initiative)
-	#mob_debug_lbl.text = str("turn: ",playing_turn)
+	mob_power_lbl.text = str("turn: ",playing_turn)
 	mob_debug_lbl.text = str("max_ap: ",max_action_points)
 	mob_action_points_lbl.text = str("AP: ",entity_info["action_points"])
+	mob_team_tag_lbl.text = str(entity_info["team_tag"])
 		#var mob_icon = TextureRect.new()
 		#var mob_data = Label.new()
 		#grid_container.add_child(mob_icon)

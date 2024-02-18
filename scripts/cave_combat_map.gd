@@ -8,7 +8,8 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
-	pass
+	await get_tree().create_timer(1).timeout
+	detect_teams = false
 
 func _on_entities_involved_in_combat_body_entered(body):
 	GlobalVar.entities_in_combat.append(body)

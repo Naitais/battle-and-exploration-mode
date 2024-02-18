@@ -591,6 +591,14 @@ expand_mode = 2
 [node name="mob_action_points_lbl" type="Label" parent="PanelContainer/MarginContainer/GridContainer" index="11"]
 layout_mode = 2
 
+[node name="mob_initiative_rect4" type="TextureRect" parent="PanelContainer/MarginContainer/GridContainer" index="12"]
+layout_mode = 2
+texture = ExtResource("15_kcaep")
+expand_mode = 2
+
+[node name="mob_team_tag_lbl" type="Label" parent="PanelContainer/MarginContainer/GridContainer" index="13"]
+layout_mode = 2
+
 [node name="tooltip_info_area" type="Area2D" parent="." index="12"]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="tooltip_info_area" index="0"]

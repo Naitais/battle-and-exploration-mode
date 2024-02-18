@@ -3,11 +3,14 @@ class_name Mob
 extends "res://scripts/baseEntity.gd"
 
 @onready var state_machine = $StateMachine as StateMachine
+@onready var state_machine_2 = $StateMachine2 as StateMachine
+
 @onready var wander_state = $StateMachine/WanderState as WanderState
 @onready var chase_state = $StateMachine/Chase as ChaseState
 @onready var attack_state = $StateMachine/AttackState as AttackState
 @onready var hurt_state = $StateMachine/HurtState as HurtState
-@onready var panel_container = $PanelContainer
+@onready var dumb_ai_state = $StateMachine/DumbAiState as DumbAiState
+@onready var idle_state = $StateMachine/IdleState as IdleState
 
 #dictionary with mob info
 @onready var mob_level_lbl = $PanelContainer/MarginContainer/GridContainer/mob_level_lbl
@@ -15,8 +18,12 @@ extends "res://scripts/baseEntity.gd"
 @onready var tooltip_title = $PanelContainer/MarginContainer/GridContainer/tooltip_title
 @onready var mob_initiative_lbl = $PanelContainer/MarginContainer/GridContainer/mob_initiative_lbl
 @onready var mob_debug_lbl = $PanelContainer/MarginContainer/GridContainer/mob_debug_lbl
+@onready var panel_container = $PanelContainer
+@onready var mob_action_points_lbl = $PanelContainer/MarginContainer/GridContainer/mob_action_points_lbl
+@onready var mob_team_tag_lbl = $PanelContainer/MarginContainer/GridContainer/mob_team_tag_lbl
 
-
+#the target which the AI will chase and attack
+var target: CharacterBody2D
 
 func _ready():
 	
@@ -27,6 +34,10 @@ func _ready():
 	attack_state.execute_basic_attack.connect(state_machine.change_state.bind(attack_state))
 	hurt_state.damage_taken.connect(state_machine.change_state.bind(hurt_state))
 	hurt_state.damage_taken_finished.connect(state_machine.change_state.bind(chase_state))
+	
+	#COMBAT MODE
+	dumb_ai_state.turn_started.connect(state_machine.change_state.bind(dumb_ai_state))
+	dumb_ai_state.turn_finished.connect(state_machine.change_state.bind(idle_state))
 	
 	#set type of mob when added
 	entity_info["type"] = type
@@ -46,9 +57,12 @@ func manage_mob_pack_tooltip_ui():
 	#fill tooltip lbls with info
 	tooltip_title.text = str(self)
 	mob_level_lbl.text = str(level)
-	mob_power_lbl.text = str(power)
 	mob_initiative_lbl.text = str(initiative)
-	mob_debug_lbl.text = str("turn: ",playing_turn)
+	mob_power_lbl.text = str("turn: ",playing_turn)
+	mob_debug_lbl.text = str("max_ap: ",max_action_points)
+	mob_action_points_lbl.text = str("AP: ",entity_info["action_points"])
+	mob_team_tag_lbl.text = str(entity_info["team_tag"])
+	
 		#var mob_icon = TextureRect.new()
 		#var mob_data = Label.new()
 		#grid_container.add_child(mob_icon)
