@@ -10,7 +10,8 @@ signal turn_finished
 
 enum EntityState {
 	MOVE,
-	IDLE
+	IDLE,
+	ATTACK
 }
 
 # Current state variable
@@ -52,6 +53,10 @@ func set_state(state: EntityState) -> void:
 			animate_grid_movement()
 			
 		EntityState.IDLE:
+			# Perform actions for the idle state
+			print("Idle.")
+			
+		EntityState.ATTACK:
 			# Perform actions for the idle state
 			print("Idle.")
 
