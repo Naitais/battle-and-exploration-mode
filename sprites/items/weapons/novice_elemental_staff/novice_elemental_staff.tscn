@@ -19,6 +19,9 @@ item_attributes = {
 }
 item_path = "res://sprites/items/weapons/novice_elemental_staff/novice_elemental_staff.tscn"
 
+[node name="PanelContainer" parent="." index="0"]
+scale = Vector2(4, 4)
+
 [node name="TextureRect" parent="PanelContainer" index="0"]
 texture = ExtResource("2_3l41h")
 

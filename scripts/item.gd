@@ -14,12 +14,12 @@ extends Node2D
 @onready var panel_container = $PanelContainer
 
 var rarities: Dictionary = {
-	"common":Color(14,1,0.4), 
-	"magic":Color(1,1,1,0.4), 
-	"rare":Color(1,1,1,0.4), 
-	"epic":Color(1,1,1,0.4), 
-	"legendary":Color(1,1,1,0.4), 
-	"unique":Color(1,1,1,0.4)
+	"common":Color(1,1,1,0.55), 
+	"magic":Color(1,2,1), 
+	"rare":Color(1,1,2), 
+	"epic":Color(2,1,2), 
+	"legendary":Color(5,2,1), 
+	"unique":Color(5,3,1)
 }
 
 var item_info: Dictionary = {
