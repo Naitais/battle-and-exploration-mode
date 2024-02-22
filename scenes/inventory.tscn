@@ -1,0 +1,41 @@
+[gd_scene load_steps=2 format=3 uid="uid://28ut12oaky0v"]
+
+[ext_resource type="Script" path="res://scripts/inventory.gd" id="1_b3i6p"]
+
+[node name="inventory" type="Node2D"]
+script = ExtResource("1_b3i6p")
+
+[node name="GridContainer" type="GridContainer" parent="."]
+offset_right = 38.0
+offset_bottom = 38.0
+scale = Vector2(5, 5)
+size_flags_horizontal = 4
+size_flags_vertical = 4
+columns = 3
+
+[node name="inventory_slot_1" type="PanelContainer" parent="GridContainer"]
+layout_mode = 2
+
+[node name="inventory_slot_2" type="PanelContainer" parent="GridContainer"]
+layout_mode = 2
+
+[node name="inventory_slot_3" type="PanelContainer" parent="GridContainer"]
+layout_mode = 2
+
+[node name="inventory_slot_4" type="PanelContainer" parent="GridContainer"]
+layout_mode = 2
+
+[node name="inventory_slot_5" type="PanelContainer" parent="GridContainer"]
+layout_mode = 2
+
+[node name="inventory_slot_6" type="PanelContainer" parent="GridContainer"]
+layout_mode = 2
+
+[node name="inventory_slot_7" type="PanelContainer" parent="GridContainer"]
+layout_mode = 2
+
+[node name="inventory_slot_8" type="PanelContainer" parent="GridContainer"]
+layout_mode = 2
+
+[node name="inventory_slot_9" type="PanelContainer" parent="GridContainer"]
+layout_mode = 2

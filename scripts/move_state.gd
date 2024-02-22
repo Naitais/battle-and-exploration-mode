@@ -22,32 +22,47 @@ func _exit_state() -> void:
 	
 	
 func _physics_process(delta):
-	animated_sprite.play("run")
+	#animated_sprite.play("run")
 	player_movement(delta)
 
 func player_movement(_delta):
 	if GlobalVar.exploration_mode:
 		if Input.is_action_pressed("up"):
 			actor.velocity.y = -actor.speed
-			actor.velocity.x = 0
+			animated_sprite.play("back")
 		elif Input.is_action_pressed("down"):
 			actor.velocity.y = actor.speed
-			actor.velocity.x = 0
-		elif Input.is_action_pressed("left"):
-			actor.velocity.x = -actor.speed
+			animated_sprite.play("front")
+		else:
 			actor.velocity.y = 0
+
+		if Input.is_action_pressed("left"):
+			actor.velocity.x = -actor.speed
+			animated_sprite.play("left")
 			animated_sprite.flip_h = true
 		elif Input.is_action_pressed("right"):
-			#current_state = States.MOVE
 			actor.velocity.x = actor.speed
-			actor.velocity.y = 0
+			animated_sprite.play("right")
 			animated_sprite.flip_h = false
-			
 		else:
-			player_not_moving.emit()
 			actor.velocity.x = 0
-			actor.velocity.y = 0
+
+		# Handle diagonal movement
+		if Input.is_action_pressed("up") and Input.is_action_pressed("left"):
+			actor.velocity = Vector2(-actor.speed, -actor.speed).normalized() * actor.speed
+			animated_sprite.play("back_left")
+			animated_sprite.flip_h = false
+		elif Input.is_action_pressed("up") and Input.is_action_pressed("right"):
+			actor.velocity = Vector2(actor.speed, -actor.speed).normalized() * actor.speed
+			animated_sprite.play("back_right")
+			animated_sprite.flip_h = true
+		elif Input.is_action_pressed("down") and Input.is_action_pressed("left"):
+			actor.velocity = Vector2(-actor.speed, actor.speed).normalized() * actor.speed
+			animated_sprite.play("front_left")
+			animated_sprite.flip_h = true
+		elif Input.is_action_pressed("down") and Input.is_action_pressed("right"):
+			actor.velocity = Vector2(actor.speed, actor.speed).normalized() * actor.speed
+			animated_sprite.play("front_right")
+			animated_sprite.flip_h = false
+
 			
-	elif GlobalVar.combat_mode and actor.playing_turn:
-		print("player turn starts")
-		

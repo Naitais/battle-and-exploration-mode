@@ -23,7 +23,6 @@ offset_top = 1.0
 offset_right = -43.0
 offset_bottom = 11.0
 grow_horizontal = 2
-scale = Vector2(1.5, 1.5)
 
 [node name="entitiesContainer" type="GridContainer" parent="Control/PanelContainer"]
 clip_contents = true

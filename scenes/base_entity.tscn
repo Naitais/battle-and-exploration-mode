@@ -7,6 +7,10 @@
 platform_floor_layers = 4294901761
 script = ExtResource("1_l2khp")
 
+[node name="entity_top_selector" parent="." instance=ExtResource("2_dgmoq")]
+visible = false
+z_index = 1
+
 [node name="Sprite2D" type="Sprite2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -34,6 +38,3 @@ offset_bottom = 10.0
 
 [node name="Portrait" type="TextureRect" parent="PortraitContainer"]
 layout_mode = 2
-
-[node name="entity_top_selector" parent="." instance=ExtResource("2_dgmoq")]
-visible = false

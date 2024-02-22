@@ -32,14 +32,9 @@ action_points = 5
 max_hitpoints = 5
 hitpoints = 5
 
-[node name="Hurtbox" parent="." index="4"]
+[node name="Hurtbox" parent="." index="5"]
 collision_layer = 4
 collision_mask = 2
-
-[node name="Hitbox" parent="." index="5"]
-collision_layer = 4
-collision_mask = 2
-monitoring = true
 
 [node name="StateMachine" type="Node" parent="." index="6" node_paths=PackedStringArray("state")]
 script = ExtResource("3_fnkcm")
@@ -184,6 +179,11 @@ layout_mode = 2
 [node name="CollisionShape2D" type="CollisionShape2D" parent="tooltip_info_area" index="0"]
 position = Vector2(2, 4)
 shape = SubResource("CircleShape2D_vcl7v")
+
+[node name="Hitbox" parent="." index="15"]
+collision_layer = 4
+collision_mask = 2
+monitoring = true
 
 [connection signal="mouse_entered" from="tooltip_info_area" to="." method="_on_tooltip_info_area_mouse_entered"]
 [connection signal="mouse_exited" from="tooltip_info_area" to="." method="_on_tooltip_info_area_mouse_exited"]

@@ -27,7 +27,7 @@ func _process(_delta):
 	if map_dictionary.has(str(selected_tile)): #si el diccionario de arriba contiene la tile seleccionada entonces estamos en el mapa
 		set_cell(2, selected_tile, 3,Vector2i(0,0),0) #seteo tile de "mira" como ayuda visual de tile seleccionada
 	
-	display_path()
+		display_path()
 	#display_occupied_tiles()
 	
 func display_path():
@@ -35,7 +35,8 @@ func display_path():
 		GlobalVar.player.path.remove_at(0)
 		for point in GlobalVar.player.path:
 			set_cell(1, point, 1,Vector2i(0,0),0) #sets reachable tile
-			
+	else:
+		return
 func display_occupied_tiles():
 	if GlobalVar.occupied_tiles:
 		for tile in GlobalVar.occupied_tiles:

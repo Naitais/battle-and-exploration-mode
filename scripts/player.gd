@@ -1,6 +1,7 @@
 class_name Player
 
 extends "res://scripts/baseEntity.gd"
+
 @onready var state_machine = $StateMachine as StateMachine
 @onready var state_machine_2 = $StateMachine2 as StateMachine
 @onready var idle_state = $StateMachine/IdleState as IdleState
@@ -58,10 +59,6 @@ func _input(event):
 					move_state.movement_key_pressed.emit()
 
 func manage_mob_pack_tooltip_ui():
-	#print("mob scene; name ",self)
-	#for child in GlobalVar.mob_pack_involved_in_combat.get_children():
-	#	if child.name == "spider":
-	#		print("global var; name ",child)
 			
 	#fill tooltip lbls with info
 	tooltip_title.text = str(self)
@@ -83,10 +80,15 @@ func manage_mob_pack_tooltip_ui():
 		#mob_icon.expand_mode = TextureRect.EXPAND_FIT_WIDTH
 		#mob_icon.texture = load("res://icons/"+mob.name.to_lower()+"_icon.png")
 		#mob_data.text = mob_info
+		
 func _physics_process(_delta: float) -> void:
+	
+	
 	if GlobalVar.exploration_mode:
 		move_and_slide()
 		basic_attack()
+	
+		
 	if GlobalVar.combat_mode:
 		manage_mob_pack_tooltip_ui()
 		$Camera2D.enabled = false
