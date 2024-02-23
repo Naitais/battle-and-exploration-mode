@@ -1,6 +1,6 @@
 extends Node2D
 
-@onready var grid_container = $GridContainer
+@onready var grid_container = $Control/GridContainer
 
 var items: Dictionary = {
 	"slot_1": "empty",
@@ -24,7 +24,6 @@ func open_inventory():
 			grid_container.visible = true
 		else:
 			grid_container.visible = false
-		
 	
 func render_items_in_inventory():
 	pass

@@ -1,10 +1,11 @@
-[gd_scene load_steps=60 format=3 uid="uid://xay4yew45pn4"]
+[gd_scene load_steps=62 format=3 uid="uid://xay4yew45pn4"]
 
 [ext_resource type="PackedScene" uid="uid://d26543ubrvlv7" path="res://scenes/base_entity.tscn" id="1_kdndf"]
 [ext_resource type="Texture2D" uid="uid://20kdx77v3k6u" path="res://sprites/base_character.png" id="2_85hw2"]
 [ext_resource type="Script" path="res://scripts/player.gd" id="2_iqklm"]
 [ext_resource type="Texture2D" uid="uid://du86lasbxfe57" path="res://tiles/iso_tileset_testing-Sheet.png" id="3_0j2wy"]
 [ext_resource type="Texture2D" uid="uid://bvitood4gow5k" path="res://sprites/basic_attack_magic_staff.png" id="3_kpyr4"]
+[ext_resource type="Resource" uid="uid://cqk546mth7nbq" path="res://inventory/player_inventory.tres" id="3_x0gsf"]
 [ext_resource type="Texture2D" uid="uid://dg8hek6l0i4x1" path="res://sprites/base_character_animation.png" id="4_o8rqv"]
 [ext_resource type="Script" path="res://scripts/State Machine.gd" id="6_bshu7"]
 [ext_resource type="Script" path="res://scripts/idle_state.gd" id="7_60ibs"]
@@ -19,6 +20,7 @@
 [ext_resource type="Texture2D" uid="uid://cpvk1udv8qqvp" path="res://icons/lvl_icon.png" id="14_viky6"]
 [ext_resource type="Texture2D" uid="uid://ctroymoha6e01" path="res://icons/purepng.com-musclemusclemuscle-manbody-builderssix-packmuscle-boysclipart-1421526926338lnu1b.png" id="15_kcaep"]
 [ext_resource type="Texture2D" uid="uid://d3k37nkve0j5b" path="res://sprites/characters/player_portrait.png" id="16_3mm3c"]
+[ext_resource type="PackedScene" uid="uid://busyvsstvtytk" path="res://inventory/inventory_ui.tscn" id="21_wjsdg"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_3pdjn"]
 radius = 2.0
@@ -513,6 +515,7 @@ position = Vector2(10, -12)
 collision_layer = 2
 collision_mask = 7
 script = ExtResource("2_iqklm")
+player_inventory = ExtResource("3_x0gsf")
 level = 10
 max_action_points = 5
 action_points = 5
@@ -716,6 +719,8 @@ self_modulate = Color(0, 0, 0, 1)
 
 [node name="Portrait" parent="PortraitContainer" index="0"]
 texture = ExtResource("16_3mm3c")
+
+[node name="Inventory_UI" parent="." index="15" instance=ExtResource("21_wjsdg")]
 
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
 [connection signal="area_entered" from="Hurtbox" to="." method="_on_hurtbox_area_entered"]

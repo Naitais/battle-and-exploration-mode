@@ -22,6 +22,9 @@ extends "res://scripts/baseEntity.gd"
 @onready var mob_action_points_lbl = $PanelContainer/MarginContainer/GridContainer/mob_action_points_lbl
 @onready var mob_team_tag_lbl = $PanelContainer/MarginContainer/GridContainer/mob_team_tag_lbl
 
+#PLAYER INVENTORY
+@export var player_inventory: Inventory
+
 func _ready():
 	GlobalVar.player = self
 	$Hitbox/CollisionShape2D.disabled = true
