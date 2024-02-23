@@ -1,16 +1,21 @@
 extends Control
 
 @onready var inventory_ui = $"."
+@onready var player_inventory: Inventory = preload("res://inventory/player_inventory.tres")
+@onready var inventory_ui_slots: Array = $NinePatchRect/GridContainer.get_children()
 
 
+func update_invetory_slots():
+	#this for returns an array with each index of the players inventory resource
+	for i in range(min(player_inventory.inventory_content.size(),inventory_ui_slots.size())):
+		
+		#get every ui slot to call the update function which replaces texture with the texture
+		#loaded in the corresponding player inventory slot resource
+		inventory_ui_slots[i].update_inventory(player_inventory.inventory_content[i])
 
 func open_inventory():
-	
 	if Input.is_action_just_pressed("open_inventory"):
 		if inventory_ui.visible == false:
-			#for key in items.keys():
-			#print(key + ": " items[key])
-			#	print(key+ ": " +items[key])
 			
 			inventory_ui.visible = true
 		else:
@@ -18,8 +23,7 @@ func open_inventory():
 	
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass # Replace with function body.
-
+	update_invetory_slots()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
