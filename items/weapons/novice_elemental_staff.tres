@@ -1,13 +1,13 @@
 [gd_resource type="Resource" script_class="Item" load_steps=3 format=3 uid="uid://x5fiveinmeu"]
 
-[ext_resource type="Texture2D" uid="uid://co5aum5rkfp2a" path="res://sprites/items/weapons/novice_elemental_staff/novice_elemental_staff.png" id="1_dn60f"]
+[ext_resource type="Texture2D" uid="uid://daqhs7f1ggvxo" path="res://sprites/items/weapons/novice_elemental_staff/novice_elemental_staff_portrait.png" id="1_47vwb"]
 [ext_resource type="Script" path="res://item.gd" id="2_bx5ck"]
 
 [resource]
 script = ExtResource("2_bx5ck")
 item_name = "Novice Elemental Staff"
 item_type = "Magic Weapon"
-item_texture = ExtResource("1_dn60f")
+item_texture = ExtResource("1_47vwb")
 item_description = "Mind the splinters"
 item_level = 1
 item_rarity = "Common"

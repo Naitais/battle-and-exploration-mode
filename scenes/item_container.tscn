@@ -1,0 +1,41 @@
+[gd_scene load_steps=11 format=3 uid="uid://bgy8g1lilpd7k"]
+
+[ext_resource type="Script" path="res://item_container.gd" id="1_vrq0q"]
+[ext_resource type="Resource" uid="uid://x5fiveinmeu" path="res://items/weapons/novice_elemental_staff.tres" id="2_r2tm6"]
+[ext_resource type="Script" path="res://inventory_slot.gd" id="3_4ejoo"]
+[ext_resource type="Script" path="res://inventory/inventory.gd" id="4_rb7cl"]
+[ext_resource type="Texture2D" uid="uid://dl0rbq4jn3eng" path="res://tiles/chest_sprite_test.png" id="5_qadds"]
+
+[sub_resource type="Resource" id="Resource_cwmmn"]
+script = ExtResource("3_4ejoo")
+item = ExtResource("2_r2tm6")
+amount = 1
+
+[sub_resource type="Resource" id="Resource_037cf"]
+script = ExtResource("3_4ejoo")
+amount = 0
+
+[sub_resource type="Resource" id="Resource_f3w6o"]
+script = ExtResource("3_4ejoo")
+amount = 0
+
+[sub_resource type="Resource" id="Resource_1aqp7"]
+script = ExtResource("3_4ejoo")
+amount = 0
+
+[sub_resource type="Resource" id="Resource_qe0pi"]
+script = ExtResource("4_rb7cl")
+inventory_slots = Array[ExtResource("3_4ejoo")]([SubResource("Resource_cwmmn"), SubResource("Resource_037cf"), SubResource("Resource_f3w6o"), SubResource("Resource_1aqp7")])
+
+[node name="item_container" type="StaticBody2D"]
+script = ExtResource("1_vrq0q")
+item_container = SubResource("Resource_qe0pi")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("5_qadds")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+position = Vector2(0.616734, 1)
+scale = Vector2(0.933468, 1)
+build_mode = 1
+polygon = PackedVector2Array(-0.660691, 15, -17.8011, 8, -0.660691, 0, 16.4797, 8)

@@ -1,8 +1,44 @@
-[gd_resource type="Resource" script_class="Inventory" load_steps=3 format=3 uid="uid://cqk546mth7nbq"]
+[gd_resource type="Resource" script_class="Inventory" load_steps=12 format=3 uid="uid://cqk546mth7nbq"]
 
-[ext_resource type="Resource" uid="uid://x5fiveinmeu" path="res://items/weapons/novice_elemental_staff.tres" id="1_68qk6"]
+[ext_resource type="Script" path="res://inventory_slot.gd" id="1_gdbxc"]
 [ext_resource type="Script" path="res://inventory/inventory.gd" id="2_0adli"]
+
+[sub_resource type="Resource" id="Resource_rfw10"]
+script = ExtResource("1_gdbxc")
+amount = 0
+
+[sub_resource type="Resource" id="Resource_5oqv6"]
+script = ExtResource("1_gdbxc")
+amount = 0
+
+[sub_resource type="Resource" id="Resource_hl0bf"]
+script = ExtResource("1_gdbxc")
+amount = 0
+
+[sub_resource type="Resource" id="Resource_x7m4q"]
+script = ExtResource("1_gdbxc")
+amount = 0
+
+[sub_resource type="Resource" id="Resource_cp2tb"]
+script = ExtResource("1_gdbxc")
+amount = 0
+
+[sub_resource type="Resource" id="Resource_evphb"]
+script = ExtResource("1_gdbxc")
+amount = 0
+
+[sub_resource type="Resource" id="Resource_mqw3e"]
+script = ExtResource("1_gdbxc")
+amount = 0
+
+[sub_resource type="Resource" id="Resource_ihqql"]
+script = ExtResource("1_gdbxc")
+amount = 0
+
+[sub_resource type="Resource" id="Resource_vknn0"]
+script = ExtResource("1_gdbxc")
+amount = 0
 
 [resource]
 script = ExtResource("2_0adli")
-inventory_content = Array[Resource("res://item.gd")]([ExtResource("1_68qk6"), null, null, null, null, null, null, null, null])
+inventory_slots = Array[ExtResource("1_gdbxc")]([SubResource("Resource_rfw10"), SubResource("Resource_5oqv6"), SubResource("Resource_hl0bf"), SubResource("Resource_x7m4q"), SubResource("Resource_cp2tb"), SubResource("Resource_evphb"), SubResource("Resource_mqw3e"), SubResource("Resource_ihqql"), SubResource("Resource_vknn0")])
