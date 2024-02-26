@@ -3,6 +3,8 @@ extends Panel
 @onready var item_display = $item_display
 @onready var slot_amount_lbl = $slot_amount_lbl
 
+var can_pick_item: bool = false
+
 func update_inventory(slot: InventorySlot):
 	if !slot.item:
 		item_display.visible = false
@@ -13,16 +15,33 @@ func update_inventory(slot: InventorySlot):
 		item_display.texture = slot.item.item_texture
 		slot_amount_lbl.visible = true
 		slot_amount_lbl.text = str(slot.amount)
+
+func pick_item():
+	if Input.is_action_just_pressed("left_click") and can_pick_item:
+		#find the inventory of the object
+		var inventory_slots: Array = get_parent().get_parent().get_parent().get_parent().item_container.inventory_slots
 		
+		#get the item in the clicked slot ui
+		for slot in inventory_slots:
+			if slot == inventory_slots[get_parent().get_children().find(self)]:
+				#print(inventory_slots[get_parent().get_children().find(self)])
+				if slot.item:
+					print(slot.item.item_name)
+				else:
+					print("empty slot")
+		#print("self index: ",get_parent().get_children().find(self))
+		
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	pass
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	pass
+	pick_item()
 
 func _on_click_slot_area_mouse_entered():
-	print("afuera ",get_parent())
-	if Input.is_action_just_pressed("left_click"):
-		print(get_parent())
+	can_pick_item = true
+	
+func _on_click_slot_area_mouse_exited():
+	can_pick_item = false

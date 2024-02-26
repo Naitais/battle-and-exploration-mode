@@ -37,3 +37,4 @@ position = Vector2(8, 8)
 shape = SubResource("RectangleShape2D_8mbv8")
 
 [connection signal="mouse_entered" from="click_slot_area" to="." method="_on_click_slot_area_mouse_entered"]
+[connection signal="mouse_exited" from="click_slot_area" to="." method="_on_click_slot_area_mouse_exited"]
