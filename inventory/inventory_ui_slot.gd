@@ -18,11 +18,19 @@ func update_inventory(slot: InventorySlot):
 		slot_amount_lbl.text = str(slot.amount)
 
 func show_item_name(slot):
-	if slot.item:
+	
+	if slot.item and can_pick_item:
 		item_name_lbl.visible = true
+		item_name_lbl.global_position = get_global_mouse_position() + Vector2(-15,-15)
 		item_name_lbl.text = slot.item.item_name
-	else:
+	
+	#the label is visible all the time because can pick item is never set to false for the slot
+	#to fix i need a var which gets the hovered slot item so that i can set the visible proérty specifically
+	#to one slot at a atime instead of checking the value for every slot
+	elif !slot.item and !can_pick_item:
+		print("asdasd")
 		item_name_lbl.visible = false
+		
 
 func get_slot_item():
 	if Input.is_action_just_pressed("left_click"):

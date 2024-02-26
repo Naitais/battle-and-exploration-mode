@@ -40,6 +40,7 @@ shape = SubResource("RectangleShape2D_8mbv8")
 layout_mode = 0
 offset_right = 40.0
 offset_bottom = 23.0
+scale = Vector2(0.4, 0.4)
 
 [connection signal="mouse_entered" from="click_slot_area" to="." method="_on_click_slot_area_mouse_entered"]
 [connection signal="mouse_exited" from="click_slot_area" to="." method="_on_click_slot_area_mouse_exited"]
