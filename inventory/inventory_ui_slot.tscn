@@ -36,5 +36,10 @@ horizontal_alignment = 2
 position = Vector2(8, 8)
 shape = SubResource("RectangleShape2D_8mbv8")
 
+[node name="item_name_lbl" type="Label" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+
 [connection signal="mouse_entered" from="click_slot_area" to="." method="_on_click_slot_area_mouse_entered"]
 [connection signal="mouse_exited" from="click_slot_area" to="." method="_on_click_slot_area_mouse_exited"]

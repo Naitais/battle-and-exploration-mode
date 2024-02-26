@@ -2,6 +2,7 @@ extends Panel
 
 @onready var item_display = $item_display
 @onready var slot_amount_lbl = $slot_amount_lbl
+@onready var item_name_lbl = $item_name_lbl
 
 var can_pick_item: bool = false
 
@@ -16,8 +17,19 @@ func update_inventory(slot: InventorySlot):
 		slot_amount_lbl.visible = true
 		slot_amount_lbl.text = str(slot.amount)
 
+func show_item_name(slot):
+	if slot.item:
+		item_name_lbl.visible = true
+		item_name_lbl.text = slot.item.item_name
+	else:
+		item_name_lbl.visible = false
+
+func get_slot_item():
+	if Input.is_action_just_pressed("left_click"):
+		pass
+
 func pick_item():
-	if Input.is_action_just_pressed("left_click") and can_pick_item:
+	if can_pick_item:
 		#find the inventory of the object
 		var inventory_slots: Array = get_parent().get_parent().get_parent().get_parent().item_container.inventory_slots
 		
@@ -25,10 +37,9 @@ func pick_item():
 		for slot in inventory_slots:
 			if slot == inventory_slots[get_parent().get_children().find(self)]:
 				#print(inventory_slots[get_parent().get_children().find(self)])
-				if slot.item:
-					print(slot.item.item_name)
-				else:
-					print("empty slot")
+				
+				show_item_name(slot)
+
 		#print("self index: ",get_parent().get_children().find(self))
 		
 
