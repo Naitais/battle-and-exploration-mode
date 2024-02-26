@@ -1,9 +1,10 @@
-[gd_scene load_steps=7 format=3 uid="uid://co4i2c6st28bg"]
+[gd_scene load_steps=8 format=3 uid="uid://co4i2c6st28bg"]
 
 [ext_resource type="Texture2D" uid="uid://1v5wbwdyj1k0" path="res://tiles/iso_tileset.png" id="1_o6ldu"]
 [ext_resource type="Script" path="res://scripts/isometric_map_test.gd" id="1_ritun"]
 [ext_resource type="PackedScene" uid="uid://xay4yew45pn4" path="res://scenes/player.tscn" id="2_jm08i"]
 [ext_resource type="Script" path="res://scenes/TileMap.gd" id="3_6h1et"]
+[ext_resource type="PackedScene" uid="uid://bgy8g1lilpd7k" path="res://scenes/item_container.tscn" id="5_tvmjs"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_hctjq"]
 texture = ExtResource("1_o6ldu")
@@ -51,3 +52,6 @@ script = ExtResource("3_6h1et")
 
 [node name="player" parent="." instance=ExtResource("2_jm08i")]
 position = Vector2(-2, -8)
+
+[node name="item_container" parent="." instance=ExtResource("5_tvmjs")]
+position = Vector2(16, 0)

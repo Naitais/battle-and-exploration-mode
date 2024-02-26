@@ -8,5 +8,6 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	print(local_to_map(get_global_mouse_position()))
+	#print(local_to_map(get_global_mouse_position()))
+	pass
 	

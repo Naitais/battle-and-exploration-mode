@@ -1,7 +1,10 @@
-[gd_scene load_steps=3 format=3 uid="uid://drocb2qhom85s"]
+[gd_scene load_steps=4 format=3 uid="uid://drocb2qhom85s"]
 
 [ext_resource type="Script" path="res://inventory/inventory_ui_slot.gd" id="1_6glu5"]
 [ext_resource type="Texture2D" uid="uid://cvdjvhkwresxe" path="res://inventory/inventory_slot_sprite.png" id="1_wlivh"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8mbv8"]
+size = Vector2(14, 14)
 
 [node name="inventory_UI_slot" type="Panel"]
 self_modulate = Color(1, 1, 1, 0)
@@ -26,3 +29,11 @@ offset_right = 25.0
 offset_bottom = 32.0
 scale = Vector2(0.5, 0.5)
 horizontal_alignment = 2
+
+[node name="click_slot_area" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="click_slot_area"]
+position = Vector2(8, 8)
+shape = SubResource("RectangleShape2D_8mbv8")
+
+[connection signal="mouse_entered" from="click_slot_area" to="." method="_on_click_slot_area_mouse_entered"]

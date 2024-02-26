@@ -12,7 +12,6 @@ func update_inventory_slots():
 		inventory_ui_slots[i].update_inventory(player_inventory.inventory_slots[i])
 
 func open_inventory():
-	print("asdasd")
 	if Input.is_action_just_pressed("open_inventory"):
 		if visible == false:
 			

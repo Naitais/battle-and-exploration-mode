@@ -98,7 +98,8 @@ func _physics_process(_delta: float) -> void:
 	
 func basic_attack():
 	if Input.is_action_pressed("left_click"):
-		attack_state.execute_basic_attack.emit()
+		#attack_state.execute_basic_attack.emit()
+		pass
 
 func _on_animation_player_animation_finished(_basic_attack_animation_name):
 	attack_state.basic_attack_animation_finished.emit()
