@@ -4,6 +4,7 @@ extends Panel
 @onready var slot_amount_lbl = $slot_amount_lbl
 @onready var item_name_lbl = $item_name_lbl
 
+
 var can_pick_item: bool = false
 
 func update_inventory(slot: InventorySlot):
@@ -20,17 +21,8 @@ func update_inventory(slot: InventorySlot):
 func show_item_name(slot):
 	
 	if slot.item and can_pick_item:
-		item_name_lbl.visible = true
-		item_name_lbl.global_position = get_global_mouse_position() + Vector2(-15,-15)
+		item_name_lbl.global_position = get_global_mouse_position() + Vector2(-30,-15)
 		item_name_lbl.text = slot.item.item_name
-	
-	#the label is visible all the time because can pick item is never set to false for the slot
-	#to fix i need a var which gets the hovered slot item so that i can set the visible proérty specifically
-	#to one slot at a atime instead of checking the value for every slot
-	elif !slot.item and !can_pick_item:
-		print("asdasd")
-		item_name_lbl.visible = false
-		
 
 func get_slot_item():
 	if Input.is_action_just_pressed("left_click"):
@@ -60,7 +52,9 @@ func _process(delta):
 	pick_item()
 
 func _on_click_slot_area_mouse_entered():
+	print("lol")
 	can_pick_item = true
-	
+	item_name_lbl.visible = true
 func _on_click_slot_area_mouse_exited():
 	can_pick_item = false
+	item_name_lbl.visible = false
