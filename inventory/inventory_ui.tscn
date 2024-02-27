@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://busyvsstvtytk"]
+[gd_scene load_steps=5 format=3 uid="uid://busyvsstvtytk"]
 
 [ext_resource type="Script" path="res://inventory/inventory_ui.gd" id="1_01lu3"]
 [ext_resource type="Texture2D" uid="uid://bvwnp68h16v0g" path="res://inventory/bag_sprite.png" id="2_8sb4a"]
-[ext_resource type="PackedScene" uid="uid://drocb2qhom85s" path="res://inventory/inventory_ui_slot.tscn" id="3_t5bcs"]
+[ext_resource type="Script" path="res://scripts/State Machine.gd" id="3_oljhb"]
+[ext_resource type="Script" path="res://scripts/manage_inventory_state.gd" id="4_tksak"]
 
 [node name="Inventory_UI" type="Control"]
 layout_mode = 3
@@ -39,29 +40,10 @@ theme_override_constants/h_separation = 1
 theme_override_constants/v_separation = 1
 columns = 3
 
-[node name="inventory_UI_slot1" parent="NinePatchRect/GridContainer" instance=ExtResource("3_t5bcs")]
-layout_mode = 2
+[node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("state")]
+script = ExtResource("3_oljhb")
+state = NodePath("ManageInventoryState")
 
-[node name="inventory_UI_slot2" parent="NinePatchRect/GridContainer" instance=ExtResource("3_t5bcs")]
-layout_mode = 2
-
-[node name="inventory_UI_slot3" parent="NinePatchRect/GridContainer" instance=ExtResource("3_t5bcs")]
-layout_mode = 2
-
-[node name="inventory_UI_slot4" parent="NinePatchRect/GridContainer" instance=ExtResource("3_t5bcs")]
-layout_mode = 2
-
-[node name="inventory_UI_slot5" parent="NinePatchRect/GridContainer" instance=ExtResource("3_t5bcs")]
-layout_mode = 2
-
-[node name="inventory_UI_slot6" parent="NinePatchRect/GridContainer" instance=ExtResource("3_t5bcs")]
-layout_mode = 2
-
-[node name="inventory_UI_slot7" parent="NinePatchRect/GridContainer" instance=ExtResource("3_t5bcs")]
-layout_mode = 2
-
-[node name="inventory_UI_slot8" parent="NinePatchRect/GridContainer" instance=ExtResource("3_t5bcs")]
-layout_mode = 2
-
-[node name="inventory_UI_slot9" parent="NinePatchRect/GridContainer" instance=ExtResource("3_t5bcs")]
-layout_mode = 2
+[node name="ManageInventoryState" type="Node" parent="StateMachine" node_paths=PackedStringArray("grid_container")]
+script = ExtResource("4_tksak")
+grid_container = NodePath("../../NinePatchRect/GridContainer")

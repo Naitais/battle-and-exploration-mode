@@ -6,7 +6,7 @@
 [resource]
 script = ExtResource("2_bx5ck")
 item_name = "Novice Elemental Staff"
-item_type = "Magic Weapon"
+item_type = 0
 item_texture = ExtResource("1_47vwb")
 item_description = "Mind the splinters"
 item_level = 1
@@ -15,3 +15,4 @@ item_attributes = {
 "Damage": 3
 }
 item_path = "res://sprites/items/weapons/novice_elemental_staff/novice_elemental_staff.png"
+item_can_stack = true

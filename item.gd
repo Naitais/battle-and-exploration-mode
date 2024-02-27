@@ -2,15 +2,17 @@ extends Resource
 
 class_name Item
 
+enum type {WEAPON, CONSUMABLE}
+
 @export var item_name: String
-@export var item_type: String
+@export var item_type: type
 @export var item_texture: Texture2D
-@export var item_description: String
+@export_multiline var item_description: String
 @export var item_level: int
 @export var item_rarity: String
 @export var item_attributes: Dictionary
 @export var item_path: String
-
+@export var item_can_stack: bool
 
 var rarities: Dictionary = {
 	"common":Color(1,1,1,0.55), 

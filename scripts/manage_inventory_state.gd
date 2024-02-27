@@ -2,7 +2,7 @@ class_name ManageInventoryState
 extends State
 
 #the parent of the scene is the actual object we are inserting this scene to
-@onready var object: StaticBody2D = $"../..".get_parent()
+@onready var object
 @export var grid_container: GridContainer
 @onready var inventory_ui_slots: Array = grid_container.get_children()
 
@@ -24,8 +24,15 @@ func update_inventory_slots():
 func _ready():
 	#con esto hago que este desactivado el fisics prouces
 	set_physics_process(false)
+	
+	if $"../..".get_parent() == GlobalVar.player:
+		object = $"../..".get_parent()
+		
+	else:
+		object = $"../..".get_parent()
+	
 	populate_grid_container()
-	update_inventory_slots()
+	
 	
 func _enter_state() -> void:
 	#solo se activa cuando entro al state wander
@@ -36,4 +43,4 @@ func _exit_state() -> void:
 	set_physics_process(false)
 	
 func _physics_process(_delta):
-	pass
+	update_inventory_slots()

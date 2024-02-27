@@ -1,11 +1,10 @@
-[gd_scene load_steps=74 format=3 uid="uid://xay4yew45pn4"]
+[gd_scene load_steps=73 format=3 uid="uid://xay4yew45pn4"]
 
 [ext_resource type="PackedScene" uid="uid://d26543ubrvlv7" path="res://scenes/base_entity.tscn" id="1_kdndf"]
 [ext_resource type="Texture2D" uid="uid://20kdx77v3k6u" path="res://sprites/base_character.png" id="2_85hw2"]
 [ext_resource type="Script" path="res://scripts/player.gd" id="2_iqklm"]
 [ext_resource type="Texture2D" uid="uid://du86lasbxfe57" path="res://tiles/iso_tileset_testing-Sheet.png" id="3_0j2wy"]
 [ext_resource type="Script" path="res://inventory_slot.gd" id="3_fxeao"]
-[ext_resource type="Resource" uid="uid://x5fiveinmeu" path="res://items/weapons/novice_elemental_staff.tres" id="3_hj4ei"]
 [ext_resource type="Texture2D" uid="uid://bvitood4gow5k" path="res://sprites/basic_attack_magic_staff.png" id="3_kpyr4"]
 [ext_resource type="Texture2D" uid="uid://dg8hek6l0i4x1" path="res://sprites/base_character_animation.png" id="4_o8rqv"]
 [ext_resource type="Script" path="res://inventory/inventory.gd" id="4_xuwal"]
@@ -24,47 +23,45 @@
 [ext_resource type="Texture2D" uid="uid://d3k37nkve0j5b" path="res://sprites/characters/player_portrait.png" id="16_3mm3c"]
 [ext_resource type="PackedScene" uid="uid://busyvsstvtytk" path="res://inventory/inventory_ui.tscn" id="21_wjsdg"]
 
-[sub_resource type="Resource" id="Resource_5m2vx"]
-script = ExtResource("3_fxeao")
-item = ExtResource("3_hj4ei")
-amount = 3
-
-[sub_resource type="Resource" id="Resource_5iql0"]
+[sub_resource type="Resource" id="Resource_6nyjq"]
 script = ExtResource("3_fxeao")
 amount = 0
 
-[sub_resource type="Resource" id="Resource_lk04o"]
+[sub_resource type="Resource" id="Resource_guqkh"]
 script = ExtResource("3_fxeao")
 amount = 0
 
-[sub_resource type="Resource" id="Resource_uevpv"]
+[sub_resource type="Resource" id="Resource_pw4ue"]
 script = ExtResource("3_fxeao")
 amount = 0
 
-[sub_resource type="Resource" id="Resource_04m8j"]
+[sub_resource type="Resource" id="Resource_xkvxr"]
 script = ExtResource("3_fxeao")
 amount = 0
 
-[sub_resource type="Resource" id="Resource_83k8p"]
+[sub_resource type="Resource" id="Resource_elmkr"]
 script = ExtResource("3_fxeao")
 amount = 0
 
-[sub_resource type="Resource" id="Resource_qneta"]
+[sub_resource type="Resource" id="Resource_wfwwa"]
 script = ExtResource("3_fxeao")
 amount = 0
 
-[sub_resource type="Resource" id="Resource_ojss8"]
+[sub_resource type="Resource" id="Resource_oarup"]
 script = ExtResource("3_fxeao")
 amount = 0
 
-[sub_resource type="Resource" id="Resource_1yfx8"]
+[sub_resource type="Resource" id="Resource_jusy0"]
 script = ExtResource("3_fxeao")
-item = ExtResource("3_hj4ei")
 amount = 0
 
-[sub_resource type="Resource" id="Resource_mgbpb"]
+[sub_resource type="Resource" id="Resource_54qi4"]
+script = ExtResource("3_fxeao")
+amount = 0
+
+[sub_resource type="Resource" id="Resource_0xc8v"]
 script = ExtResource("4_xuwal")
-inventory_slots = Array[ExtResource("3_fxeao")]([SubResource("Resource_5m2vx"), SubResource("Resource_5iql0"), SubResource("Resource_lk04o"), SubResource("Resource_uevpv"), SubResource("Resource_04m8j"), SubResource("Resource_83k8p"), SubResource("Resource_qneta"), SubResource("Resource_ojss8"), SubResource("Resource_1yfx8")])
+inventory_slots = Array[ExtResource("3_fxeao")]([SubResource("Resource_6nyjq"), SubResource("Resource_guqkh"), SubResource("Resource_pw4ue"), SubResource("Resource_xkvxr"), SubResource("Resource_elmkr"), SubResource("Resource_wfwwa"), SubResource("Resource_oarup"), SubResource("Resource_jusy0"), SubResource("Resource_54qi4")])
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_3pdjn"]
 radius = 2.0
@@ -559,7 +556,7 @@ position = Vector2(10, -12)
 collision_layer = 2
 collision_mask = 7
 script = ExtResource("2_iqklm")
-player_inventory = SubResource("Resource_mgbpb")
+item_container = SubResource("Resource_0xc8v")
 level = 10
 max_action_points = 5
 action_points = 5

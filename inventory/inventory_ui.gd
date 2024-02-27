@@ -23,8 +23,8 @@ func open_inventory():
 func _ready():
 	#this signal is emited when an item is inserted into the inventory
 	player_inventory.update_inventory_slot.connect(update_inventory_slots)
-	update_inventory_slots()
-
+	#update_inventory_slots()
+	pass
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	open_inventory()

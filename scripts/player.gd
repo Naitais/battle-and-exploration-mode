@@ -23,7 +23,7 @@ extends "res://scripts/baseEntity.gd"
 @onready var mob_team_tag_lbl = $PanelContainer/MarginContainer/GridContainer/mob_team_tag_lbl
 
 #PLAYER INVENTORY
-@export var player_inventory: Inventory
+@export var item_container: Inventory
 
 func _ready():
 	GlobalVar.player = self
@@ -85,7 +85,6 @@ func manage_mob_pack_tooltip_ui():
 		#mob_data.text = mob_info
 		
 func _physics_process(_delta: float) -> void:
-	
 	
 	if GlobalVar.exploration_mode:
 		move_and_slide()

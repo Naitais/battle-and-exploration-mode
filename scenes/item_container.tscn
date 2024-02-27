@@ -54,12 +54,6 @@ scale = Vector2(0.933468, 1)
 build_mode = 1
 polygon = PackedVector2Array(-0.660691, 15, -17.8011, 8, -0.660691, 0, 16.4797, 8)
 
-[node name="inventory_ui_test" parent="." instance=ExtResource("8_7bpfg")]
-offset_left = -55.0
-offset_top = -125.0
-offset_right = -55.0
-offset_bottom = -125.0
-
 [node name="interact_area" type="Area2D" parent="."]
 collision_layer = 2
 collision_mask = 2
@@ -84,6 +78,12 @@ offset_right = 100.0
 offset_bottom = -15.0
 scale = Vector2(0.5, 0.5)
 text = "Press \"E\" to open"
+
+[node name="inventory_ui_test" parent="." instance=ExtResource("8_7bpfg")]
+offset_left = -55.0
+offset_top = -123.0
+offset_right = -55.0
+offset_bottom = -123.0
 
 [connection signal="body_entered" from="interact_area" to="." method="_on_interact_area_body_entered"]
 [connection signal="body_exited" from="interact_area" to="." method="_on_interact_area_body_exited"]

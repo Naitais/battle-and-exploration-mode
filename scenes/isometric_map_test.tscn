@@ -50,9 +50,8 @@ layer_1/z_index = 1
 layer_1/tile_data = PackedInt32Array()
 script = ExtResource("3_6h1et")
 
-[node name="player" parent="." instance=ExtResource("2_jm08i")]
-position = Vector2(-2, -8)
-
 [node name="item_container" parent="." instance=ExtResource("5_tvmjs")]
 z_index = 21
 position = Vector2(16, 0)
+
+[node name="player" parent="." instance=ExtResource("2_jm08i")]
