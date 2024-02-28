@@ -38,7 +38,14 @@ func set_astargrid():
 #in the futurre I will need a globalvar for different things such as managing spawned mob packs
 #this array stores every spawned mob_pack so that when a combat starts, it will get a specific mob_pack
 #(maybe it will get the mob_pack id when I get a database) to spawn every mob in the pack in a battle map
-	
+
+#CURSORS
+var cursor_default = preload("res://sprites/cursor_default.png")
+var cursor_click = preload("res://sprites/cursor_click.png")
+var cursor_open_container = preload("res://sprites/cursor_open_container.png")
+
+#Input.set_custom_mouse_cursor(GlobalVar.attack_cursor, Input.CURSOR_ARROW, Vector2(16,16))
+
 func _physics_process(_delta):
 	pass
 	

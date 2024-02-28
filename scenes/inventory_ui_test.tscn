@@ -42,6 +42,28 @@ columns = 3
 script = ExtResource("3_cx70a")
 state = NodePath("ManageInventoryState")
 
-[node name="ManageInventoryState" type="Node" parent="StateMachine" node_paths=PackedStringArray("grid_container")]
+[node name="ManageInventoryState" type="Node" parent="StateMachine" node_paths=PackedStringArray("grid_container", "close_container", "inventory_ui_test")]
 script = ExtResource("4_nvgva")
 grid_container = NodePath("../../NinePatchRect/GridContainer")
+close_container = NodePath("../../close_container")
+inventory_ui_test = NodePath("../..")
+
+[node name="close_container" type="Button" parent="."]
+layout_mode = 0
+offset_left = 33.0
+offset_top = 106.0
+offset_right = 83.0
+offset_bottom = 137.0
+scale = Vector2(0.3, 0.3)
+text = "Close"
+
+[node name="get_all_items" type="Button" parent="."]
+layout_mode = 0
+offset_left = 54.0
+offset_top = 106.0
+offset_right = 159.0
+offset_bottom = 137.0
+scale = Vector2(0.3, 0.3)
+text = "Get all items"
+
+[connection signal="pressed" from="close_container" to="StateMachine/ManageInventoryState" method="_on_close_container_pressed"]

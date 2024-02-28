@@ -6,6 +6,7 @@ extends Panel
 @onready var inventory: Inventory = get_parent().get_parent().get_parent().get_parent().item_container
 @onready var inventory_slots: Array = get_parent().get_parent().get_parent().get_parent().item_container.inventory_slots
 
+
 var can_pick_item: bool = false
 
 func update_inventory(slot: InventorySlot):
@@ -26,28 +27,25 @@ func show_item_name(slot):
 	if slot.item and can_pick_item:
 		item_name_lbl.global_position = get_global_mouse_position() + Vector2(-30,-15)
 		item_name_lbl.text = slot.item.item_name
-		
-		
 		pick_up_item(slot)
 		
-
 func pick_up_item(slot: InventorySlot):
 	var new_slot := InventorySlot.new()
 	
 	if Input.is_action_just_pressed("left_click"):
-		GlobalVar.player.item_container.insert(slot.item)
-		print(inventory_slots.find(slot))
+		#check if the item is inside the player inventory, if it is we do not want to pick it up
+		if slot not in GlobalVar.player.item_container.inventory_slots:
 		
-		var slot_index: int = inventory_slots.find(slot)
-		if slot_index != -1:
-			inventory_slots.remove_at(slot_index)
-			inventory_slots.insert(slot_index, new_slot)
-			item_name_lbl.text = ""
+			GlobalVar.player.item_container.insert(slot.item)
 			
-		#await get_tree().create_timer(0.5).timeout
-		
-		
-		
+			var slot_index: int = inventory_slots.find(slot)
+			if slot_index != -1:
+				inventory_slots.remove_at(slot_index)
+				inventory_slots.insert(slot_index, new_slot)
+				
+				#erase the text from label
+				item_name_lbl.text = ""
+
 func get_slot_item():
 	if can_pick_item:
 		#get the item in the clicked slot ui
@@ -56,6 +54,8 @@ func get_slot_item():
 			if slot and slot == inventory_slots[get_parent().get_children().find(self)]:
 				show_item_name(slot)
 				
+
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	pass

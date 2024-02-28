@@ -5,6 +5,8 @@ extends State
 @onready var object
 @export var grid_container: GridContainer
 @onready var inventory_ui_slots: Array = grid_container.get_children()
+@export var close_container: Button
+@export var inventory_ui_test = Control
 
 func populate_grid_container():
 	#fill the inventory ui with the corresponding amount of slots in the object inventory
@@ -46,3 +48,7 @@ func _exit_state() -> void:
 	
 func _physics_process(_delta):
 	update_inventory_slots()
+
+
+func _on_close_container_pressed():
+	inventory_ui_test.visible = false

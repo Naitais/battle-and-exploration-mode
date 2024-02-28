@@ -1,33 +1,18 @@
 extends Node2D
 
-var list: Array = [1,0,0]
-var r: int = 0
-# Called when the node enters the scene tree for the first time.
-
-func set_true():
-	for i in list:
-		if i != 0:
-			print("turn action", i)
-	
+const DOUBLETAP_DELAY = 0.25
+var doubletap_time = DOUBLETAP_DELAY
+var last_keycode = 0
 
 func _process(delta):
-	#set_true()
-	for i in list:
-		var area_2d_test: Area2D
-	
+	input()
+	doubletap_time -= delta
 
-func _on_button_pressed():
-	print(list.size()-1)
-	print("antes de sumar",r)
-	if r < list.size()-1:
-		list[r] = 0
-		list[r+1] = r+1
-		
-		r +=1
-		print("despues de sumar",r)
-	else:
-		r = 0
-		for i in list:
-			i = 0
-		list[0] = 1
-		print("termino ronda y reseteo")
+func input():
+	if Input.is_action_just_pressed("left_click"):
+		if doubletap_time > 0:
+			print("Left mouse button double-clicked")
+			# Add your logic for handling left mouse button double-click action here
+		doubletap_time = DOUBLETAP_DELAY
+
+

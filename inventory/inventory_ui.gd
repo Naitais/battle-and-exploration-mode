@@ -4,6 +4,7 @@ extends Control
 @onready var player_inventory: Inventory = preload("res://inventory/player_inventory.tres")
 @onready var inventory_ui_slots: Array = $NinePatchRect/GridContainer.get_children()
 
+
 func update_inventory_slots():
 	#this for returns an array with each index of the players inventory resource
 	for i in range(min(player_inventory.inventory_slots.size(), inventory_ui_slots.size())):
