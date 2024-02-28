@@ -37,6 +37,7 @@ amount = 0
 [sub_resource type="Resource" id="Resource_qe0pi"]
 script = ExtResource("4_rb7cl")
 inventory_slots = Array[ExtResource("3_4ejoo")]([SubResource("Resource_cwmmn"), SubResource("Resource_037cf"), SubResource("Resource_f3w6o"), SubResource("Resource_1aqp7"), SubResource("Resource_pfj3r"), SubResource("Resource_h7e1n")])
+inventory_type = 0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_0sieq"]
 radius = 50.1597

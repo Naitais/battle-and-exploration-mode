@@ -25,9 +25,11 @@ func _ready():
 	#con esto hago que este desactivado el fisics prouces
 	set_physics_process(false)
 	
+	#if the inventory is for the player
 	if $"../..".get_parent() == GlobalVar.player:
 		object = $"../..".get_parent()
-		
+	
+	#if the inventory is of another type
 	else:
 		object = $"../..".get_parent()
 	

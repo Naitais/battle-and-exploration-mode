@@ -62,6 +62,7 @@ amount = 0
 [sub_resource type="Resource" id="Resource_0xc8v"]
 script = ExtResource("4_xuwal")
 inventory_slots = Array[ExtResource("3_fxeao")]([SubResource("Resource_6nyjq"), SubResource("Resource_guqkh"), SubResource("Resource_pw4ue"), SubResource("Resource_xkvxr"), SubResource("Resource_elmkr"), SubResource("Resource_wfwwa"), SubResource("Resource_oarup"), SubResource("Resource_jusy0"), SubResource("Resource_54qi4")])
+inventory_type = 0
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_3pdjn"]
 radius = 2.0
@@ -763,6 +764,8 @@ texture = ExtResource("16_3mm3c")
 
 [node name="Inventory_UI" parent="." index="15" instance=ExtResource("21_wjsdg")]
 visible = false
+z_index = 22
+y_sort_enabled = true
 
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
 [connection signal="area_entered" from="Hurtbox" to="." method="_on_hurtbox_area_entered"]

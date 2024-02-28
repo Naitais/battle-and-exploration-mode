@@ -86,6 +86,8 @@ func manage_mob_pack_tooltip_ui():
 		
 func _physics_process(_delta: float) -> void:
 	
+	
+	
 	if GlobalVar.exploration_mode:
 		move_and_slide()
 		basic_attack()

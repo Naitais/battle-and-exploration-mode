@@ -15,4 +15,4 @@ item_attributes = {
 "Damage": 3
 }
 item_path = "res://sprites/items/weapons/novice_elemental_staff/novice_elemental_staff.png"
-item_can_stack = true
+item_can_stack = false

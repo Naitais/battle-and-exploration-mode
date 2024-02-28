@@ -4,7 +4,10 @@ class_name Inventory
 
 signal update_inventory_slot
 
+enum type {PLAYER_INVENTORY, ENVIORENMENT_CONTAINER}
+
 @export var inventory_slots: Array[InventorySlot]
+@export var inventory_type: type
 
 func insert(item: Item):
 	# Check if there are slots with the same item

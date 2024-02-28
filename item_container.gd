@@ -30,6 +30,9 @@ func _ready():
 	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
+	for item in item_container.inventory_slots:
+		print(item.item)
+		
 	open_container()
 
 func _on_interact_area_body_entered(body):
